@@ -82,6 +82,7 @@
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.8.0.1\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Pipelines, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.Pipelines.5.0.2\lib\net461\System.IO.Pipelines.dll</HintPath>
@@ -126,6 +127,54 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADDING_BORROWER_CONTROL.Designer.vb">
+      <DependentUpon>ADDING_BORROWER_CONTROL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ADDING_BORROWER_CONTROL.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ADDING_FORM.Designer.vb">
+      <DependentUpon>ADDING_FORM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ADDING_FORM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADD_BOOK_CONTROL.Designer.vb">
+      <DependentUpon>ADD_BOOK_CONTROL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ADD_BOOK_CONTROL.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Author Management.Designer.vb">
+      <DependentUpon>Author Management.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Author Management.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AUTHOR_MANAGEMENT_TABLE.Designer.vb">
+      <DependentUpon>AUTHOR_MANAGEMENT_TABLE.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AUTHOR_MANAGEMENT_TABLE.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BOOK_MANAGEMENT_CONTROL.Designer.vb">
+      <DependentUpon>BOOK_MANAGEMENT_CONTROL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BOOK_MANAGEMENT_CONTROL.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BOOK_MANAGEMENT_TABLE.Designer.vb">
+      <DependentUpon>BOOK_MANAGEMENT_TABLE.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BOOK_MANAGEMENT_TABLE.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BORROWER_MANAGEMENT_TABLE.Designer.vb">
+      <DependentUpon>BORROWER_MANAGEMENT_TABLE.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BORROWER_MANAGEMENT_TABLE.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +183,24 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Global Module.vb" />
+    <Compile Include="LOAN MANAGEMENT.Designer.vb">
+      <DependentUpon>LOAN MANAGEMENT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LOAN MANAGEMENT.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LOAN_MANAGEMENT_CONTROL.Designer.vb">
+      <DependentUpon>LOAN_MANAGEMENT_CONTROL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LOAN_MANAGEMENT_CONTROL.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Main Dashboard.Designer.vb">
+      <DependentUpon>Main Dashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Main Dashboard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -149,25 +216,49 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="New Dashboard.Designer.vb">
-      <DependentUpon>New Dashboard.vb</DependentUpon>
-    </Compile>
-    <Compile Include="New Dashboard.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ADDING_BORROWER_CONTROL.resx">
+      <DependentUpon>ADDING_BORROWER_CONTROL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADDING_FORM.resx">
+      <DependentUpon>ADDING_FORM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADD_BOOK_CONTROL.resx">
+      <DependentUpon>ADD_BOOK_CONTROL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Author Management.resx">
+      <DependentUpon>Author Management.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AUTHOR_MANAGEMENT_TABLE.resx">
+      <DependentUpon>AUTHOR_MANAGEMENT_TABLE.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BOOK_MANAGEMENT_CONTROL.resx">
+      <DependentUpon>BOOK_MANAGEMENT_CONTROL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BOOK_MANAGEMENT_TABLE.resx">
+      <DependentUpon>BOOK_MANAGEMENT_TABLE.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BORROWER_MANAGEMENT_TABLE.resx">
+      <DependentUpon>BORROWER_MANAGEMENT_TABLE.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LOAN MANAGEMENT.resx">
+      <DependentUpon>LOAN MANAGEMENT.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LOAN_MANAGEMENT_CONTROL.resx">
+      <DependentUpon>LOAN_MANAGEMENT_CONTROL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main Dashboard.resx">
+      <DependentUpon>Main Dashboard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="New Dashboard.resx">
-      <DependentUpon>New Dashboard.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
