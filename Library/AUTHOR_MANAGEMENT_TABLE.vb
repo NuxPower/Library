@@ -162,32 +162,12 @@ Public Class AUTHOR_MANAGEMENT_TABLE
                     LoadAuthorList()
                 End If
             ElseIf viewBtn.Contains(e.Location) Then
-                Dim selectedAuthorId As Integer = CInt(hitInfo.Item.Tag)
-                Dim selectedAuthorName As String = hitInfo.Item.SubItems(1).Text
-
-                Dim viewControl As New VIEW_AUTHOR_TABLE(selectedAuthorName)
-                viewControl.SetAuthorId(selectedAuthorId)
-
-                Dim authorManagement = FindParentAuthorManagement(Me)
-                If authorManagement IsNot Nothing Then
-                    authorManagement.dashboardLoad(viewControl)
-                Else
-                    MessageBox.Show("Cannot find Author_Management container.")
-                End If
+                Dim viewControl As New VIEW_AUTHOR_TABLE()
+                viewControl.SetAuthorId(authorId)
+                CType(Me.ParentForm, Author_Management).dashboardLoad(viewControl)
             End If
-
         End If
     End Sub
-    ' Helper function to find parent of a specific type
-    Private Function FindParentAuthorManagement(control As Control) As Author_Management
-        While control IsNot Nothing
-            If TypeOf control Is Author_Management Then
-                Return CType(control, Author_Management)
-            End If
-            control = control.Parent
-        End While
-        Return Nothing
-    End Function
 
     ' Adjusts column sizes responsively
     Private Sub ListView1_Resize(sender As Object, e As EventArgs)
