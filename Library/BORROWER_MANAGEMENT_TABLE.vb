@@ -55,11 +55,11 @@
                 Dim btnWidth As Integer = (e.Bounds.Width - spacing - 10) \ 2
                 Dim btnHeight As Integer = e.Bounds.Height - 4
 
-                Dim editRect As New Rectangle(e.Bounds.X + 5, e.Bounds.Y + 2, btnWidth, btnHeight)
-                Dim deleteRect As New Rectangle(e.Bounds.X + btnWidth + spacing, e.Bounds.Y + 2, btnWidth, btnHeight)
+                Dim viewRect As New Rectangle(e.Bounds.X + 5, e.Bounds.Y + 2, btnWidth, btnHeight)
+                Dim updateRect As New Rectangle(e.Bounds.X + btnWidth + spacing, e.Bounds.Y + 2, btnWidth, btnHeight)
 
-                ButtonRenderer.DrawButton(e.Graphics, editRect, "Edit", e.Item.ListView.Font, False, VisualStyles.PushButtonState.Normal)
-                ButtonRenderer.DrawButton(e.Graphics, deleteRect, "Delete", e.Item.ListView.Font, False, VisualStyles.PushButtonState.Normal)
+                ButtonRenderer.DrawButton(e.Graphics, viewRect, "View", e.Item.ListView.Font, False, VisualStyles.PushButtonState.Normal)
+                ButtonRenderer.DrawButton(e.Graphics, updateRect, "Update", e.Item.ListView.Font, False, VisualStyles.PushButtonState.Normal)
 
             Case 1, 2, 3 ' NAME, EMAIL, MOBILE NO.
                 TextRenderer.DrawText(e.Graphics, e.SubItem.Text, e.Item.ListView.Font, e.Bounds,
@@ -81,16 +81,21 @@
             Dim itemBounds = hitInfo.SubItem.Bounds
             Dim btnWidth As Integer = (itemBounds.Width - 10) \ 2
 
-            Dim editBtn = New Rectangle(itemBounds.X + 5, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
-            Dim deleteBtn = New Rectangle(itemBounds.X + btnWidth + 10, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
+            Dim viewBtn = New Rectangle(itemBounds.X + 5, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
+            Dim updateBtn = New Rectangle(itemBounds.X + btnWidth + 10, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
 
-            If editBtn.Contains(e.Location) Then
-                MessageBox.Show("Edit clicked on " & hitInfo.Item.SubItems(1).Text)
-            ElseIf deleteBtn.Contains(e.Location) Then
-                MessageBox.Show("Delete clicked on " & hitInfo.Item.SubItems(1).Text)
+            If viewBtn.Contains(e.Location) Then
+                ' Show the VIEW_BORROWER_MANAGEMENT_CONTROL in a dynamic form
+                Dim form As New LOAN_MANAGEMENT("VIEW_BORROWER")
+                form.ShowDialog()
+            ElseIf updateBtn.Contains(e.Location) Then
+                ' Show the UPDATING_BORROWER_CONTROL in a dynamic form
+                Dim form As New LOAN_MANAGEMENT("UPDATE_BORROWER")
+                form.ShowDialog()
             End If
         End If
     End Sub
+
 
     Private Sub ListView1_Resize(sender As Object, e As EventArgs)
         Dim totalWidth As Integer = ListView1.ClientSize.Width
@@ -107,6 +112,10 @@
         ListView1.Columns(2).Width = dynamicColWidth  ' EMAIL
         ListView1.Columns(3).Width = dynamicColWidth  ' MOBILE NO.
         ListView1.Columns(4).Width = col4Width        ' ACTIONS
+    End Sub
+
+    Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
+
     End Sub
 
 End Class

@@ -1,9 +1,6 @@
 ﻿Public Class Author_Management
     Private managementType As String
 
-
-
-
     Public Sub New(type As String)
         InitializeComponent()
         managementType = type
@@ -12,7 +9,7 @@
     Private Sub Author_Management_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         fragment2.Dock = DockStyle.Fill
 
-        ' Dynamically update Label1's text
+        ' Optionally update Label1's text for feedback (remove if not needed)
         Select Case managementType.ToUpper()
             Case "AUTHORS"
                 Label1.Text = "ADD AUTHOR"
@@ -23,12 +20,15 @@
             Case "BORROWERS"
                 Label1.Text = "ADD BORROWER"
                 Label1.Cursor = Cursors.Hand
+            Case "UPDATE_BORROWER"
+                Label1.Text = "UPDATE BORROWER"
+                Label1.Cursor = Cursors.Hand
             Case Else
                 Label1.Text = "ADD"
                 Label1.Cursor = Cursors.Default
         End Select
 
-        ' Existing logic for loading the relevant management table
+        ' Load the relevant management table or control
         Select Case managementType.ToUpper()
             Case "AUTHORS"
                 dashboardLoad(New AUTHOR_MANAGEMENT_TABLE())
@@ -36,6 +36,8 @@
                 dashboardLoad(New BOOK_MANAGEMENT_TABLE())
             Case "BORROWERS"
                 dashboardLoad(New BORROWER_MANAGEMENT_TABLE())
+            Case "UPDATE_BORROWER"
+                dashboardLoad(New UPDATING_BORROWER_CONTROL())
             Case Else
                 MessageBox.Show("Unknown management type: " & managementType)
         End Select
@@ -55,6 +57,8 @@
                 addControl = New ADD_BOOK_CONTROL()
             Case "BORROWERS"
                 addControl = New ADDING_BORROWER_CONTROL()
+            Case "UPDATE_BORROWER"
+                addControl = New UPDATING_BORROWER_CONTROL()
             Case Else
                 MessageBox.Show("Unknown management type.")
                 Exit Sub
@@ -62,21 +66,21 @@
 
         If addControl IsNot Nothing Then
             Dim addPanel As New Panel With {
-            .Dock = DockStyle.Fill,
-            .BackColor = Color.FromArgb(220, 220, 220)
-        }
+                .Dock = DockStyle.Fill,
+                .BackColor = Color.FromArgb(220, 220, 220)
+            }
             addControl.Dock = DockStyle.Fill
             addPanel.Controls.Add(addControl)
 
             ' Optional close button
             Dim closeBtn As New Button With {
-            .Text = "X",
-            .Width = 32,
-            .Height = 32,
-            .Top = 8,
-            .Left = addPanel.Width - 40,
-            .Anchor = AnchorStyles.Top Or AnchorStyles.Right
-        }
+                .Text = "X",
+                .Width = 32,
+                .Height = 32,
+                .Top = 8,
+                .Left = addPanel.Width - 40,
+                .Anchor = AnchorStyles.Top Or AnchorStyles.Right
+            }
             AddHandler closeBtn.Click, Sub() fragment2.Controls.Remove(addPanel)
             addPanel.Controls.Add(closeBtn)
             closeBtn.BringToFront()
@@ -85,8 +89,6 @@
             addPanel.BringToFront()
         End If
     End Sub
-
-
 
     Public Sub dashboardLoad(board As UserControl)
         LoadUserControl(board)
@@ -97,15 +99,14 @@
         fragment2.BringToFront()
 
         Dim scrollablePanel As New Panel With {
-        .Dock = DockStyle.Fill,
-        .AutoScroll = True
-    }
+            .Dock = DockStyle.Fill,
+            .AutoScroll = True
+        }
 
         uc.Dock = DockStyle.Fill
         scrollablePanel.Controls.Add(uc)
         fragment2.Controls.Add(scrollablePanel)
     End Sub
-
 
     Private Sub panelL_Clicked(sender As Object, e As EventArgs) Handles panelL.Click
         Dim loanForm As New LOAN_MANAGEMENT("LOAN")
@@ -113,13 +114,11 @@
     End Sub
 
     Private Sub fragment2_Paint(sender As Object, e As PaintEventArgs) Handles fragment2.Paint
-
+        ' Custom painting if needed
     End Sub
 
     Private Sub Panel16_Paint(sender As Object, e As PaintEventArgs) Handles Panel16.Paint
-
+        ' Custom painting if needed
     End Sub
-
-
 
 End Class

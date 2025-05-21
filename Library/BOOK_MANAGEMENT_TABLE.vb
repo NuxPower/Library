@@ -85,17 +85,17 @@
             Dim viewBtn = New Rectangle(itemBounds.X + 5, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
             Dim updateBtn = New Rectangle(itemBounds.X + btnWidth + 10, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
 
-            Dim bookTitle As String = hitInfo.Item.SubItems(1).Text
-
             If viewBtn.Contains(e.Location) Then
-                ' Display BOOK_MANAGEMENT_CONTROL as a UserControl in a parent panel (not a form)
-                ShowInParentPanel(New BOOK_MANAGEMENT_CONTROL())
+                ' Open the LOAN_MANAGEMENT form, but now load the Book Management Control
+                Dim bookForm As New LOAN_MANAGEMENT("BOOKS")
+                bookForm.ShowDialog()
             ElseIf updateBtn.Contains(e.Location) Then
-                ' Display update_book as a UserControl in a parent panel (not a form)
                 update_book.ShowDialog()
             End If
         End If
     End Sub
+
+
 
     ' Helper function to add a control to your parent container, e.g., fragment2
     Private Sub ShowInParentPanel(ctrl As UserControl)
