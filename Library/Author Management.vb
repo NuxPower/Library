@@ -14,12 +14,7 @@
         For Each ctrl As Control In panelA.Controls
             AddHandler ctrl.Click, AddressOf panelA_Clicked
         Next
-        For Each ctrl As Control In Panel5.Controls
-            AddHandler ctrl.Click, AddressOf panel5_Click
-        Next
-        For Each ctrl As Control In Panel7.Controls
-            AddHandler ctrl.Click, AddressOf panel7_Click
-        Next
+
         For Each ctrl As Control In Panel3.Controls
             AddHandler ctrl.Click, AddressOf Panel3_Click
         Next
@@ -176,7 +171,7 @@
 
         Return scrollablePanel.Controls(0)
     End Function
-    Private Sub panel5_Click(sender As Object, e As EventArgs) Handles Panel5.Click
+    Private Sub panel5_Click(sender As Object, e As EventArgs)
         Dim currentControl = GetCurrentControl()
         Dim sortable = TryCast(currentControl, ISortable)
         If sortable IsNot Nothing Then
@@ -184,7 +179,7 @@
         End If
     End Sub
 
-    Private Sub panel7_Click(sender As Object, e As EventArgs) Handles Panel7.Click
+    Private Sub panel7_Click(sender As Object, e As EventArgs)
         Dim currentControl = GetCurrentControl()
         Dim sortable = TryCast(currentControl, ISortable)
         If sortable IsNot Nothing Then

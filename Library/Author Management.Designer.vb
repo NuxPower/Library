@@ -26,14 +26,6 @@ Partial Class Author_Management
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.fragment2 = New System.Windows.Forms.Panel()
         Me.Panel16 = New System.Windows.Forms.Panel()
-        Me.Panel7 = New System.Windows.Forms.Panel()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
-        Me.Panel8 = New System.Windows.Forms.Panel()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Panel5 = New System.Windows.Forms.Panel()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
-        Me.Panel6 = New System.Windows.Forms.Panel()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.txtSearch = New System.Windows.Forms.TextBox()
@@ -56,12 +48,6 @@ Partial Class Author_Management
         Me.Panel9 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         Me.Panel16.SuspendLayout()
-        Me.Panel7.SuspendLayout()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel8.SuspendLayout()
-        Me.Panel5.SuspendLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel6.SuspendLayout()
         Me.Panel4.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
@@ -98,8 +84,6 @@ Partial Class Author_Management
         'Panel16
         '
         Me.Panel16.BackColor = System.Drawing.Color.White
-        Me.Panel16.Controls.Add(Me.Panel7)
-        Me.Panel16.Controls.Add(Me.Panel5)
         Me.Panel16.Controls.Add(Me.Panel4)
         Me.Panel16.Controls.Add(Me.Panel3)
         Me.Panel16.Dock = System.Windows.Forms.DockStyle.Top
@@ -107,89 +91,6 @@ Partial Class Author_Management
         Me.Panel16.Name = "Panel16"
         Me.Panel16.Size = New System.Drawing.Size(815, 88)
         Me.Panel16.TabIndex = 5
-        '
-        'Panel7
-        '
-        Me.Panel7.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel7.BackColor = System.Drawing.Color.PowderBlue
-        Me.Panel7.Controls.Add(Me.PictureBox4)
-        Me.Panel7.Controls.Add(Me.Panel8)
-        Me.Panel7.ForeColor = System.Drawing.Color.Black
-        Me.Panel7.Location = New System.Drawing.Point(671, 48)
-        Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(118, 22)
-        Me.Panel7.TabIndex = 4
-        '
-        'PictureBox4
-        '
-        Me.PictureBox4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureBox4.Image = CType(resources.GetObject("PictureBox4.Image"), System.Drawing.Image)
-        Me.PictureBox4.Location = New System.Drawing.Point(104, 0)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(14, 22)
-        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox4.TabIndex = 2
-        Me.PictureBox4.TabStop = False
-        '
-        'Panel8
-        '
-        Me.Panel8.Controls.Add(Me.Label3)
-        Me.Panel8.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel8.Location = New System.Drawing.Point(0, 0)
-        Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(104, 22)
-        Me.Panel8.TabIndex = 1
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(3, 3)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(88, 13)
-        Me.Label3.TabIndex = 1
-        Me.Label3.Text = "SORT BY NAME"
-        '
-        'Panel5
-        '
-        Me.Panel5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel5.BackColor = System.Drawing.Color.PowderBlue
-        Me.Panel5.Controls.Add(Me.PictureBox3)
-        Me.Panel5.Controls.Add(Me.Panel6)
-        Me.Panel5.ForeColor = System.Drawing.Color.Black
-        Me.Panel5.Location = New System.Drawing.Point(547, 48)
-        Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(118, 22)
-        Me.Panel5.TabIndex = 3
-        '
-        'PictureBox3
-        '
-        Me.PictureBox3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureBox3.Image = CType(resources.GetObject("PictureBox3.Image"), System.Drawing.Image)
-        Me.PictureBox3.Location = New System.Drawing.Point(104, 0)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(14, 22)
-        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox3.TabIndex = 2
-        Me.PictureBox3.TabStop = False
-        '
-        'Panel6
-        '
-        Me.Panel6.Controls.Add(Me.Label2)
-        Me.Panel6.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel6.Location = New System.Drawing.Point(0, 0)
-        Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(104, 22)
-        Me.Panel6.TabIndex = 1
-        '
-        'Label2
-        '
-        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(3, 3)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(86, 13)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "SORT BY DATE"
         '
         'Panel4
         '
@@ -426,14 +327,6 @@ Partial Class Author_Management
         Me.Size = New System.Drawing.Size(1026, 508)
         Me.Panel1.ResumeLayout(False)
         Me.Panel16.ResumeLayout(False)
-        Me.Panel7.ResumeLayout(False)
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel8.ResumeLayout(False)
-        Me.Panel8.PerformLayout()
-        Me.Panel5.ResumeLayout(False)
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel6.ResumeLayout(False)
-        Me.Panel6.PerformLayout()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -473,14 +366,6 @@ Partial Class Author_Management
     Friend WithEvents Panel9 As Panel
     Friend WithEvents fragment2 As Panel
     Friend WithEvents Panel16 As Panel
-    Friend WithEvents Panel7 As Panel
-    Friend WithEvents PictureBox4 As PictureBox
-    Friend WithEvents Panel8 As Panel
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Panel5 As Panel
-    Friend WithEvents PictureBox3 As PictureBox
-    Friend WithEvents Panel6 As Panel
-    Friend WithEvents Label2 As Label
     Friend WithEvents Panel4 As Panel
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents txtSearch As TextBox

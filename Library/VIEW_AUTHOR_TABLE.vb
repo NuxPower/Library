@@ -3,6 +3,7 @@ Imports MySql.Data.MySqlClient
 
 Public Class VIEW_AUTHOR_TABLE
     Inherits UserControl
+    Implements ISearchable
 
     Private selectedAuthor As String
     Private _authorId As Integer
@@ -13,6 +14,14 @@ Public Class VIEW_AUTHOR_TABLE
         selectedAuthor = authorName
     End Sub
 
+    Public Sub PerformSearch(query As String) Implements ISearchable.PerformSearch
+        If String.IsNullOrWhiteSpace(query) Then
+            DisplayBooks(bookList)
+        Else
+            Dim filtered = bookList.Where(Function(b) b.Title.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0).ToList()
+            DisplayBooks(filtered)
+        End If
+    End Sub
 
     ' Allow external class to set the author ID
     Public Sub SetAuthorId(authorId As Integer)
@@ -141,7 +150,7 @@ Public Class VIEW_AUTHOR_TABLE
 
             If updateBtn.Contains(e.Location) Then
                 Dim updateForm As New VIEW_AUTHOR_TABLE_UPDATE
-                ' updateForm.BookTitle = bookTitle
+                updateForm.BookId = bookId ' Pass the selected book ID
                 If updateForm.ShowDialog() = DialogResult.OK Then
                     LoadBooksByAuthor()
                 End If
