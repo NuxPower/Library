@@ -3,6 +3,7 @@
 Public Class AUTHOR_MANAGEMENT_TABLE
     Inherits UserControl
     Implements ISearchable, ISortable
+
     Private authorsList As List(Of Author)
 
     ' Implementation of ISortable
@@ -26,7 +27,6 @@ Public Class AUTHOR_MANAGEMENT_TABLE
         Public Property DateAdded As DateTime
     End Class
 
-
     Private Sub AUTHOR_MANAGEMENT_TABLE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ListView1.Dock = DockStyle.Fill
         ConfigureListView()
@@ -37,8 +37,6 @@ Public Class AUTHOR_MANAGEMENT_TABLE
         RemoveHandler ListView1.MouseClick, AddressOf ListView1_MouseClick
         AddHandler ListView1.MouseClick, AddressOf ListView1_MouseClick
     End Sub
-
-
 
     Private Sub ConfigureListView()
         With ListView1
@@ -59,9 +57,7 @@ Public Class AUTHOR_MANAGEMENT_TABLE
         End With
     End Sub
 
-
     Private Sub LoadAuthorList()
-
         authorsList = New List(Of Author)()
 
         Try
@@ -101,6 +97,7 @@ Public Class AUTHOR_MANAGEMENT_TABLE
             item.SubItems.Add(a.Name)
             item.SubItems.Add(a.DateAdded.ToString("yyyy-MM-dd"))
             item.SubItems.Add("") ' Placeholder for action buttons
+            item.Tag = a.AuthorId  ' Store AuthorId in Tag property
             ListView1.Items.Add(item)
             index += 1
         Next
@@ -118,7 +115,6 @@ Public Class AUTHOR_MANAGEMENT_TABLE
         End If
     End Sub
 
-
     Private Sub DrawHeader(sender As Object, e As DrawListViewColumnHeaderEventArgs)
         e.DrawBackground()
         TextRenderer.DrawText(e.Graphics, e.Header.Text, e.Font, e.Bounds, e.ForeColor, TextFormatFlags.HorizontalCenter)
@@ -126,7 +122,6 @@ Public Class AUTHOR_MANAGEMENT_TABLE
 
     Private Sub DrawAuthorSubItem(sender As Object, e As DrawListViewSubItemEventArgs)
         e.DrawBackground()
-
         Select Case e.ColumnIndex
             Case 3 ' ACTIONS
                 Dim spacing As Integer = 12
@@ -138,16 +133,13 @@ Public Class AUTHOR_MANAGEMENT_TABLE
 
                 ButtonRenderer.DrawButton(e.Graphics, editRect, "Update", e.Item.ListView.Font, False, VisualStyles.PushButtonState.Normal)
                 ButtonRenderer.DrawButton(e.Graphics, deleteRect, "View", e.Item.ListView.Font, False, VisualStyles.PushButtonState.Normal)
-
             Case 1 ' NAME
                 TextRenderer.DrawText(e.Graphics, e.SubItem.Text, e.Item.ListView.Font, e.Bounds, e.Item.ListView.ForeColor, TextFormatFlags.HorizontalCenter Or TextFormatFlags.VerticalCenter)
-
             Case Else
                 TextRenderer.DrawText(e.Graphics, e.SubItem.Text, e.Item.ListView.Font, e.Bounds, e.Item.ListView.ForeColor, TextFormatFlags.VerticalCenter Or TextFormatFlags.HorizontalCenter)
         End Select
     End Sub
 
-    ' EDIT and DELETE fully functional!
     Private Sub ListView1_MouseClick(sender As Object, e As MouseEventArgs)
         Dim hitInfo As ListViewHitTestInfo = ListView1.HitTest(e.Location)
         If hitInfo.Item Is Nothing OrElse hitInfo.SubItem Is Nothing Then Exit Sub
@@ -159,13 +151,15 @@ Public Class AUTHOR_MANAGEMENT_TABLE
             Dim editBtn = New Rectangle(itemBounds.X + 5, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
             Dim deleteBtn = New Rectangle(itemBounds.X + btnWidth + 10, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
 
+            ' Use Tag for AuthorId, SubItems(1) for Name
+            Dim authorId As Integer = CInt(hitInfo.Item.Tag)
             Dim authorName As String = hitInfo.Item.SubItems(1).Text
-            ' If you use IDs, fetch from hitInfo.Item.SubItems(0).Text
 
             If editBtn.Contains(e.Location) Then
                 ' --- Show the Edit Form ---
                 Dim editForm As New update_auth()
-                ' Optionally: editForm.AuthorName = authorName
+                editForm.AuthorId = authorId
+                editForm.AuthorName = authorName
                 If editForm.ShowDialog() = DialogResult.OK Then
                     LoadAuthorList()
                 End If
