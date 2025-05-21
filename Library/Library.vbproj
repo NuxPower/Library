@@ -378,5 +378,8 @@
   <ItemGroup>
     <None Include="Resources\premium_photo-1677567996070-68fa4181775a 2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar %281%29 1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

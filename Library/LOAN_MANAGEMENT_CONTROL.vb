@@ -176,13 +176,58 @@ Public Class LOAN_MANAGEMENT_CONTROL
             Dim updateBtn = New Rectangle(itemBounds.X + spacing * 3 + btnWidth * 2, itemBounds.Y + 2, btnWidth, btnHeight)
 
             Dim bookTitle = hitInfo.Item.SubItems(1).Text
-
             If viewBtn.Contains(e.Location) Then
-                MessageBox.Show("View clicked on " & bookTitle)
+                Dim parentForm = Me.FindForm()
+                If parentForm IsNot Nothing AndAlso TypeOf parentForm Is LOAN_MANAGEMENT Then
+                    Dim loanId As Integer = Convert.ToInt32(hitInfo.Item.SubItems(0).Text)
+                    CType(parentForm, LOAN_MANAGEMENT).dashboardLoad(New VIEW_LOAN_MANAGEMENT_TABLE(loanId))
+                Else
+                    MessageBox.Show("LOAN_MANAGEMENT form not found.")
+                End If
             ElseIf deleteBtn.Contains(e.Location) Then
-                MessageBox.Show("Delete clicked on " & bookTitle)
+                Dim loanId As Integer = Convert.ToInt32(hitInfo.Item.SubItems(0).Text)
+                Dim confirm = MessageBox.Show($"Are you sure you want to delete the loan for '{bookTitle}'?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+
+                If confirm = DialogResult.Yes Then
+                    Try
+                        dbConn()
+                        Dim deleteQuery As String = "DELETE FROM loans WHERE loan_id = @loanId"
+                        Dim cmd As New MySqlCommand(deleteQuery, conn)
+                        cmd.Parameters.AddWithValue("@loanId", loanId)
+
+                        Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+
+                        If rowsAffected > 0 Then
+                            MessageBox.Show("Loan deleted successfully.")
+                            LoadLoanList() ' Refresh the ListView
+                        Else
+                            MessageBox.Show("No loan was deleted. Please try again.")
+                        End If
+
+                    Catch ex As Exception
+                        MessageBox.Show("Error deleting loan: " & ex.Message)
+                    Finally
+                        dbDisconn()
+                    End Try
+                End If
+
             ElseIf updateBtn.Contains(e.Location) Then
-                MessageBox.Show("Update clicked on " & bookTitle)
+                Dim loanId As Integer = Convert.ToInt32(hitInfo.Item.SubItems(0).Text)
+                Dim currentReturnDate As String = hitInfo.Item.SubItems(5).Text
+
+                Dim parsedDate As Date
+                If Not Date.TryParse(currentReturnDate, parsedDate) Then
+                    parsedDate = Date.Today
+                End If
+
+                Dim parentForm = Me.FindForm()
+                If parentForm IsNot Nothing AndAlso TypeOf parentForm Is LOAN_MANAGEMENT Then
+                    Dim returnForm As New return_book(loanId, parsedDate)
+                    returnForm.ShowDialog()
+
+                Else
+                    MessageBox.Show("LOAN_MANAGEMENT form not found.")
+                End If
             End If
         End If
     End Sub

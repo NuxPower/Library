@@ -32,17 +32,20 @@ Partial Class return_book
         'DateTimePicker1
         '
         Me.DateTimePicker1.Location = New System.Drawing.Point(247, 265)
-        Me.DateTimePicker1.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.DateTimePicker1.MinimumSize = New System.Drawing.Size(4, 30)
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.Size = New System.Drawing.Size(266, 30)
         Me.DateTimePicker1.TabIndex = 0
         '
         'PictureBox1
         '
+        Me.PictureBox1.ErrorImage = Global.Library.My.Resources.Resources.calendar__1__1
+        Me.PictureBox1.Image = Global.Library.My.Resources.Resources.calendar__1__1
         Me.PictureBox1.ImageLocation = "C:\Users\huerv\Downloads\vecteezy_appointment-date-icon_.jpg"
-        Me.PictureBox1.Location = New System.Drawing.Point(262, 79)
+        Me.PictureBox1.Location = New System.Drawing.Point(288, 82)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(251, 164)
+        Me.PictureBox1.Size = New System.Drawing.Size(185, 177)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
         '
