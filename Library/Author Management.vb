@@ -2,9 +2,6 @@
     Private managementType As String
     Private parentDashboard As Dashboard
 
-
-
-
     Public Sub New(type As String)
         InitializeComponent()
         managementType = type

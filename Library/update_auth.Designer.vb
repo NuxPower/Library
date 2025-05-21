@@ -24,9 +24,9 @@ Partial Class update_auth
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.txtAuthorName = New System.Windows.Forms.TextBox()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -49,39 +49,39 @@ Partial Class update_auth
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "Enter new name"
         '
-        'TextBox4
+        'txtAuthorName
         '
-        Me.TextBox4.Location = New System.Drawing.Point(244, 187)
-        Me.TextBox4.MinimumSize = New System.Drawing.Size(4, 40)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(325, 20)
-        Me.TextBox4.TabIndex = 8
+        Me.txtAuthorName.Location = New System.Drawing.Point(244, 187)
+        Me.txtAuthorName.MinimumSize = New System.Drawing.Size(4, 40)
+        Me.txtAuthorName.Name = "txtAuthorName"
+        Me.txtAuthorName.Size = New System.Drawing.Size(325, 20)
+        Me.txtAuthorName.TabIndex = 8
         '
-        'Button2
+        'btnCancel
         '
-        Me.Button2.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Button2.Location = New System.Drawing.Point(444, 274)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(125, 35)
-        Me.Button2.TabIndex = 18
-        Me.Button2.Text = "CANCEL"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.btnCancel.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnCancel.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnCancel.Location = New System.Drawing.Point(444, 274)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(125, 35)
+        Me.btnCancel.TabIndex = 18
+        Me.btnCancel.Text = "CANCEL"
+        Me.btnCancel.UseVisualStyleBackColor = False
         '
-        'Button1
+        'btnSave
         '
-        Me.Button1.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.Button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Button1.Location = New System.Drawing.Point(244, 274)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(125, 35)
-        Me.Button1.TabIndex = 17
-        Me.Button1.Text = "SAVE"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.btnSave.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btnSave.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnSave.Location = New System.Drawing.Point(244, 274)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(125, 35)
+        Me.btnSave.TabIndex = 17
+        Me.btnSave.Text = "SAVE"
+        Me.btnSave.UseVisualStyleBackColor = False
         '
         'update_auth
         '
@@ -89,9 +89,9 @@ Partial Class update_auth
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.TextBox4)
+        Me.Controls.Add(Me.btnCancel)
+        Me.Controls.Add(Me.btnSave)
+        Me.Controls.Add(Me.txtAuthorName)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Name = "update_auth"
@@ -103,7 +103,7 @@ Partial Class update_auth
 
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents txtAuthorName As TextBox
+    Friend WithEvents btnCancel As Button
+    Friend WithEvents btnSave As Button
 End Class
