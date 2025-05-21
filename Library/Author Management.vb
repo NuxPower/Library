@@ -30,14 +30,15 @@
         fragment2.BringToFront()
 
         Dim scrollablePanel As New Panel With {
-            .Dock = DockStyle.Fill,
-            .AutoScroll = True
-        }
+        .Dock = DockStyle.Fill,
+        .AutoScroll = True
+    }
 
         uc.Dock = DockStyle.Fill
         scrollablePanel.Controls.Add(uc)
         fragment2.Controls.Add(scrollablePanel)
     End Sub
+
 
     Private Sub panelL_Clicked(sender As Object, e As EventArgs) Handles panelL.Click
         Dim loanForm As New LOAN_MANAGEMENT("LOAN")

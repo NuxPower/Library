@@ -31,9 +31,10 @@ Public Class Main_Dashboard
         Dim parentDash = TryCast(Me.ParentForm, Dashboard)
         If parentDash IsNot Nothing Then
             parentDash.FragmentTitle.Text = "MANAGE BOOKS"
-            parentDash.dashboardLoad(New BOOK_MANAGEMENT_TABLE()) ' ✅ load actual book table
+            parentDash.dashboardLoad(New Author_Management("BOOKS"))
         End If
     End Sub
+
 
     Private Sub panelMB_Clicked(sender As Object, e As EventArgs) Handles panelMB.Click
         Dashboard.FragmentTitle.Text = "MANAGE BORROWERS"
