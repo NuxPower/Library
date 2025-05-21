@@ -23,6 +23,10 @@
         For Each ctrl As Control In Panel7.Controls
             AddHandler ctrl.Click, AddressOf panelA_Clicked
         Next
+        For Each ctrl As Control In Panel3.Controls
+            AddHandler ctrl.Click, AddressOf panelA_Clicked
+        Next
+
         fragment2.Dock = DockStyle.Fill
 
         ' Optionally update Label1's text for feedback (remove if not needed)
@@ -84,7 +88,7 @@
         dashboardLoad(New AUTHOR_MANAGEMENT_TABLE)
     End Sub
 
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+    Private Sub Label1_Click(sender As Object, e As EventArgs)
         ShowAddPanel()
     End Sub
 

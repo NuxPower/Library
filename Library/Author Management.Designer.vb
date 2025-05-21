@@ -38,7 +38,6 @@ Partial Class Author_Management
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel10 = New System.Windows.Forms.Panel()
@@ -53,6 +52,8 @@ Partial Class Author_Management
         Me.panelD = New System.Windows.Forms.Panel()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel9 = New System.Windows.Forms.Panel()
+        Me.Panel11 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel16.SuspendLayout()
         Me.Panel7.SuspendLayout()
@@ -72,6 +73,7 @@ Partial Class Author_Management
         Me.panelBK.SuspendLayout()
         Me.panelA.SuspendLayout()
         Me.panelD.SuspendLayout()
+        Me.Panel11.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -224,25 +226,13 @@ Partial Class Author_Management
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.Color.LightBlue
-        Me.Panel3.Controls.Add(Me.Label1)
+        Me.Panel3.Controls.Add(Me.Panel11)
         Me.Panel3.Controls.Add(Me.PictureBox1)
         Me.Panel3.ForeColor = System.Drawing.Color.Black
         Me.Panel3.Location = New System.Drawing.Point(21, 17)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(102, 29)
         Me.Panel3.TabIndex = 0
-        '
-        'Label1
-        '
-        Me.Label1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(3, 8)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(79, 13)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "ADD AUTHOR"
         '
         'PictureBox1
         '
@@ -409,6 +399,24 @@ Partial Class Author_Management
         Me.Panel9.Size = New System.Drawing.Size(211, 88)
         Me.Panel9.TabIndex = 0
         '
+        'Panel11
+        '
+        Me.Panel11.Controls.Add(Me.Label1)
+        Me.Panel11.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel11.Location = New System.Drawing.Point(0, 0)
+        Me.Panel11.Name = "Panel11"
+        Me.Panel11.Size = New System.Drawing.Size(84, 29)
+        Me.Panel11.TabIndex = 3
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(3, 8)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(79, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "ADD AUTHOR"
+        '
         'Author_Management
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -430,7 +438,6 @@ Partial Class Author_Management
         Me.Panel4.PerformLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
-        Me.Panel3.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel10.ResumeLayout(False)
@@ -444,6 +451,8 @@ Partial Class Author_Management
         Me.panelA.PerformLayout()
         Me.panelD.ResumeLayout(False)
         Me.panelD.PerformLayout()
+        Me.Panel11.ResumeLayout(False)
+        Me.Panel11.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -476,6 +485,7 @@ Partial Class Author_Management
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents Panel3 As Panel
-    Friend WithEvents Label1 As Label
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Panel11 As Panel
+    Friend WithEvents Label1 As Label
 End Class

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class LOAN_MANAGEMENT_CONTROL
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,10 +20,10 @@ Partial Class LOAN_MANAGEMENT_CONTROL
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LOAN_MANAGEMENT_CONTROL))
         Dim Button2 As System.Windows.Forms.Button
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LOAN_MANAGEMENT_CONTROL))
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
@@ -52,15 +52,27 @@ Partial Class LOAN_MANAGEMENT_CONTROL
         Me.Panel5.SuspendLayout()
         Me.SuspendLayout()
         '
+        'Button2
+        '
+        Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Button2.BackColor = System.Drawing.Color.LimeGreen
+        Button2.Location = New System.Drawing.Point(713, 162)
+        Button2.Name = "Button2"
+        Button2.Size = New System.Drawing.Size(72, 25)
+        Button2.TabIndex = 11
+        Button2.Text = "LOAN"
+        Button2.UseVisualStyleBackColor = False
+        AddHandler Button2.Click, AddressOf Me.Button2_Click
+        '
         'Button1
         '
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.BackColor = System.Drawing.Color.LimeGreen
-        Me.Button1.Location = New System.Drawing.Point(713, 162)
+        Me.Button1.BackColor = System.Drawing.Color.Crimson
+        Me.Button1.Location = New System.Drawing.Point(635, 162)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(72, 25)
         Me.Button1.TabIndex = 10
-        Me.Button1.Text = "LOAN"
+        Me.Button1.Text = "CANCEL"
         Me.Button1.UseVisualStyleBackColor = False
         '
         'Panel1
@@ -153,17 +165,6 @@ Partial Class LOAN_MANAGEMENT_CONTROL
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(219, 21)
         Me.ComboBox1.TabIndex = 13
-        '
-        'Button2
-        '
-        Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Button2.BackColor = System.Drawing.Color.Crimson
-        Button2.Location = New System.Drawing.Point(635, 162)
-        Button2.Name = "Button2"
-        Button2.Size = New System.Drawing.Size(72, 25)
-        Button2.TabIndex = 11
-        Button2.Text = "CANCEL"
-        Button2.UseVisualStyleBackColor = False
         '
         'DateTimePicker3
         '

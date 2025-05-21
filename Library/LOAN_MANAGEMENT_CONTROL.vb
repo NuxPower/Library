@@ -1,7 +1,37 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class LOAN_MANAGEMENT_CONTROL
+    Implements ISearchable
+    Private authorsList As List(Of Author)
 
+    Private Class Author
+        Public Property AuthorId As Integer
+        Public Property Name As String
+        Public Property DateAdded As DateTime
+    End Class
+
+
+    Public Sub PerformSearch(query As String) Implements ISearchable.PerformSearch
+        If String.IsNullOrWhiteSpace(query) Then
+            DisplayAuthors(authorsList)
+        Else
+            Dim filtered = authorsList.Where(Function(a) a.Name.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0).ToList()
+            DisplayAuthors(filtered)
+        End If
+    End Sub
+
+    Private Sub DisplayAuthors(authors As List(Of Author))
+        ListView1.Items.Clear()
+        Dim index As Integer = 1
+        For Each a In authors
+            Dim item As New ListViewItem(index.ToString())
+            item.SubItems.Add(a.Name)
+            item.SubItems.Add(a.DateAdded.ToString("yyyy-MM-dd"))
+            item.SubItems.Add("") ' Placeholder for action buttons
+            ListView1.Items.Add(item)
+            index += 1
+        Next
+    End Sub
     Private Sub LOAN_MANAGEMENT_CONTROL_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ListView1.Dock = DockStyle.Fill
         ConfigureListView()
@@ -254,8 +284,52 @@ Public Class LOAN_MANAGEMENT_CONTROL
         ListView1.Columns(6).Width = col6Width                         ' ACTIONS
     End Sub
 
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
+        ComboBox1.SelectedIndex = -1
+        ComboBox2.SelectedIndex = -1
+        DateTimePicker1.Value = DateTime.Today
+        DateTimePicker2.Value = DateTime.Today
+        DateTimePicker3.Value = DateTime.Today
     End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs)
+        ' Validation
+        If ComboBox1.SelectedIndex = -1 OrElse ComboBox2.SelectedIndex = -1 Then
+            MessageBox.Show("Please select both a book and a borrower.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim selectedBook As KeyValuePair(Of Integer, String) = CType(ComboBox1.SelectedItem, KeyValuePair(Of Integer, String))
+        Dim selectedBorrower As KeyValuePair(Of Integer, String) = CType(ComboBox2.SelectedItem, KeyValuePair(Of Integer, String))
+        Dim loanDate As Date = DateTimePicker1.Value
+        Dim dueDate As Date = DateTimePicker2.Value
+        Dim returnDate As Date = DateTimePicker3.Value
+
+        Try
+            dbConn()
+            Dim query As String = "INSERT INTO loans (book_id, borrower_id, loan_date, due_date, return_date) VALUES (@book_id, @borrower_id, @loan_date, @due_date, @return_date)"
+            Dim cmd As New MySqlCommand(query, conn)
+            cmd.Parameters.AddWithValue("@book_id", selectedBook.Key)
+            cmd.Parameters.AddWithValue("@borrower_id", selectedBorrower.Key)
+            cmd.Parameters.AddWithValue("@loan_date", loanDate)
+            cmd.Parameters.AddWithValue("@due_date", dueDate)
+            cmd.Parameters.AddWithValue("@return_date", returnDate)
+
+            Dim rowsInserted As Integer = cmd.ExecuteNonQuery()
+
+            If rowsInserted > 0 Then
+                MessageBox.Show("Loan successfully added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                LoadLoanList()
+                Button1_Click(Nothing, Nothing) ' Clear inputs after successful insert
+            Else
+                MessageBox.Show("Failed to insert loan. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error adding loan: " & ex.Message)
+        Finally
+            dbDisconn()
+        End Try
+    End Sub
+
 End Class
