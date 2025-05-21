@@ -41,6 +41,7 @@ Public Class BORROWER_MANAGEMENT_TABLE
 
     Private Sub LoadBorrowerList(Optional sortBy As String = "id")
         ListView1.Items.Clear()
+        borrowersList = New List(Of Borrower)() ' Reset the list
 
         Try
             dbConn()
@@ -48,7 +49,7 @@ Public Class BORROWER_MANAGEMENT_TABLE
             If sortBy = "name" Then
                 orderByClause = "name ASC"
             ElseIf sortBy = "date" Then
-                orderByClause = "borrower_id DESC" ' assuming newer entries have higher IDs
+                orderByClause = "borrower_id DESC"
             End If
 
             Dim query As String = $"SELECT borrower_id, name, email, mobile_no FROM Borrowers ORDER BY {orderByClause}"
@@ -57,11 +58,21 @@ Public Class BORROWER_MANAGEMENT_TABLE
 
             Dim index As Integer = 1
             While reader.Read()
+                ' Add to internal list
+                Dim borrower As New Borrower With {
+                .BorrowerId = reader("borrower_id"),
+                .Name = reader("name").ToString(),
+                .Email = reader("email").ToString(),
+                .MobileNo = reader("mobile_no").ToString()
+            }
+                borrowersList.Add(borrower)
+
+                ' Add to ListView
                 Dim item As New ListViewItem(index.ToString())
-                item.SubItems.Add(reader("name").ToString())
-                item.SubItems.Add(reader("email").ToString())
-                item.SubItems.Add(reader("mobile_no").ToString())
-                item.SubItems.Add("")
+                item.SubItems.Add(borrower.Name)
+                item.SubItems.Add(borrower.Email)
+                item.SubItems.Add(borrower.MobileNo)
+                item.SubItems.Add("") ' Placeholder for buttons
                 ListView1.Items.Add(item)
                 index += 1
             End While
@@ -72,7 +83,6 @@ Public Class BORROWER_MANAGEMENT_TABLE
             dbDisconn()
         End Try
     End Sub
-
 
     Private Sub DisplayBorrowers(borrowers As List(Of Borrower))
         ListView1.Items.Clear()
