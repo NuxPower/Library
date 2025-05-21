@@ -18,13 +18,13 @@
             AddHandler ctrl.Click, AddressOf panelA_Clicked
         Next
         For Each ctrl As Control In Panel5.Controls
-            AddHandler ctrl.Click, AddressOf panelA_Clicked
+            AddHandler ctrl.Click, AddressOf panel5_Click
         Next
         For Each ctrl As Control In Panel7.Controls
-            AddHandler ctrl.Click, AddressOf panelA_Clicked
+            AddHandler ctrl.Click, AddressOf panel7_Click
         Next
         For Each ctrl As Control In Panel3.Controls
-            AddHandler ctrl.Click, AddressOf panelA_Clicked
+            AddHandler ctrl.Click, AddressOf Panel3_Click
         Next
 
         fragment2.Dock = DockStyle.Fill
@@ -61,6 +61,9 @@
             Case Else
                 MessageBox.Show("Unknown management type: " & managementType)
         End Select
+
+        AddHandler Label1.Click, AddressOf Label1_Click
+
     End Sub
 
     Private Sub panelD_Clicked(sender As Object, e As EventArgs) Handles panelD.Click
@@ -72,21 +75,30 @@
         End If
     End Sub
 
-    Private Sub panelB_Clicked(sender As Object, e As EventArgs) Handles panelB.Click
-        ' Get parent form (Dashboard)
-        Dashboard.FragmentTitle.Text = "MANAGE BORROWERS"
-        dashboardLoad(New BORROWER_MANAGEMENT_TABLE)
-    End Sub
-    Private Sub panelBk_Clicked(sender As Object, e As EventArgs) Handles panelBK.Click
-        ' Get parent form (Dashboard)
-        Dashboard.FragmentTitle.Text = "MANAGE BOOKS"
-        dashboardLoad(New BOOK_MANAGEMENT_TABLE)
-    End Sub
     Private Sub panelA_Clicked(sender As Object, e As EventArgs) Handles panelA.Click
-        ' Get parent form (Dashboard)
+        managementType = "AUTHORS"
         Dashboard.FragmentTitle.Text = "MANAGE AUTHORS"
+        Label1.Text = "ADD AUTHOR"
+        Label1.Cursor = Cursors.Hand
         dashboardLoad(New AUTHOR_MANAGEMENT_TABLE)
     End Sub
+
+    Private Sub panelB_Clicked(sender As Object, e As EventArgs) Handles panelB.Click
+        managementType = "BORROWERS"
+        Dashboard.FragmentTitle.Text = "MANAGE BORROWERS"
+        Label1.Text = "ADD BORROWER"
+        Label1.Cursor = Cursors.Hand
+        dashboardLoad(New BORROWER_MANAGEMENT_TABLE)
+    End Sub
+
+    Private Sub panelBk_Clicked(sender As Object, e As EventArgs) Handles panelBK.Click
+        managementType = "BOOKS"
+        Dashboard.FragmentTitle.Text = "MANAGE BOOKS"
+        Label1.Text = "ADD BOOK"
+        Label1.Cursor = Cursors.Hand
+        dashboardLoad(New BOOK_MANAGEMENT_TABLE)
+    End Sub
+
 
     Private Sub Label1_Click(sender As Object, e As EventArgs)
         ShowAddPanel()
@@ -167,13 +179,7 @@
             MessageBox.Show("Dashboard form not found.")
         End If
     End Sub
-    Private Sub fragment2_Paint(sender As Object, e As PaintEventArgs) Handles fragment2.Paint
-        ' Custom painting if needed
-    End Sub
 
-    Private Sub Panel16_Paint(sender As Object, e As PaintEventArgs) Handles Panel16.Paint
-        ' Custom painting if needed
-    End Sub
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
         Dim currentControl = GetCurrentControl()
         If currentControl IsNot Nothing Then
@@ -205,6 +211,19 @@
         Dim sortable = TryCast(currentControl, ISortable)
         If sortable IsNot Nothing Then
             sortable.SortByName()
+        End If
+    End Sub
+    Private Sub panel3_Click(sender As Object, e As EventArgs) Handles Panel3.Click
+        Dim mainForm = TryCast(Me.FindForm(), Dashboard)  ' Get the parent Dashboard form
+
+        If mainForm IsNot Nothing Then
+            ' Create new LOAN_MANAGEMENT form with current managementType
+            Dim loanForm As New LOAN_MANAGEMENT(managementType, mainForm)
+
+            loanForm.Show()
+            mainForm.Hide() ' Optionally hide dashboard
+        Else
+            MessageBox.Show("Dashboard form not found.")
         End If
     End Sub
 
