@@ -1,5 +1,13 @@
 ﻿Public Class Author_Management
     Private managementType As String
+    Private parentDashboard As Dashboard
+
+
+    Public Sub New(type As String, dashboardRef As Dashboard)
+        InitializeComponent()
+        managementType = type
+        parentDashboard = dashboardRef
+    End Sub
 
     Public Sub New(type As String)
         InitializeComponent()
@@ -7,6 +15,12 @@
     End Sub
 
     Private Sub Author_Management_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        For Each ctrl As Control In panelD.Controls
+            AddHandler ctrl.Click, AddressOf panelD_Clicked
+        Next
+        For Each ctrl As Control In panelA.Controls
+            AddHandler ctrl.Click, AddressOf panelA_Clicked
+        Next
         fragment2.Dock = DockStyle.Fill
 
         ' Optionally update Label1's text for feedback (remove if not needed)
@@ -41,6 +55,31 @@
             Case Else
                 MessageBox.Show("Unknown management type: " & managementType)
         End Select
+    End Sub
+
+    Private Sub panelD_Clicked(sender As Object, e As EventArgs) Handles panelD.Click
+        ' Get parent form (Dashboard)
+        Dim parentDash = TryCast(Me.ParentForm, Dashboard)
+        If parentDash IsNot Nothing Then
+            parentDash.FragmentTitle.Text = "LIBRARY MANAGEMENT SYSTEM"
+            parentDash.dashboardLoad(New Main_Dashboard())
+        End If
+    End Sub
+
+    Private Sub panelB_Clicked(sender As Object, e As EventArgs) Handles panelB.Click
+        ' Get parent form (Dashboard)
+        Dashboard.FragmentTitle.Text = "MANAGE BORROWERS"
+        dashboardLoad(New BORROWER_MANAGEMENT_TABLE)
+    End Sub
+    Private Sub panelBk_Clicked(sender As Object, e As EventArgs) Handles panelBK.Click
+        ' Get parent form (Dashboard)
+        Dashboard.FragmentTitle.Text = "MANAGE BOOKS"
+        dashboardLoad(New BOOK_MANAGEMENT_TABLE)
+    End Sub
+    Private Sub panelA_Clicked(sender As Object, e As EventArgs) Handles panelA.Click
+        ' Get parent form (Dashboard)
+        Dashboard.FragmentTitle.Text = "MANAGE AUTHORS"
+        dashboardLoad(New AUTHOR_MANAGEMENT_TABLE)
     End Sub
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
