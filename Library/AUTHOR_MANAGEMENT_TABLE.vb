@@ -37,7 +37,7 @@ Public Class AUTHOR_MANAGEMENT_TABLE
 
         Try
             dbConn()
-            Dim query As String = "SELECT author_id, name FROM Authors ORDER BY author_id ASC"
+            Dim query As String = "SELECT author_id, name, date_added FROM Authors ORDER BY author_id ASC"
             Dim cmd As New MySqlCommand(query, conn)
             reader = cmd.ExecuteReader()
 
