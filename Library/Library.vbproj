@@ -128,6 +128,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADDING_AUTHOR_CONTROL.Designer.vb">
+      <DependentUpon>ADDING_AUTHOR_CONTROL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ADDING_AUTHOR_CONTROL.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ADDING_BORROWER_CONTROL.Designer.vb">
       <DependentUpon>ADDING_BORROWER_CONTROL.vb</DependentUpon>
     </Compile>
@@ -256,6 +262,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ADDING_AUTHOR_CONTROL.resx">
+      <DependentUpon>ADDING_AUTHOR_CONTROL.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ADDING_BORROWER_CONTROL.resx">
       <DependentUpon>ADDING_BORROWER_CONTROL.vb</DependentUpon>
     </EmbeddedResource>

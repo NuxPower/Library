@@ -59,10 +59,10 @@ Partial Class ADD_BOOK_CONTROL
         Me.Button2.BackColor = System.Drawing.Color.DarkTurquoise
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(539, 398)
+        Me.Button2.Location = New System.Drawing.Point(409, 393)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(121, 37)
-        Me.Button2.TabIndex = 5
+        Me.Button2.Size = New System.Drawing.Size(140, 37)
+        Me.Button2.TabIndex = 7
         Me.Button2.Text = "CANCEL"
         Me.Button2.UseVisualStyleBackColor = False
         '
@@ -73,10 +73,10 @@ Partial Class ADD_BOOK_CONTROL
         Me.Button1.BackColor = System.Drawing.Color.DarkTurquoise
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(246, 398)
+        Me.Button1.Location = New System.Drawing.Point(555, 393)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(121, 37)
-        Me.Button1.TabIndex = 4
+        Me.Button1.Size = New System.Drawing.Size(140, 37)
+        Me.Button1.TabIndex = 6
         Me.Button1.Text = "SAVE"
         Me.Button1.UseVisualStyleBackColor = False
         '
@@ -173,10 +173,10 @@ Partial Class ADD_BOOK_CONTROL
     Friend WithEvents Label2 As Label
     Friend WithEvents ListBox1 As ListBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Label3 As Label
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button1 As Button
 End Class
