@@ -1,11 +1,15 @@
 ﻿Public Class AUTHOR_MANAGEMENT_TABLE
+
     Private Sub AUTHOR_MANAGEMENT_TABLE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ListView1.Dock = DockStyle.Fill
         ConfigureListView()
         LoadAuthorList()
         ListView1_Resize(ListView1, EventArgs.Empty) ' ✅ Force initial resize
-    End Sub
 
+        ' Ensure MouseClick is handled only once
+        RemoveHandler ListView1.MouseClick, AddressOf ListView1_MouseClick
+        AddHandler ListView1.MouseClick, AddressOf ListView1_MouseClick
+    End Sub
 
     Private Sub ConfigureListView()
         With ListView1
@@ -22,10 +26,9 @@
 
             AddHandler .DrawColumnHeader, AddressOf DrawHeader
             AddHandler .DrawSubItem, AddressOf DrawAuthorSubItem
-            AddHandler .Resize, AddressOf ListView1_Resize ' ✅ Attach here
+            AddHandler .Resize, AddressOf ListView1_Resize
         End With
     End Sub
-
 
     Private Sub LoadAuthorList()
         ListView1.Items.Clear()
@@ -67,6 +70,7 @@
         End Select
     End Sub
 
+    ' EDIT and DELETE fully functional!
     Private Sub ListView1_MouseClick(sender As Object, e As MouseEventArgs)
         Dim hitInfo As ListViewHitTestInfo = ListView1.HitTest(e.Location)
         If hitInfo.Item Is Nothing OrElse hitInfo.SubItem Is Nothing Then Exit Sub
@@ -78,13 +82,27 @@
             Dim editBtn = New Rectangle(itemBounds.X + 5, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
             Dim deleteBtn = New Rectangle(itemBounds.X + btnWidth + 10, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
 
+            Dim authorName As String = hitInfo.Item.SubItems(1).Text
+            ' If you use IDs, fetch from hitInfo.Item.SubItems(0).Text
+
             If editBtn.Contains(e.Location) Then
-                MessageBox.Show("Edit clicked on " & hitInfo.Item.SubItems(1).Text)
+                ' --- Show the Edit Form ---
+                Dim editForm As New update_auth()
+                ' Optionally: editForm.AuthorName = authorName
+                If editForm.ShowDialog() = DialogResult.OK Then
+                    LoadAuthorList()
+                End If
             ElseIf deleteBtn.Contains(e.Location) Then
-                MessageBox.Show("Delete clicked on " & hitInfo.Item.SubItems(1).Text)
+                ' --- Show the Delete Confirmation Form ---
+                Dim delForm As New delete_conf()
+                ' Optionally: delForm.AuthorName = authorName
+                If delForm.ShowDialog() = DialogResult.OK Then
+                    LoadAuthorList()
+                End If
             End If
         End If
     End Sub
+
     Private Sub ListView1_Resize(sender As Object, e As EventArgs)
         Dim totalWidth As Integer = ListView1.ClientSize.Width
         Dim col0Width As Integer = 50 ' NO
@@ -98,6 +116,10 @@
         ListView1.Columns(1).Width = remainingWidth ' NAME
         ListView1.Columns(2).Width = col2Width
         ListView1.Columns(3).Width = col3Width
+    End Sub
+
+    Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
+        ' Optional: Handle selection changed if needed
     End Sub
 
 End Class

@@ -72,4 +72,7 @@
         ListView1.Columns(5).Width = col5Width
     End Sub
 
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
+    End Sub
 End Class

@@ -52,9 +52,9 @@ Partial Class update_auth
         'TextBox4
         '
         Me.TextBox4.Location = New System.Drawing.Point(244, 187)
-        Me.TextBox4.MinimumSize = New System.Drawing.Size(0, 40)
+        Me.TextBox4.MinimumSize = New System.Drawing.Size(4, 40)
         Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(325, 40)
+        Me.TextBox4.Size = New System.Drawing.Size(325, 20)
         Me.TextBox4.TabIndex = 8
         '
         'Button2

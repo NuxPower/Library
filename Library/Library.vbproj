@@ -152,10 +152,10 @@
     <Compile Include="Add_Author.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="add_book.Designer.vb">
-      <DependentUpon>add_book.vb</DependentUpon>
+    <Compile Include="update_book.Designer.vb">
+      <DependentUpon>update_book.vb</DependentUpon>
     </Compile>
-    <Compile Include="add_book.vb">
+    <Compile Include="update_book.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ADD_BOOK_CONTROL.Designer.vb">
@@ -292,8 +292,8 @@
     <EmbeddedResource Include="Add_Author.resx">
       <DependentUpon>Add_Author.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="add_book.resx">
-      <DependentUpon>add_book.vb</DependentUpon>
+    <EmbeddedResource Include="update_book.resx">
+      <DependentUpon>update_book.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADD_BOOK_CONTROL.resx">
       <DependentUpon>ADD_BOOK_CONTROL.vb</DependentUpon>
