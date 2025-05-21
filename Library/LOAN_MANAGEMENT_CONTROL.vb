@@ -1,37 +1,11 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class LOAN_MANAGEMENT_CONTROL
-    Implements ISearchable
-    Private authorsList As List(Of Author)
+    ' Remove the ISearchable implementation
+    ' Private authorsList As List(Of Author) - Remove this as it's related to the old search
 
-    Private Class Author
-        Public Property AuthorId As Integer
-        Public Property Name As String
-        Public Property DateAdded As DateTime
-    End Class
+    ' Private Class Author - Remove the entire Author class
 
-
-    Public Sub PerformSearch(query As String) Implements ISearchable.PerformSearch
-        If String.IsNullOrWhiteSpace(query) Then
-            DisplayAuthors(authorsList)
-        Else
-            Dim filtered = authorsList.Where(Function(a) a.Name.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0).ToList()
-            DisplayAuthors(filtered)
-        End If
-    End Sub
-
-    Private Sub DisplayAuthors(authors As List(Of Author))
-        ListView1.Items.Clear()
-        Dim index As Integer = 1
-        For Each a In authors
-            Dim item As New ListViewItem(index.ToString())
-            item.SubItems.Add(a.Name)
-            item.SubItems.Add(a.DateAdded.ToString("yyyy-MM-dd"))
-            item.SubItems.Add("") ' Placeholder for action buttons
-            ListView1.Items.Add(item)
-            index += 1
-        Next
-    End Sub
     Private Sub LOAN_MANAGEMENT_CONTROL_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ListView1.Dock = DockStyle.Fill
         ConfigureListView()
@@ -43,7 +17,66 @@ Public Class LOAN_MANAGEMENT_CONTROL
         ComboBox1.DropDownStyle = ComboBoxStyle.DropDownList
         ComboBox2.DropDownStyle = ComboBoxStyle.DropDownList
 
+        ' Setup TextBox1 search event handler
+        AddHandler TextBox1.TextChanged, AddressOf TextBox1_TextChanged
+
         ListView1_Resize(ListView1, EventArgs.Empty)
+    End Sub
+
+    ' Add TextBox1 search function
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs)
+        Dim searchText As String = TextBox1.Text.Trim()
+        PerformSearch(searchText)
+    End Sub
+
+    ' New search method that replaces the ISearchable implementation
+    Private Sub PerformSearch(query As String)
+        ' Clear the ListView
+        ListView1.Items.Clear()
+
+        Try
+            dbConn()
+            Dim searchQuery As String = "
+                SELECT 
+                    loans.loan_id,
+                    books.title AS book_title,
+                    borrowers.name AS borrower_name,
+                    loans.loan_date,
+                    loans.due_date,
+                    loans.return_date
+                FROM loans
+                JOIN books ON loans.book_id = books.book_id
+                JOIN borrowers ON loans.borrower_id = borrowers.borrower_id
+                WHERE books.title LIKE @search OR borrowers.name LIKE @search
+                ORDER BY loans.loan_id ASC
+            "
+
+            Dim cmd As New MySqlCommand(searchQuery, conn)
+            cmd.Parameters.AddWithValue("@search", "%" & query & "%")
+            reader = cmd.ExecuteReader()
+
+            While reader.Read()
+                Dim item As New ListViewItem(reader("loan_id").ToString())
+                item.SubItems.Add(reader("book_title").ToString())
+                item.SubItems.Add(reader("borrower_name").ToString())
+                item.SubItems.Add(Convert.ToDateTime(reader("loan_date")).ToShortDateString())
+                item.SubItems.Add(Convert.ToDateTime(reader("due_date")).ToShortDateString())
+                item.SubItems.Add(If(IsDBNull(reader("return_date")), "", Convert.ToDateTime(reader("return_date")).ToShortDateString()))
+                item.SubItems.Add("") ' Placeholder for View/Delete/Update buttons
+                ListView1.Items.Add(item)
+            End While
+
+        Catch ex As Exception
+            MessageBox.Show("Error searching loans: " & ex.Message)
+        Finally
+            If reader IsNot Nothing AndAlso Not reader.IsClosed Then reader.Close()
+            dbDisconn()
+        End Try
+
+        ' If search box is empty, load all loans instead
+        If String.IsNullOrWhiteSpace(query) Then
+            LoadLoanList()
+        End If
     End Sub
 
     Private Sub ConfigureListView()
@@ -331,5 +364,4 @@ Public Class LOAN_MANAGEMENT_CONTROL
             dbDisconn()
         End Try
     End Sub
-
 End Class

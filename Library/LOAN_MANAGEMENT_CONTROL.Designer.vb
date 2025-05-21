@@ -125,6 +125,7 @@ Partial Class LOAN_MANAGEMENT_CONTROL
         Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Left
         Me.TextBox1.Location = New System.Drawing.Point(0, 0)
         Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.TextBox1.Size = New System.Drawing.Size(225, 20)
         Me.TextBox1.TabIndex = 2
         '
