@@ -30,6 +30,12 @@
                     dashboardLoad(New VIEW_BORROWER_MANAGEMENT_CONTROL())
                 Case "UPDATE_BORROWER"
                     dashboardLoad(New UPDATING_BORROWER_CONTROL())
+                Case "AUTHORS"
+                    dashboardLoad(New ADDING_AUTHOR_CONTROL())
+                Case "BOOKS"
+                    dashboardLoad(New ADD_BOOK_CONTROL())
+                Case "BORROWERS"
+                    dashboardLoad(New ADDING_BORROWER_CONTROL())
                 Case Else
                     MessageBox.Show("Unknown management type: " & managementType)
             End Select
