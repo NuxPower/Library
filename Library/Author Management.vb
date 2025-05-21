@@ -90,48 +90,29 @@
 
     Private Sub ShowAddPanel()
         Dim addControl As UserControl = Nothing
+        Dim mgmtType As String = managementType.ToUpper()
 
-        Select Case managementType.ToUpper()
+        Select Case mgmtType
             Case "AUTHORS"
-                Dashboard.FragmentTitle.Text = "MANAGING AUTHORS"
                 addControl = New ADDING_AUTHOR_CONTROL()
             Case "BOOKS"
-                Dashboard.FragmentTitle.Text = "MANAGING BOOKS"
                 addControl = New ADD_BOOK_CONTROL()
             Case "BORROWERS"
-                Dashboard.FragmentTitle.Text = "MANAGING BORROWERS"
                 addControl = New ADDING_BORROWER_CONTROL()
-            Case "UPDATE_BORROWER"
-                'Dashboard.FragmentTitle.Text = "MANAGING AUTHORS"
-                addControl = New UPDATING_BORROWER_CONTROL()
             Case Else
                 MessageBox.Show("Unknown management type.")
                 Exit Sub
         End Select
 
-        If addControl IsNot Nothing Then
-            Dim addPanel As New Panel With {
-                .Dock = DockStyle.Fill,
-                .BackColor = Color.FromArgb(220, 220, 220)
-            }
-            addControl.Dock = DockStyle.Fill
-            addPanel.Controls.Add(addControl)
-
-            ' Optional close button
-            Dim closeBtn As New Button With {
-                .Text = "X",
-                .Width = 32,
-                .Height = 32,
-                .Top = 8,
-                .Left = addPanel.Width - 40,
-                .Anchor = AnchorStyles.Top Or AnchorStyles.Right
-            }
-            AddHandler closeBtn.Click, Sub() fragment2.Controls.Remove(addPanel)
-            addPanel.Controls.Add(closeBtn)
-            closeBtn.BringToFront()
-
-            fragment2.Controls.Add(addPanel)
-            addPanel.BringToFront()
+        ' Open in new LOAN_MANAGEMENT window (and hide this Dashboard if desired)
+        Dim parentDash = TryCast(Me.FindForm(), Dashboard)
+        If parentDash IsNot Nothing Then
+            Dim loanMgmtForm As New LOAN_MANAGEMENT(mgmtType, parentDash)
+            loanMgmtForm.Show()
+            loanMgmtForm.dashboardLoad(addControl)
+            parentDash.Hide() ' Optionally hide dashboard, or leave out if you want both windows visible
+        Else
+            MessageBox.Show("Parent Dashboard not found.")
         End If
     End Sub
 
