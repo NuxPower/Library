@@ -1,4 +1,6 @@
-﻿Public Class BORROWER_MANAGEMENT_TABLE
+﻿Imports MySql.Data.MySqlClient
+
+Public Class BORROWER_MANAGEMENT_TABLE
 
     Private Sub BORROWER_MANAGEMENT_TABLE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ListView1.Dock = DockStyle.Fill
@@ -31,15 +33,31 @@
     Private Sub LoadBorrowerList()
         ListView1.Items.Clear()
 
-        For i As Integer = 1 To 10
-            Dim item As New ListViewItem(i.ToString())
-            item.SubItems.Add("Borrower Name " & i)
-            item.SubItems.Add("borrower" & i & "@example.com")
-            item.SubItems.Add("09xxxxxxxx" & i)
-            item.SubItems.Add("") ' Placeholder for action buttons
-            ListView1.Items.Add(item)
-        Next
+        Try
+            dbConn()
+            Dim query As String = "SELECT borrower_id, name, email, mobile_no FROM Borrowers ORDER BY borrower_id ASC"
+            Dim cmd As New MySqlCommand(query, conn)
+            reader = cmd.ExecuteReader()
+
+            Dim index As Integer = 1
+            While reader.Read()
+                Dim item As New ListViewItem(index.ToString())
+                item.SubItems.Add(reader("name").ToString())
+                item.SubItems.Add(reader("email").ToString())
+                item.SubItems.Add(reader("mobile_no").ToString())
+                item.SubItems.Add("") ' Placeholder for Edit/Delete buttons
+                ListView1.Items.Add(item)
+                index += 1
+            End While
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading borrowers: " & ex.Message)
+        Finally
+            If reader IsNot Nothing AndAlso Not reader.IsClosed Then reader.Close()
+            dbDisconn()
+        End Try
     End Sub
+
 
     Private Sub DrawHeader(sender As Object, e As DrawListViewColumnHeaderEventArgs)
         e.DrawBackground()
