@@ -260,10 +260,22 @@
     <Compile Include="update_auth.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="UPDATE_BOOK_CONTROL.Designer.vb">
+      <DependentUpon>UPDATE_BOOK_CONTROL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UPDATE_BOOK_CONTROL.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UPDATING_BORROWER_CONTROL.Designer.vb">
       <DependentUpon>UPDATING_BORROWER_CONTROL.vb</DependentUpon>
     </Compile>
     <Compile Include="UPDATING_BORROWER_CONTROL.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VIEW_BORROWER_MANAGEMENT_CONTROL.Designer.vb">
+      <DependentUpon>VIEW_BORROWER_MANAGEMENT_CONTROL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW_BORROWER_MANAGEMENT_CONTROL.vb">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
@@ -331,8 +343,14 @@
     <EmbeddedResource Include="update_auth.resx">
       <DependentUpon>update_auth.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UPDATE_BOOK_CONTROL.resx">
+      <DependentUpon>UPDATE_BOOK_CONTROL.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UPDATING_BORROWER_CONTROL.resx">
       <DependentUpon>UPDATING_BORROWER_CONTROL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW_BORROWER_MANAGEMENT_CONTROL.resx">
+      <DependentUpon>VIEW_BORROWER_MANAGEMENT_CONTROL.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
