@@ -1,4 +1,6 @@
-﻿Public Class BOOK_MANAGEMENT_TABLE
+﻿Imports MySql.Data.MySqlClient
+
+Public Class BOOK_MANAGEMENT_TABLE
 
     Private Sub BOOK_MANAGEMENT_TABLE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ListView1.Dock = DockStyle.Fill
@@ -32,15 +34,35 @@
     Private Sub LoadBookList()
         ListView1.Items.Clear()
 
-        For i As Integer = 1 To 10
-            Dim item As New ListViewItem(i.ToString())
-            item.SubItems.Add("Sample Book Title " & i)
-            item.SubItems.Add("Author " & i)
-            item.SubItems.Add("978-0-123456-7" & i)
-            item.SubItems.Add("") ' Placeholder for buttons
-            ListView1.Items.Add(item)
-        Next
+        Try
+            dbConn()
+            Dim query As String = "
+            SELECT b.book_id, b.title, a.name AS author_name, b.isbn
+            FROM Books b
+            JOIN Authors a ON b.author_id = a.author_id
+            ORDER BY b.book_id ASC"
+            Dim cmd As New MySqlCommand(query, conn)
+            reader = cmd.ExecuteReader()
+
+            Dim index As Integer = 1
+            While reader.Read()
+                Dim item As New ListViewItem(index.ToString())
+                item.SubItems.Add(reader("title").ToString())
+                item.SubItems.Add(reader("author_name").ToString())
+                item.SubItems.Add(reader("isbn").ToString())
+                item.SubItems.Add("") ' Placeholder for View/Update buttons
+                ListView1.Items.Add(item)
+                index += 1
+            End While
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading books: " & ex.Message)
+        Finally
+            If reader IsNot Nothing AndAlso Not reader.IsClosed Then reader.Close()
+            dbDisconn()
+        End Try
     End Sub
+
 
     Private Sub DrawHeader(sender As Object, e As DrawListViewColumnHeaderEventArgs)
         e.DrawBackground()

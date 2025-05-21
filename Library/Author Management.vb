@@ -3,11 +3,7 @@
     Private parentDashboard As Dashboard
 
 
-    Public Sub New(type As String, dashboardRef As Dashboard)
-        InitializeComponent()
-        managementType = type
-        parentDashboard = dashboardRef
-    End Sub
+
 
     Public Sub New(type As String)
         InitializeComponent()
@@ -151,7 +147,6 @@
         Dim loanForm As New LOAN_MANAGEMENT("LOAN")
         loanForm.Show()
     End Sub
-
     Private Sub fragment2_Paint(sender As Object, e As PaintEventArgs) Handles fragment2.Paint
         ' Custom painting if needed
     End Sub
@@ -159,5 +154,7 @@
     Private Sub Panel16_Paint(sender As Object, e As PaintEventArgs) Handles Panel16.Paint
         ' Custom painting if needed
     End Sub
+
+
 
 End Class
