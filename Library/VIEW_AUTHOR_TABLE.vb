@@ -2,30 +2,29 @@
 
 Public Class VIEW_AUTHOR_TABLE
     Inherits UserControl
+
     Private selectedAuthor As String
     Private _authorId As Integer
     Private bookList As List(Of Book)
+
     Public Sub New(authorName As String)
         InitializeComponent()
         selectedAuthor = authorName
-        LoadBooksByAuthor(selectedAuthor)
     End Sub
-
-
-    Private Sub VIEW_AUTHOR_TABLE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ListView1.Dock = DockStyle.Fill
-        ConfigureListView()
-        LoadBookListForAuthor(_authorId)
-        ListView1_Resize(ListView1, EventArgs.Empty)
-
-        RemoveHandler ListView1.MouseClick, AddressOf ListView1_MouseClick
-        AddHandler ListView1.MouseClick, AddressOf ListView1_MouseClick
-    End Sub
-
 
     ' Allow external class to set the author ID
     Public Sub SetAuthorId(authorId As Integer)
         _authorId = authorId
+        LoadBooksByAuthor()
+    End Sub
+
+    Private Sub VIEW_AUTHOR_TABLE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ListView1.Dock = DockStyle.Fill
+        ConfigureListView()
+        ListView1_Resize(ListView1, EventArgs.Empty)
+
+        RemoveHandler ListView1.MouseClick, AddressOf ListView1_MouseClick
+        AddHandler ListView1.MouseClick, AddressOf ListView1_MouseClick
     End Sub
 
     Private Class Book
@@ -33,6 +32,7 @@ Public Class VIEW_AUTHOR_TABLE
         Public Property Title As String
         Public Property ISBN As String
     End Class
+
     Private Sub ConfigureListView()
         With ListView1
             .View = View.Details
@@ -51,22 +51,28 @@ Public Class VIEW_AUTHOR_TABLE
             AddHandler .Resize, AddressOf ListView1_Resize
         End With
     End Sub
-    Private Sub LoadBookListForAuthor(authorId As Integer)
+
+    Private Sub LoadBooksByAuthor()
+        If _authorId <= 0 Then
+            MessageBox.Show("Invalid author ID.")
+            Return
+        End If
+
         bookList = New List(Of Book)
 
         Try
             dbConn()
             Dim query As String = "SELECT book_id, title, isbn FROM Books WHERE author_id = @author"
             Dim cmd As New MySqlCommand(query, conn)
-            cmd.Parameters.AddWithValue("@author", authorId)
+            cmd.Parameters.AddWithValue("@author", _authorId)
 
             reader = cmd.ExecuteReader()
             While reader.Read()
                 Dim book As New Book With {
-                .BookId = reader.GetInt32("book_id"),
-                .Title = reader("title").ToString(),
-                .ISBN = reader("isbn").ToString()
-            }
+                    .BookId = reader.GetInt32("book_id"),
+                    .Title = reader("title").ToString(),
+                    .ISBN = reader("isbn").ToString()
+                }
                 bookList.Add(book)
             End While
 
@@ -82,6 +88,7 @@ Public Class VIEW_AUTHOR_TABLE
             dbDisconn()
         End Try
     End Sub
+
     Private Sub DisplayBooks(books As List(Of Book))
         ListView1.Items.Clear()
         Dim index As Integer = 1
@@ -94,6 +101,7 @@ Public Class VIEW_AUTHOR_TABLE
             index += 1
         Next
     End Sub
+
     Private Sub DrawBookSubItem(sender As Object, e As DrawListViewSubItemEventArgs)
         e.DrawBackground()
 
@@ -113,6 +121,7 @@ Public Class VIEW_AUTHOR_TABLE
                 TextRenderer.DrawText(e.Graphics, e.SubItem.Text, e.Item.ListView.Font, e.Bounds, e.Item.ListView.ForeColor, TextFormatFlags.VerticalCenter Or TextFormatFlags.HorizontalCenter)
         End Select
     End Sub
+
     Private Sub ListView1_MouseClick(sender As Object, e As MouseEventArgs)
         Dim hitInfo As ListViewHitTestInfo = ListView1.HitTest(e.Location)
         If hitInfo.Item Is Nothing OrElse hitInfo.SubItem Is Nothing Then Exit Sub
@@ -131,17 +140,18 @@ Public Class VIEW_AUTHOR_TABLE
                 Dim updateForm As New update_book()
                 ' updateForm.BookTitle = bookTitle
                 If updateForm.ShowDialog() = DialogResult.OK Then
-                    LoadBookListForAuthor(_authorId)
+                    LoadBooksByAuthor()
                 End If
             ElseIf deleteBtn.Contains(e.Location) Then
                 Dim deleteForm As New delete_conf()
                 ' deleteForm.BookTitle = bookTitle
                 If deleteForm.ShowDialog() = DialogResult.OK Then
-                    LoadBookListForAuthor(_authorId)
+                    LoadBooksByAuthor()
                 End If
             End If
         End If
     End Sub
+
     Private Sub ListView1_Resize(sender As Object, e As EventArgs)
         Dim totalWidth As Integer = ListView1.ClientSize.Width
         Dim col0Width As Integer = 50 ' NO
@@ -156,6 +166,7 @@ Public Class VIEW_AUTHOR_TABLE
         ListView1.Columns(2).Width = col2Width
         ListView1.Columns(3).Width = col3Width
     End Sub
+
     Private Sub DrawHeader(sender As Object, e As DrawListViewColumnHeaderEventArgs)
         e.DrawBackground()
         TextRenderer.DrawText(e.Graphics, e.Header.Text, e.Font, e.Bounds, e.ForeColor, TextFormatFlags.HorizontalCenter)
