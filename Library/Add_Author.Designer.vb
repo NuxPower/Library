@@ -22,31 +22,31 @@ Partial Class add_auth
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtFirst = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.name_label = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.txtLast = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.txtBook1 = New System.Windows.Forms.TextBox()
+        Me.txtBook3 = New System.Windows.Forms.TextBox()
+        Me.txtBook2 = New System.Windows.Forms.TextBox()
+        Me.txtBook4 = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
+        Me.btnCancel = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'TextBox1
+        'txtFirst
         '
-        Me.TextBox1.Location = New System.Drawing.Point(230, 131)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(186, 20)
-        Me.TextBox1.TabIndex = 0
+        Me.txtFirst.Location = New System.Drawing.Point(230, 131)
+        Me.txtFirst.Name = "txtFirst"
+        Me.txtFirst.Size = New System.Drawing.Size(186, 20)
+        Me.txtFirst.TabIndex = 0
         '
         'Label1
         '
@@ -68,12 +68,12 @@ Partial Class add_auth
         Me.name_label.TabIndex = 1
         Me.name_label.Text = "Name"
         '
-        'TextBox2
+        'txtLast
         '
-        Me.TextBox2.Location = New System.Drawing.Point(517, 131)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(186, 20)
-        Me.TextBox2.TabIndex = 2
+        Me.txtLast.Location = New System.Drawing.Point(517, 131)
+        Me.txtLast.Name = "txtLast"
+        Me.txtLast.Size = New System.Drawing.Size(186, 20)
+        Me.txtLast.TabIndex = 2
         '
         'Label2
         '
@@ -107,38 +107,38 @@ Partial Class add_auth
         Me.Label4.TabIndex = 5
         Me.Label4.Text = "ADD THEIR BOOKS"
         '
-        'TextBox3
+        'txtBook1
         '
-        Me.TextBox3.Location = New System.Drawing.Point(58, 249)
-        Me.TextBox3.MinimumSize = New System.Drawing.Size(4, 30)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(325, 20)
-        Me.TextBox3.TabIndex = 6
+        Me.txtBook1.Location = New System.Drawing.Point(58, 249)
+        Me.txtBook1.MinimumSize = New System.Drawing.Size(4, 30)
+        Me.txtBook1.Name = "txtBook1"
+        Me.txtBook1.Size = New System.Drawing.Size(325, 20)
+        Me.txtBook1.TabIndex = 6
         '
-        'TextBox4
+        'txtBook3
         '
-        Me.TextBox4.Location = New System.Drawing.Point(58, 328)
-        Me.TextBox4.MinimumSize = New System.Drawing.Size(4, 30)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(325, 20)
-        Me.TextBox4.TabIndex = 7
+        Me.txtBook3.Location = New System.Drawing.Point(58, 328)
+        Me.txtBook3.MinimumSize = New System.Drawing.Size(4, 30)
+        Me.txtBook3.Name = "txtBook3"
+        Me.txtBook3.Size = New System.Drawing.Size(325, 20)
+        Me.txtBook3.TabIndex = 7
         '
-        'TextBox5
+        'txtBook2
         '
-        Me.TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox5.Location = New System.Drawing.Point(475, 249)
-        Me.TextBox5.MinimumSize = New System.Drawing.Size(2, 30)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(325, 20)
-        Me.TextBox5.TabIndex = 8
+        Me.txtBook2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtBook2.Location = New System.Drawing.Point(475, 249)
+        Me.txtBook2.MinimumSize = New System.Drawing.Size(2, 30)
+        Me.txtBook2.Name = "txtBook2"
+        Me.txtBook2.Size = New System.Drawing.Size(325, 20)
+        Me.txtBook2.TabIndex = 8
         '
-        'TextBox6
+        'txtBook4
         '
-        Me.TextBox6.Location = New System.Drawing.Point(475, 328)
-        Me.TextBox6.MinimumSize = New System.Drawing.Size(4, 30)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(325, 20)
-        Me.TextBox6.TabIndex = 9
+        Me.txtBook4.Location = New System.Drawing.Point(475, 328)
+        Me.txtBook4.MinimumSize = New System.Drawing.Size(4, 30)
+        Me.txtBook4.Name = "txtBook4"
+        Me.txtBook4.Size = New System.Drawing.Size(325, 20)
+        Me.txtBook4.TabIndex = 9
         '
         'Label5
         '
@@ -184,30 +184,30 @@ Partial Class add_auth
         Me.Label8.TabIndex = 13
         Me.Label8.Text = "BOOK NAME"
         '
-        'Button1
+        'btnSave
         '
-        Me.Button1.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Button1.Location = New System.Drawing.Point(675, 423)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(125, 35)
-        Me.Button1.TabIndex = 14
-        Me.Button1.Text = "SAVE"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.btnSave.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnSave.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnSave.Location = New System.Drawing.Point(675, 423)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(125, 35)
+        Me.btnSave.TabIndex = 14
+        Me.btnSave.Text = "SAVE"
+        Me.btnSave.UseVisualStyleBackColor = False
         '
-        'Button2
+        'btnCancel
         '
-        Me.Button2.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.Button2.Cursor = System.Windows.Forms.Cursors.Arrow
-        Me.Button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Button2.Location = New System.Drawing.Point(818, 423)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(118, 35)
-        Me.Button2.TabIndex = 15
-        Me.Button2.Text = "CANCEL"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.btnCancel.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btnCancel.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.btnCancel.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnCancel.Location = New System.Drawing.Point(818, 423)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(118, 35)
+        Me.btnCancel.TabIndex = 15
+        Me.btnCancel.Text = "CANCEL"
+        Me.btnCancel.UseVisualStyleBackColor = False
         '
         'add_auth
         '
@@ -215,23 +215,23 @@ Partial Class add_auth
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(948, 470)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnCancel)
+        Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.TextBox6)
-        Me.Controls.Add(Me.TextBox5)
-        Me.Controls.Add(Me.TextBox4)
-        Me.Controls.Add(Me.TextBox3)
+        Me.Controls.Add(Me.txtBook4)
+        Me.Controls.Add(Me.txtBook2)
+        Me.Controls.Add(Me.txtBook3)
+        Me.Controls.Add(Me.txtBook1)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.txtLast)
         Me.Controls.Add(Me.name_label)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.txtFirst)
         Me.Name = "add_auth"
         Me.Text = "ADD"
         Me.ResumeLayout(False)
@@ -239,21 +239,21 @@ Partial Class add_auth
 
     End Sub
 
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtFirst As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents name_label As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtLast As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents TextBox5 As TextBox
-    Friend WithEvents TextBox6 As TextBox
+    Friend WithEvents txtBook1 As TextBox
+    Friend WithEvents txtBook3 As TextBox
+    Friend WithEvents txtBook2 As TextBox
+    Friend WithEvents txtBook4 As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents btnSave As Button
+    Friend WithEvents btnCancel As Button
 End Class

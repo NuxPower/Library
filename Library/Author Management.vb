@@ -93,12 +93,16 @@
 
         Select Case managementType.ToUpper()
             Case "AUTHORS"
+                Dashboard.FragmentTitle.Text = "MANAGING AUTHORS"
                 addControl = New ADDING_AUTHOR_CONTROL()
             Case "BOOKS"
+                Dashboard.FragmentTitle.Text = "MANAGING BOOKS"
                 addControl = New ADD_BOOK_CONTROL()
             Case "BORROWERS"
+                Dashboard.FragmentTitle.Text = "MANAGING BORROWERS"
                 addControl = New ADDING_BORROWER_CONTROL()
             Case "UPDATE_BORROWER"
+                'Dashboard.FragmentTitle.Text = "MANAGING AUTHORS"
                 addControl = New UPDATING_BORROWER_CONTROL()
             Case Else
                 MessageBox.Show("Unknown management type.")
