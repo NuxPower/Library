@@ -121,7 +121,6 @@ Public Class AUTHOR_MANAGEMENT_TABLE
     ' Draw subitems, including action buttons
     Private Sub DrawAuthorSubItem(sender As Object, e As DrawListViewSubItemEventArgs)
         e.DrawBackground()
-
         Select Case e.ColumnIndex
             Case 3 ' ACTIONS
                 Dim spacing As Integer = 12
@@ -136,7 +135,6 @@ Public Class AUTHOR_MANAGEMENT_TABLE
 
             Case 1 ' NAME
                 TextRenderer.DrawText(e.Graphics, e.SubItem.Text, e.Item.ListView.Font, e.Bounds, e.Item.ListView.ForeColor, TextFormatFlags.HorizontalCenter Or TextFormatFlags.VerticalCenter)
-
             Case Else
                 TextRenderer.DrawText(e.Graphics, e.SubItem.Text, e.Item.ListView.Font, e.Bounds, e.Item.ListView.ForeColor, TextFormatFlags.HorizontalCenter Or TextFormatFlags.VerticalCenter)
         End Select
