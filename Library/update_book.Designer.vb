@@ -25,11 +25,13 @@ Partial Class update_book
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Title_box = New System.Windows.Forms.TextBox()
+        Me.save_button = New System.Windows.Forms.Button()
+        Me.cancel_button = New System.Windows.Forms.Button()
+        Me.Combo_Authors = New System.Windows.Forms.ComboBox()
+        Me.delete_button = New System.Windows.Forms.Button()
+        Me.isbn_box = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -64,63 +66,82 @@ Partial Class update_book
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "TITLE"
         '
-        'TextBox1
+        'Title_box
         '
-        Me.TextBox1.Location = New System.Drawing.Point(234, 194)
-        Me.TextBox1.MinimumSize = New System.Drawing.Size(4, 30)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(325, 30)
-        Me.TextBox1.TabIndex = 8
+        Me.Title_box.Location = New System.Drawing.Point(234, 194)
+        Me.Title_box.MinimumSize = New System.Drawing.Size(4, 30)
+        Me.Title_box.Name = "Title_box"
+        Me.Title_box.Size = New System.Drawing.Size(325, 20)
+        Me.Title_box.TabIndex = 8
         '
-        'Button1
+        'save_button
         '
-        Me.Button1.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.Button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Button1.Location = New System.Drawing.Point(194, 312)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(125, 35)
-        Me.Button1.TabIndex = 15
-        Me.Button1.Text = "SAVE"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.save_button.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.save_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.save_button.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.save_button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.save_button.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.save_button.Location = New System.Drawing.Point(194, 312)
+        Me.save_button.Name = "save_button"
+        Me.save_button.Size = New System.Drawing.Size(125, 35)
+        Me.save_button.TabIndex = 15
+        Me.save_button.Text = "SAVE"
+        Me.save_button.UseVisualStyleBackColor = False
         '
-        'Button2
+        'cancel_button
         '
-        Me.Button2.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Button2.Location = New System.Drawing.Point(434, 312)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(125, 35)
-        Me.Button2.TabIndex = 16
-        Me.Button2.Text = "CANCEL"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.cancel_button.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.cancel_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.cancel_button.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.cancel_button.Location = New System.Drawing.Point(434, 312)
+        Me.cancel_button.Name = "cancel_button"
+        Me.cancel_button.Size = New System.Drawing.Size(125, 35)
+        Me.cancel_button.TabIndex = 16
+        Me.cancel_button.Text = "CANCEL"
+        Me.cancel_button.UseVisualStyleBackColor = False
         '
-        'ComboBox1
+        'Combo_Authors
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(283, 134)
-        Me.ComboBox1.MinimumSize = New System.Drawing.Size(121, 0)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(174, 21)
-        Me.ComboBox1.TabIndex = 17
-        Me.ComboBox1.Text = "Select EXISTING AUTHORS"
+        Me.Combo_Authors.FormattingEnabled = True
+        Me.Combo_Authors.Location = New System.Drawing.Point(283, 134)
+        Me.Combo_Authors.MinimumSize = New System.Drawing.Size(121, 0)
+        Me.Combo_Authors.Name = "Combo_Authors"
+        Me.Combo_Authors.Size = New System.Drawing.Size(174, 21)
+        Me.Combo_Authors.TabIndex = 17
+        Me.Combo_Authors.Text = "Select EXISTING AUTHORS"
         '
-        'Button3
+        'delete_button
         '
-        Me.Button3.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.Button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.Button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Button3.Location = New System.Drawing.Point(307, 383)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(125, 35)
-        Me.Button3.TabIndex = 18
-        Me.Button3.Text = "DELETE"
-        Me.Button3.UseVisualStyleBackColor = False
+        Me.delete_button.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.delete_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.delete_button.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.delete_button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.delete_button.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.delete_button.Location = New System.Drawing.Point(307, 383)
+        Me.delete_button.Name = "delete_button"
+        Me.delete_button.Size = New System.Drawing.Size(125, 35)
+        Me.delete_button.TabIndex = 18
+        Me.delete_button.Text = "DELETE"
+        Me.delete_button.UseVisualStyleBackColor = False
+        '
+        'isbn_box
+        '
+        Me.isbn_box.Location = New System.Drawing.Point(234, 243)
+        Me.isbn_box.MinimumSize = New System.Drawing.Size(4, 30)
+        Me.isbn_box.Name = "isbn_box"
+        Me.isbn_box.Size = New System.Drawing.Size(325, 20)
+        Me.isbn_box.TabIndex = 20
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(169, 243)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(69, 29)
+        Me.Label4.TabIndex = 19
+        Me.Label4.Text = "ISBN"
         '
         'update_book
         '
@@ -128,11 +149,13 @@ Partial Class update_book
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.ComboBox1)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.isbn_box)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.delete_button)
+        Me.Controls.Add(Me.Combo_Authors)
+        Me.Controls.Add(Me.cancel_button)
+        Me.Controls.Add(Me.save_button)
+        Me.Controls.Add(Me.Title_box)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
@@ -146,9 +169,11 @@ Partial Class update_book
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents Button3 As Button
+    Friend WithEvents Title_box As TextBox
+    Friend WithEvents save_button As Button
+    Friend WithEvents cancel_button As Button
+    Friend WithEvents Combo_Authors As ComboBox
+    Friend WithEvents delete_button As Button
+    Friend WithEvents isbn_box As TextBox
+    Friend WithEvents Label4 As Label
 End Class

@@ -39,9 +39,9 @@ Public Class BOOK_MANAGEMENT_TABLE
             AddHandler .MouseClick, AddressOf ListView1_MouseClick
         End With
     End Sub
+
     Private Sub LoadBookList()
         bookList = New List(Of Book)()
-
         Try
             dbConn()
             Dim query As String = "
@@ -54,11 +54,11 @@ Public Class BOOK_MANAGEMENT_TABLE
 
             While reader.Read()
                 Dim book As New Book With {
-                .BookId = Convert.ToInt32(reader("book_id")),
-                .Title = reader("title").ToString(),
-                .Author = reader("author_name").ToString(),
-                .ISBN = reader("isbn").ToString()
-            }
+                    .BookId = Convert.ToInt32(reader("book_id")),
+                    .Title = reader("title").ToString(),
+                    .Author = reader("author_name").ToString(),
+                    .ISBN = reader("isbn").ToString()
+                }
                 bookList.Add(book)
             End While
 
@@ -74,6 +74,7 @@ Public Class BOOK_MANAGEMENT_TABLE
             dbDisconn()
         End Try
     End Sub
+
     Private Sub DisplayBooks(books As List(Of Book))
         ListView1.Items.Clear()
         Dim index As Integer = 1
@@ -113,7 +114,6 @@ Public Class BOOK_MANAGEMENT_TABLE
                 TextRenderer.DrawText(e.Graphics, e.SubItem.Text, e.Item.ListView.Font, e.Bounds,
                                   e.Item.ListView.ForeColor,
                                   TextFormatFlags.HorizontalCenter Or TextFormatFlags.VerticalCenter)
-
             Case Else
                 TextRenderer.DrawText(e.Graphics, e.SubItem.Text, e.Item.ListView.Font, e.Bounds,
                                   e.Item.ListView.ForeColor,
@@ -133,22 +133,48 @@ Public Class BOOK_MANAGEMENT_TABLE
             Dim updateBtn = New Rectangle(itemBounds.X + btnWidth + 10, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
 
             If viewBtn.Contains(e.Location) Then
-                ' Open the LOAN_MANAGEMENT form, but now load the Book Management Control
-                Dim mainForm = TryCast(Me.FindForm(), Dashboard)  ' get Dashboard form reference
-                If mainForm IsNot Nothing Then
-                    Dim loanForm As New LOAN_MANAGEMENT("BOOKS", mainForm) ' pass Dashboard reference
-                    loanForm.Show()
-                    mainForm.Hide() ' optionally hide the dashboard form when loanForm shows
-                Else
-                    MessageBox.Show("Dashboard form not found.")
-                End If
+                ' Show BOOK_MANAGEMENT_CONTROL (UserControl) in fragment2 or desired panel
+                Dim selectedBookId As Integer = Integer.Parse(hitInfo.Item.SubItems(0).Text)
+                Dim bookView As New BOOK_MANAGEMENT_CONTROL()
+                bookView.BookId = selectedBookId
+                ShowInParentPanel(bookView)
             ElseIf updateBtn.Contains(e.Location) Then
-                update_book.ShowDialog()
+                ' --- UPDATE: Pass selected book details to update_book dialog ---
+                Dim selectedBookId As Integer = Integer.Parse(hitInfo.Item.SubItems(0).Text)
+                Dim selectedBook = bookList.FirstOrDefault(Function(b) b.BookId = selectedBookId)
+                If selectedBook Is Nothing Then
+                    MessageBox.Show("Selected book not found.")
+                    Exit Sub
+                End If
+
+                ' Get author_id from DB for selected book
+                Dim authorId As Integer = 0
+                Try
+                    dbConn()
+                    Dim cmd As New MySqlCommand("SELECT author_id FROM books WHERE book_id = @bid", conn)
+                    cmd.Parameters.AddWithValue("@bid", selectedBookId)
+                    Dim result = cmd.ExecuteScalar()
+                    If result IsNot Nothing Then
+                        authorId = Convert.ToInt32(result)
+                    End If
+                Catch ex As Exception
+                    MessageBox.Show("Error fetching author: " & ex.Message)
+                Finally
+                    dbDisconn()
+                End Try
+
+                ' Pass details to update_book
+                Dim upd As New update_book()
+                upd.BookId = selectedBook.BookId
+                upd.BookTitle = selectedBook.Title
+                upd.BookISBN = selectedBook.ISBN
+                upd.AuthorId = authorId
+                upd.ShowDialog()
+                ' Refresh list after update
+                LoadBookList()
             End If
         End If
     End Sub
-
-
 
     ' Helper function to add a control to your parent container, e.g., fragment2
     Private Sub ShowInParentPanel(ctrl As UserControl)
@@ -171,11 +197,10 @@ Public Class BOOK_MANAGEMENT_TABLE
         End If
     End Sub
 
-
     Private Sub ListView1_Resize(sender As Object, e As EventArgs)
         Dim totalWidth As Integer = ListView1.ClientSize.Width
         Dim col0Width As Integer = 50    ' NO
-        Dim col4Width As Integer = 160   ' ACTIONS
+        Dim col4Width As Integer = 160   ' ACTIONS for 2 buttons
 
         ' Remaining space after fixed columns
         Dim remainingWidth As Integer = totalWidth - col0Width - col4Width
@@ -194,6 +219,7 @@ Public Class BOOK_MANAGEMENT_TABLE
     Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
         ' Optional: Add code if needed for selection
     End Sub
+
     Public Sub PerformSearch(query As String) Implements ISearchable.PerformSearch
         If String.IsNullOrWhiteSpace(query) Then
             DisplayBooks(bookList)
