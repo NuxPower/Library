@@ -1,9 +1,18 @@
-﻿Public Class LOAN_MANAGEMENT_CONTROL
+﻿Imports MySql.Data.MySqlClient
+
+Public Class LOAN_MANAGEMENT_CONTROL
 
     Private Sub LOAN_MANAGEMENT_CONTROL_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ListView1.Dock = DockStyle.Fill
         ConfigureListView()
         LoadLoanList()
+        LoadBooksToComboBox()
+        LoadBorrowersToComboBox()
+
+        ' Optional to enforce DropDownList behavior
+        ComboBox1.DropDownStyle = ComboBoxStyle.DropDownList
+        ComboBox2.DropDownStyle = ComboBoxStyle.DropDownList
+
         ListView1_Resize(ListView1, EventArgs.Empty)
     End Sub
 
@@ -33,21 +42,97 @@
     Private Sub LoadLoanList()
         ListView1.Items.Clear()
 
-        For i As Integer = 1 To 10
-            Dim item As New ListViewItem(i.ToString())
-            item.SubItems.Add("Sample Book " & i)
-            item.SubItems.Add("Borrower " & i)
-            item.SubItems.Add(DateTime.Today.AddDays(-i).ToShortDateString())
-            item.SubItems.Add(DateTime.Today.AddDays(7 - i).ToShortDateString())
-            item.SubItems.Add(DateTime.Today.AddDays(3 - i).ToShortDateString())
-            item.SubItems.Add("") ' Placeholder for buttons
-            ListView1.Items.Add(item)
-        Next
+        Try
+            dbConn()
+            Dim query As String = "
+            SELECT 
+                loans.loan_id,
+                books.title AS book_title,
+                borrowers.name AS borrower_name,
+                loans.loan_date,
+                loans.due_date,
+                loans.return_date
+            FROM loans
+            JOIN books ON loans.book_id = books.book_id
+            JOIN borrowers ON loans.borrower_id = borrowers.borrower_id
+            ORDER BY loans.loan_id ASC
+        "
+
+            Dim cmd As New MySqlCommand(query, conn)
+            reader = cmd.ExecuteReader()
+
+            While reader.Read()
+                Dim item As New ListViewItem(reader("loan_id").ToString())
+                item.SubItems.Add(reader("book_title").ToString())
+                item.SubItems.Add(reader("borrower_name").ToString())
+                item.SubItems.Add(Convert.ToDateTime(reader("loan_date")).ToShortDateString())
+                item.SubItems.Add(Convert.ToDateTime(reader("due_date")).ToShortDateString())
+                item.SubItems.Add(If(IsDBNull(reader("return_date")), "", Convert.ToDateTime(reader("return_date")).ToShortDateString()))
+                item.SubItems.Add("") ' Placeholder for View/Delete/Update buttons
+                ListView1.Items.Add(item)
+            End While
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading loans: " & ex.Message)
+        Finally
+            If reader IsNot Nothing AndAlso Not reader.IsClosed Then reader.Close()
+            dbDisconn()
+        End Try
     End Sub
+
 
     Private Sub DrawHeader(sender As Object, e As DrawListViewColumnHeaderEventArgs)
         e.DrawBackground()
         TextRenderer.DrawText(e.Graphics, e.Header.Text, e.Font, e.Bounds, e.ForeColor, TextFormatFlags.HorizontalCenter Or TextFormatFlags.VerticalCenter)
+    End Sub
+    Private Sub LoadBooksToComboBox()
+        ComboBox1.Items.Clear()
+
+        Try
+            dbConn()
+            Dim query As String = "SELECT book_id, title FROM books ORDER BY title ASC"
+            Dim cmd As New MySqlCommand(query, conn)
+            reader = cmd.ExecuteReader()
+
+            While reader.Read()
+                Dim item As New KeyValuePair(Of Integer, String)(reader("book_id"), reader("title").ToString())
+                ComboBox1.Items.Add(item)
+            End While
+
+            ComboBox1.DisplayMember = "Value"
+            ComboBox1.ValueMember = "Key"
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading books: " & ex.Message)
+        Finally
+            If reader IsNot Nothing AndAlso Not reader.IsClosed Then reader.Close()
+            dbDisconn()
+        End Try
+    End Sub
+
+    Private Sub LoadBorrowersToComboBox()
+        ComboBox2.Items.Clear()
+
+        Try
+            dbConn()
+            Dim query As String = "SELECT borrower_id, name FROM borrowers ORDER BY name ASC"
+            Dim cmd As New MySqlCommand(query, conn)
+            reader = cmd.ExecuteReader()
+
+            While reader.Read()
+                Dim item As New KeyValuePair(Of Integer, String)(reader("borrower_id"), reader("name").ToString())
+                ComboBox2.Items.Add(item)
+            End While
+
+            ComboBox2.DisplayMember = "Value"
+            ComboBox2.ValueMember = "Key"
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading borrowers: " & ex.Message)
+        Finally
+            If reader IsNot Nothing AndAlso Not reader.IsClosed Then reader.Close()
+            dbDisconn()
+        End Try
     End Sub
 
     Private Sub DrawLoanSubItem(sender As Object, e As DrawListViewSubItemEventArgs)
@@ -111,17 +196,19 @@
         Dim remainingWidth As Integer = totalWidth - col0Width - col6Width
         If remainingWidth < 0 Then remainingWidth = 0
 
-        ' 5 dynamic columns
-        Dim dynamicColWidth As Integer = remainingWidth \ 5
+        ' Allocate more width to BOOK TITLE (e.g., 2x share)
+        Dim totalShares As Integer = 6 ' 2 (book) + 1 (borrower) + 1 (loan) + 1 (due) + 1 (return)
+        Dim shareWidth As Integer = remainingWidth \ totalShares
 
-        ListView1.Columns(0).Width = col0Width
-        ListView1.Columns(1).Width = dynamicColWidth ' BOOK TITLE
-        ListView1.Columns(2).Width = dynamicColWidth ' BORROWER
-        ListView1.Columns(3).Width = dynamicColWidth ' LOAN DATE
-        ListView1.Columns(4).Width = dynamicColWidth ' DUE DATE
-        ListView1.Columns(5).Width = dynamicColWidth ' RETURN DATE
-        ListView1.Columns(6).Width = col6Width
+        ListView1.Columns(0).Width = col0Width                          ' ID
+        ListView1.Columns(1).Width = shareWidth * 2                    ' BOOK TITLE
+        ListView1.Columns(2).Width = shareWidth                        ' BORROWER
+        ListView1.Columns(3).Width = shareWidth                        ' LOAN DATE
+        ListView1.Columns(4).Width = shareWidth                        ' DUE DATE
+        ListView1.Columns(5).Width = shareWidth                        ' RETURN DATE
+        ListView1.Columns(6).Width = col6Width                         ' ACTIONS
     End Sub
+
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
 
