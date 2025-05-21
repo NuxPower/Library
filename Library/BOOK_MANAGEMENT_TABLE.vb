@@ -1,6 +1,15 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class BOOK_MANAGEMENT_TABLE
+    Implements ISearchable
+    Private bookList As List(Of Book)
+
+    Private Class Book
+        Public Property BookId As Integer
+        Public Property Title As String
+        Public Property Author As String
+        Public Property ISBN As String
+    End Class
 
     Private Sub BOOK_MANAGEMENT_TABLE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ListView1.Dock = DockStyle.Fill
@@ -30,9 +39,8 @@ Public Class BOOK_MANAGEMENT_TABLE
             AddHandler .MouseClick, AddressOf ListView1_MouseClick
         End With
     End Sub
-
     Private Sub LoadBookList()
-        ListView1.Items.Clear()
+        bookList = New List(Of Book)()
 
         Try
             dbConn()
@@ -44,16 +52,20 @@ Public Class BOOK_MANAGEMENT_TABLE
             Dim cmd As New MySqlCommand(query, conn)
             reader = cmd.ExecuteReader()
 
-            Dim index As Integer = 1
             While reader.Read()
-                Dim item As New ListViewItem(index.ToString())
-                item.SubItems.Add(reader("title").ToString())
-                item.SubItems.Add(reader("author_name").ToString())
-                item.SubItems.Add(reader("isbn").ToString())
-                item.SubItems.Add("") ' Placeholder for View/Update buttons
-                ListView1.Items.Add(item)
-                index += 1
+                Dim book As New Book With {
+                .BookId = Convert.ToInt32(reader("book_id")),
+                .Title = reader("title").ToString(),
+                .Author = reader("author_name").ToString(),
+                .ISBN = reader("isbn").ToString()
+            }
+                bookList.Add(book)
             End While
+
+            reader.Close()
+            dbDisconn()
+
+            DisplayBooks(bookList)
 
         Catch ex As Exception
             MessageBox.Show("Error loading books: " & ex.Message)
@@ -62,7 +74,20 @@ Public Class BOOK_MANAGEMENT_TABLE
             dbDisconn()
         End Try
     End Sub
+    Private Sub DisplayBooks(books As List(Of Book))
+        ListView1.Items.Clear()
+        Dim index As Integer = 1
 
+        For Each b In books
+            Dim item As New ListViewItem(index.ToString())
+            item.SubItems.Add(b.Title)
+            item.SubItems.Add(b.Author)
+            item.SubItems.Add(b.ISBN)
+            item.SubItems.Add("") ' Placeholder for ACTIONS
+            ListView1.Items.Add(item)
+            index += 1
+        Next
+    End Sub
 
     Private Sub DrawHeader(sender As Object, e As DrawListViewColumnHeaderEventArgs)
         e.DrawBackground()
@@ -168,6 +193,16 @@ Public Class BOOK_MANAGEMENT_TABLE
 
     Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
         ' Optional: Add code if needed for selection
+    End Sub
+    Public Sub PerformSearch(query As String) Implements ISearchable.PerformSearch
+        If String.IsNullOrWhiteSpace(query) Then
+            DisplayBooks(bookList)
+        Else
+            Dim filtered = bookList.Where(Function(b) b.Title.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 _
+                                       OrElse b.Author.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 _
+                                       OrElse b.ISBN.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0).ToList()
+            DisplayBooks(filtered)
+        End If
     End Sub
 
 End Class

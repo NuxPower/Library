@@ -1,8 +1,24 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class AUTHOR_MANAGEMENT_TABLE
-    Implements ISearchable
+    Inherits UserControl
+    Implements ISearchable, ISortable
     Private authorsList As List(Of Author)
+
+    ' Implementation of ISortable
+    Public Sub SortByName() Implements ISortable.SortByName
+        If authorsList IsNot Nothing Then
+            Dim sorted = authorsList.OrderBy(Function(a) a.Name).ToList()
+            DisplayAuthors(sorted)
+        End If
+    End Sub
+
+    Public Sub SortByDate() Implements ISortable.SortByDate
+        If authorsList IsNot Nothing Then
+            Dim sorted = authorsList.OrderByDescending(Function(a) a.DateAdded).ToList()
+            DisplayAuthors(sorted)
+        End If
+    End Sub
 
     Private Class Author
         Public Property AuthorId As Integer
@@ -45,6 +61,7 @@ Public Class AUTHOR_MANAGEMENT_TABLE
 
 
     Private Sub LoadAuthorList()
+
         authorsList = New List(Of Author)()
 
         Try

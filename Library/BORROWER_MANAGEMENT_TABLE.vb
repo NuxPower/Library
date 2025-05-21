@@ -1,6 +1,15 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class BORROWER_MANAGEMENT_TABLE
+    Implements ISearchable
+    Private borrowersList As List(Of Borrower)
+
+    Private Class Borrower
+        Public Property BorrowerId As Integer
+        Public Property Name As String
+        Public Property Email As String
+        Public Property MobileNo As String
+    End Class
 
     Private Sub BORROWER_MANAGEMENT_TABLE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ListView1.Dock = DockStyle.Fill
@@ -30,12 +39,19 @@ Public Class BORROWER_MANAGEMENT_TABLE
         End With
     End Sub
 
-    Private Sub LoadBorrowerList()
+    Private Sub LoadBorrowerList(Optional sortBy As String = "id")
         ListView1.Items.Clear()
 
         Try
             dbConn()
-            Dim query As String = "SELECT borrower_id, name, email, mobile_no FROM Borrowers ORDER BY borrower_id ASC"
+            Dim orderByClause As String = "borrower_id ASC"
+            If sortBy = "name" Then
+                orderByClause = "name ASC"
+            ElseIf sortBy = "date" Then
+                orderByClause = "borrower_id DESC" ' assuming newer entries have higher IDs
+            End If
+
+            Dim query As String = $"SELECT borrower_id, name, email, mobile_no FROM Borrowers ORDER BY {orderByClause}"
             Dim cmd As New MySqlCommand(query, conn)
             reader = cmd.ExecuteReader()
 
@@ -45,17 +61,32 @@ Public Class BORROWER_MANAGEMENT_TABLE
                 item.SubItems.Add(reader("name").ToString())
                 item.SubItems.Add(reader("email").ToString())
                 item.SubItems.Add(reader("mobile_no").ToString())
-                item.SubItems.Add("") ' Placeholder for Edit/Delete buttons
+                item.SubItems.Add("")
                 ListView1.Items.Add(item)
                 index += 1
             End While
-
         Catch ex As Exception
             MessageBox.Show("Error loading borrowers: " & ex.Message)
         Finally
             If reader IsNot Nothing AndAlso Not reader.IsClosed Then reader.Close()
             dbDisconn()
         End Try
+    End Sub
+
+
+    Private Sub DisplayBorrowers(borrowers As List(Of Borrower))
+        ListView1.Items.Clear()
+        Dim index As Integer = 1
+
+        For Each b In borrowers
+            Dim item As New ListViewItem(index.ToString())
+            item.SubItems.Add(b.Name)
+            item.SubItems.Add(b.Email)
+            item.SubItems.Add(b.MobileNo)
+            item.SubItems.Add("") ' Placeholder for buttons
+            ListView1.Items.Add(item)
+            index += 1
+        Next
     End Sub
 
 
@@ -146,6 +177,18 @@ Public Class BORROWER_MANAGEMENT_TABLE
 
     Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
 
+    End Sub
+
+    Public Sub PerformSearch(query As String) Implements ISearchable.PerformSearch
+        If String.IsNullOrWhiteSpace(query) Then
+            DisplayBorrowers(borrowersList)
+        Else
+            ' Filter by name, email, or mobile (case-insensitive)
+            Dim filtered = borrowersList.Where(Function(b) b.Name.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 _
+                                            OrElse b.Email.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 _
+                                            OrElse b.MobileNo.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0).ToList()
+            DisplayBorrowers(filtered)
+        End If
     End Sub
 
 End Class
