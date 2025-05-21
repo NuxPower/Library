@@ -11,9 +11,11 @@
         For Each ctrl As Control In panelD.Controls
             AddHandler ctrl.Click, AddressOf panelD_Clicked
         Next
+
         For Each ctrl As Control In panelA.Controls
             AddHandler ctrl.Click, AddressOf panelA_Clicked
         Next
+
         AddHandler Panel3.Click, AddressOf panel3_Click
         For Each ctrl As Control In Panel3.Controls
             RemoveHandler ctrl.Click, AddressOf panel3_Click ' prevent double firing
@@ -22,7 +24,7 @@
 
         fragment2.Dock = DockStyle.Fill
 
-        ' Optionally update Label1's text for feedback (remove if not needed)
+        ' Set label text according to management type
         Select Case managementType.ToUpper()
             Case "AUTHORS"
                 Label1.Text = "ADD AUTHOR"
@@ -54,13 +56,9 @@
             Case Else
                 MessageBox.Show("Unknown management type: " & managementType)
         End Select
-
-        AddHandler Label1.Click, AddressOf Label1_Click
-
     End Sub
 
     Private Sub panelD_Clicked(sender As Object, e As EventArgs) Handles panelD.Click
-        ' Get parent form (Dashboard)
         Dim parentDash = TryCast(Me.ParentForm, Dashboard)
         If parentDash IsNot Nothing Then
             parentDash.FragmentTitle.Text = "LIBRARY MANAGEMENT SYSTEM"
@@ -92,12 +90,8 @@
         dashboardLoad(New BOOK_MANAGEMENT_TABLE)
     End Sub
 
-
-    Private Sub Label1_Click(sender As Object, e As EventArgs)
-        ShowAddPanel()
-    End Sub
-
-    Private Sub ShowAddPanel()
+    ' Panel3 now handles the Add functionality
+    Private Sub panel3_Click(sender As Object, e As EventArgs) Handles Panel3.Click
         Dim addControl As UserControl = Nothing
         Dim mgmtType As String = managementType.ToUpper()
 
@@ -113,15 +107,14 @@
                 Exit Sub
         End Select
 
-        ' Open in new LOAN_MANAGEMENT window (and hide this Dashboard if desired)
-        Dim parentDash = TryCast(Me.FindForm(), Dashboard)
-        If parentDash IsNot Nothing Then
-            Dim loanMgmtForm As New LOAN_MANAGEMENT(mgmtType, parentDash)
-            loanMgmtForm.Show()
-            loanMgmtForm.dashboardLoad(addControl)
-            parentDash.Hide() ' Optionally hide dashboard, or leave out if you want both windows visible
+        Dim mainForm = TryCast(Me.FindForm(), Dashboard)
+        If mainForm IsNot Nothing Then
+            Dim loanForm As New LOAN_MANAGEMENT(mgmtType, mainForm)
+            loanForm.Show()
+            loanForm.dashboardLoad(addControl)
+            mainForm.Hide()
         Else
-            MessageBox.Show("Parent Dashboard not found.")
+            MessageBox.Show("Dashboard form not found.")
         End If
     End Sub
 
@@ -144,11 +137,11 @@
     End Sub
 
     Private Sub panelL_Clicked(sender As Object, e As EventArgs) Handles panelL.Click
-        Dim mainForm = TryCast(Me.FindForm(), Dashboard)  ' get Dashboard form reference
+        Dim mainForm = TryCast(Me.FindForm(), Dashboard)
         If mainForm IsNot Nothing Then
-            Dim loanForm As New LOAN_MANAGEMENT("LOAN", mainForm) ' pass Dashboard reference
+            Dim loanForm As New LOAN_MANAGEMENT("LOAN", mainForm)
             loanForm.Show()
-            mainForm.Hide() ' optionally hide the dashboard form when loanForm shows
+            mainForm.Hide()
         Else
             MessageBox.Show("Dashboard form not found.")
         End If
@@ -172,6 +165,7 @@
 
         Return scrollablePanel.Controls(0)
     End Function
+
     Private Sub panel5_Click(sender As Object, e As EventArgs)
         Dim currentControl = GetCurrentControl()
         Dim sortable = TryCast(currentControl, ISortable)
@@ -187,19 +181,4 @@
             sortable.SortByName()
         End If
     End Sub
-    Private Sub panel3_Click(sender As Object, e As EventArgs) Handles Panel3.Click
-        Dim mainForm = TryCast(Me.FindForm(), Dashboard)  ' Get the parent Dashboard form
-
-        If mainForm IsNot Nothing Then
-            ' Create new LOAN_MANAGEMENT form with current managementType
-            Dim loanForm As New LOAN_MANAGEMENT(managementType, mainForm)
-
-            loanForm.Show()
-            mainForm.Hide() ' Optionally hide dashboard
-        Else
-            MessageBox.Show("Dashboard form not found.")
-        End If
-    End Sub
-
-
 End Class
