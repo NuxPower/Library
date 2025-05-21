@@ -200,6 +200,7 @@
         End If
     End Sub
 
+    Private Sub fragment2_Paint(sender As Object, e As PaintEventArgs) Handles fragment2.Paint
 
-
+    End Sub
 End Class
