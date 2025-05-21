@@ -1,15 +1,15 @@
 ﻿Public Class Author_Management
     Private managementType As String
 
-
-
-
     Public Sub New(type As String)
         InitializeComponent()
         managementType = type
     End Sub
 
     Private Sub Author_Management_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        For Each ctrl As Control In panelML.Controls
+            AddHandler ctrl.Click, AddressOf panelML_Clicked
+        Next
         fragment2.Dock = DockStyle.Fill
 
         ' Dynamically update Label1's text
