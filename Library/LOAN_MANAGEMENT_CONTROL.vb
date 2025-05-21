@@ -289,9 +289,8 @@ Public Class LOAN_MANAGEMENT_CONTROL
         ComboBox2.SelectedIndex = -1
         DateTimePicker1.Value = DateTime.Today
         DateTimePicker2.Value = DateTime.Today
-        DateTimePicker3.Value = DateTime.Today
-    End Sub
 
+    End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs)
         ' Validation
         If ComboBox1.SelectedIndex = -1 OrElse ComboBox2.SelectedIndex = -1 Then
@@ -302,18 +301,19 @@ Public Class LOAN_MANAGEMENT_CONTROL
         Dim selectedBook As KeyValuePair(Of Integer, String) = CType(ComboBox1.SelectedItem, KeyValuePair(Of Integer, String))
         Dim selectedBorrower As KeyValuePair(Of Integer, String) = CType(ComboBox2.SelectedItem, KeyValuePair(Of Integer, String))
         Dim loanDate As Date = DateTimePicker1.Value
-        Dim dueDate As Date = DateTimePicker2.Value
-        Dim returnDate As Date = DateTimePicker3.Value
+
+        ' -- If you want to set due date automatically, for example 14 days after loan:
+        Dim dueDate As Date = loanDate.AddDays(14)
+        ' If you want to make it optional/NULL, see commented code below.
 
         Try
             dbConn()
-            Dim query As String = "INSERT INTO loans (book_id, borrower_id, loan_date, due_date, return_date) VALUES (@book_id, @borrower_id, @loan_date, @due_date, @return_date)"
+            Dim query As String = "INSERT INTO loans (book_id, borrower_id, loan_date, due_date, return_date) VALUES (@book_id, @borrower_id, @loan_date, @due_date, NULL)"
             Dim cmd As New MySqlCommand(query, conn)
             cmd.Parameters.AddWithValue("@book_id", selectedBook.Key)
             cmd.Parameters.AddWithValue("@borrower_id", selectedBorrower.Key)
             cmd.Parameters.AddWithValue("@loan_date", loanDate)
-            cmd.Parameters.AddWithValue("@due_date", dueDate)
-            cmd.Parameters.AddWithValue("@return_date", returnDate)
+            cmd.Parameters.AddWithValue("@due_date", dueDate) ' If optional, use .AddWithValue("@due_date", DBNull.Value)
 
             Dim rowsInserted As Integer = cmd.ExecuteNonQuery()
 
@@ -331,5 +331,6 @@ Public Class LOAN_MANAGEMENT_CONTROL
             dbDisconn()
         End Try
     End Sub
+
 
 End Class

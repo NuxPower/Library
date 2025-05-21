@@ -3,6 +3,8 @@
 Public Class return_book
     Private loanId As Integer
 
+    ' Raise this event after a successful update
+    Public Event ReturnDateUpdated()
 
     ' Constructor accepts loan ID and return date
     Public Sub New(id As Integer, returnDate As Date)
@@ -24,6 +26,7 @@ Public Class return_book
             Dim rowsAffected = cmd.ExecuteNonQuery()
             If rowsAffected > 0 Then
                 MessageBox.Show("Return date updated successfully.")
+                RaiseEvent ReturnDateUpdated()  ' <--- Raise event for parent to refresh
                 Me.Close()
             Else
                 MessageBox.Show("No update performed.")
@@ -34,5 +37,9 @@ Public Class return_book
         Finally
             dbDisconn()
         End Try
+    End Sub
+
+    Private Sub return_book_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class
