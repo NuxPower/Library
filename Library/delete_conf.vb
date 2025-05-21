@@ -29,4 +29,8 @@ Public Class delete_conf
         Me.DialogResult = DialogResult.Cancel
         Me.Close()
     End Sub
+
+    Private Sub delete_conf_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class
