@@ -1,4 +1,5 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Net
+Imports MySql.Data.MySqlClient
 
 Public Class VIEW_AUTHOR_TABLE
     Inherits UserControl
@@ -134,6 +135,7 @@ Public Class VIEW_AUTHOR_TABLE
             Dim updateBtn = New Rectangle(itemBounds.X + 5, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
             Dim deleteBtn = New Rectangle(itemBounds.X + btnWidth + 10, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
 
+            Dim bookId As Integer = Convert.ToInt32(hitInfo.Item.SubItems(0).Text)
             Dim bookTitle As String = hitInfo.Item.SubItems(1).Text
             Dim bookISBN As String = hitInfo.Item.SubItems(2).Text
 
@@ -145,7 +147,7 @@ Public Class VIEW_AUTHOR_TABLE
                 End If
             ElseIf deleteBtn.Contains(e.Location) Then
                 Dim deleteForm As New delete_conf()
-                ' deleteForm.BookTitle = bookTitle
+                deleteForm.BookId = bookId ' Pass the selected book ID
                 If deleteForm.ShowDialog() = DialogResult.OK Then
                     LoadBooksByAuthor()
                 End If
