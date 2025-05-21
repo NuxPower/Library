@@ -31,7 +31,7 @@ Public Class Main_Dashboard
         Dim parentDash = TryCast(Me.ParentForm, Dashboard)
         If parentDash IsNot Nothing Then
             parentDash.FragmentTitle.Text = "MANAGE BOOKS"
-            parentDash.dashboardLoad(New Author_Management("BORROWERS"))
+            parentDash.dashboardLoad(New Author_Management("BOOKS"))
         End If
     End Sub
 
@@ -40,7 +40,7 @@ Public Class Main_Dashboard
         Dim parentDash = TryCast(Me.ParentForm, Dashboard)
         If parentDash IsNot Nothing Then
             parentDash.FragmentTitle.Text = "MANAGE BORROWERS"
-            parentDash.dashboardLoad(New Author_Management("BOOKS"))
+            parentDash.dashboardLoad(New Author_Management("BORROWERS"))
         End If
     End Sub
     Private Sub panelML_Clicked(sender As Object, e As EventArgs) Handles panelML.Click
@@ -48,6 +48,7 @@ Public Class Main_Dashboard
         loanForm.Show()
     End Sub
 
+    Private Sub PictureBox3_Click(sender As Object, e As EventArgs) Handles PictureBox3.Click
 
-
+    End Sub
 End Class

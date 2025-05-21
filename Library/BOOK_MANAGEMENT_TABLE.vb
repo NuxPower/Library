@@ -24,6 +24,7 @@
             AddHandler .DrawColumnHeader, AddressOf DrawHeader
             AddHandler .DrawSubItem, AddressOf DrawBookSubItem
             AddHandler .Resize, AddressOf ListView1_Resize
+            RemoveHandler .MouseClick, AddressOf ListView1_MouseClick
             AddHandler .MouseClick, AddressOf ListView1_MouseClick
         End With
     End Sub
@@ -55,11 +56,11 @@
                 Dim btnWidth As Integer = (e.Bounds.Width - spacing - 10) \ 2
                 Dim btnHeight As Integer = e.Bounds.Height - 4
 
-                Dim editRect As New Rectangle(e.Bounds.X + 5, e.Bounds.Y + 2, btnWidth, btnHeight)
-                Dim deleteRect As New Rectangle(e.Bounds.X + btnWidth + spacing, e.Bounds.Y + 2, btnWidth, btnHeight)
+                Dim viewRect As New Rectangle(e.Bounds.X + 5, e.Bounds.Y + 2, btnWidth, btnHeight)
+                Dim updateRect As New Rectangle(e.Bounds.X + btnWidth + spacing, e.Bounds.Y + 2, btnWidth, btnHeight)
 
-                ButtonRenderer.DrawButton(e.Graphics, editRect, "Edit", e.Item.ListView.Font, False, VisualStyles.PushButtonState.Normal)
-                ButtonRenderer.DrawButton(e.Graphics, deleteRect, "Delete", e.Item.ListView.Font, False, VisualStyles.PushButtonState.Normal)
+                ButtonRenderer.DrawButton(e.Graphics, viewRect, "View", e.Item.ListView.Font, False, VisualStyles.PushButtonState.Normal)
+                ButtonRenderer.DrawButton(e.Graphics, updateRect, "Update", e.Item.ListView.Font, False, VisualStyles.PushButtonState.Normal)
 
             Case 1, 2, 3 ' TITLE, AUTHOR, ISBN
                 TextRenderer.DrawText(e.Graphics, e.SubItem.Text, e.Item.ListView.Font, e.Bounds,
@@ -73,7 +74,6 @@
         End Select
     End Sub
 
-
     Private Sub ListView1_MouseClick(sender As Object, e As MouseEventArgs)
         Dim hitInfo As ListViewHitTestInfo = ListView1.HitTest(e.Location)
         If hitInfo.Item Is Nothing OrElse hitInfo.SubItem Is Nothing Then Exit Sub
@@ -82,16 +82,42 @@
             Dim itemBounds = hitInfo.SubItem.Bounds
             Dim btnWidth As Integer = (itemBounds.Width - 10) \ 2
 
-            Dim editBtn = New Rectangle(itemBounds.X + 5, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
-            Dim deleteBtn = New Rectangle(itemBounds.X + btnWidth + 10, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
+            Dim viewBtn = New Rectangle(itemBounds.X + 5, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
+            Dim updateBtn = New Rectangle(itemBounds.X + btnWidth + 10, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
 
-            If editBtn.Contains(e.Location) Then
-                MessageBox.Show("Edit clicked on " & hitInfo.Item.SubItems(1).Text)
-            ElseIf deleteBtn.Contains(e.Location) Then
-                MessageBox.Show("Delete clicked on " & hitInfo.Item.SubItems(1).Text)
+            Dim bookTitle As String = hitInfo.Item.SubItems(1).Text
+
+            If viewBtn.Contains(e.Location) Then
+                ' Display BOOK_MANAGEMENT_CONTROL as a UserControl in a parent panel (not a form)
+                ShowInParentPanel(New BOOK_MANAGEMENT_CONTROL())
+            ElseIf updateBtn.Contains(e.Location) Then
+                ' Display update_book as a UserControl in a parent panel (not a form)
+                update_book.ShowDialog()
             End If
         End If
     End Sub
+
+    ' Helper function to add a control to your parent container, e.g., fragment2
+    Private Sub ShowInParentPanel(ctrl As UserControl)
+        ' This assumes your UserControl sits inside a parent with a known panel (like fragment2)
+        Dim parentForm = Me.FindForm()
+        If parentForm IsNot Nothing Then
+            ' Try to find a Panel called fragment2 in the parent form
+            Dim fragmentPanel = parentForm.Controls.Find("fragment2", True).FirstOrDefault()
+            If fragmentPanel IsNot Nothing AndAlso TypeOf fragmentPanel Is Panel Then
+                Dim frag As Panel = DirectCast(fragmentPanel, Panel)
+                frag.Controls.Clear()
+                ctrl.Dock = DockStyle.Fill
+                frag.Controls.Add(ctrl)
+                ctrl.BringToFront()
+            Else
+                MessageBox.Show("fragment2 panel not found.")
+            End If
+        Else
+            MessageBox.Show("Parent form not found.")
+        End If
+    End Sub
+
 
     Private Sub ListView1_Resize(sender As Object, e As EventArgs)
         Dim totalWidth As Integer = ListView1.ClientSize.Width
@@ -112,5 +138,8 @@
         ListView1.Columns(4).Width = col4Width        ' ACTIONS
     End Sub
 
+    Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
+        ' Optional: Add code if needed for selection
+    End Sub
 
 End Class
