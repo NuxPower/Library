@@ -136,8 +136,8 @@ Public Class AUTHOR_MANAGEMENT_TABLE
                 Dim editRect As New Rectangle(e.Bounds.X + 5, e.Bounds.Y + 2, btnWidth, btnHeight)
                 Dim deleteRect As New Rectangle(e.Bounds.X + btnWidth + spacing, e.Bounds.Y + 2, btnWidth, btnHeight)
 
-                ButtonRenderer.DrawButton(e.Graphics, editRect, "Edit", e.Item.ListView.Font, False, VisualStyles.PushButtonState.Normal)
-                ButtonRenderer.DrawButton(e.Graphics, deleteRect, "Delete", e.Item.ListView.Font, False, VisualStyles.PushButtonState.Normal)
+                ButtonRenderer.DrawButton(e.Graphics, editRect, "Update", e.Item.ListView.Font, False, VisualStyles.PushButtonState.Normal)
+                ButtonRenderer.DrawButton(e.Graphics, deleteRect, "View", e.Item.ListView.Font, False, VisualStyles.PushButtonState.Normal)
 
             Case 1 ' NAME
                 TextRenderer.DrawText(e.Graphics, e.SubItem.Text, e.Item.ListView.Font, e.Bounds, e.Item.ListView.ForeColor, TextFormatFlags.HorizontalCenter Or TextFormatFlags.VerticalCenter)
