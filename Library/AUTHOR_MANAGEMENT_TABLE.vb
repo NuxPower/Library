@@ -99,5 +99,25 @@
         ListView1.Columns(2).Width = col2Width
         ListView1.Columns(3).Width = col3Width
     End Sub
+    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
+        If e.RowIndex >= 0 Then
+            If DataGridView1.Columns(e.ColumnIndex).Name = "colUpdate" Then
+                ' Update logic here
+            ElseIf DataGridView1.Columns(e.ColumnIndex).Name = "colDelete" Then
+                ' Delete logic here
+            End If
+        End If
+    End Sub
 
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
+    End Sub
+
+    Private Sub Panel16_Paint(sender As Object, e As PaintEventArgs) Handles Panel16.Paint
+
+    End Sub
+
+    Private Sub Panel9_Paint(sender As Object, e As PaintEventArgs) Handles Panel9.Paint
+
+    End Sub
 End Class

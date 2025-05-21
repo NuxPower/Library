@@ -33,9 +33,9 @@ Partial Class Dashboard
         '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(111, Byte), Integer), CType(CType(143, Byte), Integer))
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel2.Location = New System.Drawing.Point(0, 703)
+        Me.Panel2.Location = New System.Drawing.Point(0, 655)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1314, 46)
+        Me.Panel2.Size = New System.Drawing.Size(1284, 46)
         Me.Panel2.TabIndex = 4
         '
         'FragmentTitle
@@ -56,7 +56,7 @@ Partial Class Dashboard
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1314, 95)
+        Me.Panel1.Size = New System.Drawing.Size(1284, 95)
         Me.Panel1.TabIndex = 3
         '
         'fragment
@@ -65,7 +65,7 @@ Partial Class Dashboard
         Me.fragment.Dock = System.Windows.Forms.DockStyle.Fill
         Me.fragment.Location = New System.Drawing.Point(0, 95)
         Me.fragment.Name = "fragment"
-        Me.fragment.Size = New System.Drawing.Size(1314, 608)
+        Me.fragment.Size = New System.Drawing.Size(1284, 560)
         Me.fragment.TabIndex = 5
         '
         'Dashboard
@@ -74,7 +74,7 @@ Partial Class Dashboard
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.CadetBlue
         Me.BackgroundImage = Global.Library.My.Resources.Resources.premium_photo_1677567996070_68fa4181775a_2
-        Me.ClientSize = New System.Drawing.Size(1314, 749)
+        Me.ClientSize = New System.Drawing.Size(1284, 701)
         Me.Controls.Add(Me.fragment)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)

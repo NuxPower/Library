@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -11,9 +11,10 @@
     <AssemblyName>Library</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -139,6 +140,18 @@
     <Compile Include="ADDING_FORM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Add_Author.Designer.vb">
+      <DependentUpon>Add_Author.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Add_Author.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="add_book.Designer.vb">
+      <DependentUpon>add_book.vb</DependentUpon>
+    </Compile>
+    <Compile Include="add_book.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ADD_BOOK_CONTROL.Designer.vb">
       <DependentUpon>ADD_BOOK_CONTROL.vb</DependentUpon>
     </Compile>
@@ -169,17 +182,29 @@
     <Compile Include="BOOK_MANAGEMENT_TABLE.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="book_status.Designer.vb">
+      <DependentUpon>book_status.vb</DependentUpon>
+    </Compile>
+    <Compile Include="book_status.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="BORROWER_MANAGEMENT_TABLE.Designer.vb">
       <DependentUpon>BORROWER_MANAGEMENT_TABLE.vb</DependentUpon>
     </Compile>
     <Compile Include="BORROWER_MANAGEMENT_TABLE.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Form1.vb">
+    <Compile Include="delete_conf.Designer.vb">
+      <DependentUpon>delete_conf.vb</DependentUpon>
+    </Compile>
+    <Compile Include="delete_conf.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="Form.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form.Designer.vb">
+      <DependentUpon>Form.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Global Module.vb" />
@@ -205,6 +230,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -216,6 +242,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="return_book.Designer.vb">
+      <DependentUpon>return_book.vb</DependentUpon>
+    </Compile>
+    <Compile Include="return_book.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="update_auth.Designer.vb">
+      <DependentUpon>update_auth.vb</DependentUpon>
+    </Compile>
+    <Compile Include="update_auth.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ADDING_BORROWER_CONTROL.resx">
@@ -223,6 +261,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADDING_FORM.resx">
       <DependentUpon>ADDING_FORM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_Author.resx">
+      <DependentUpon>Add_Author.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="add_book.resx">
+      <DependentUpon>add_book.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADD_BOOK_CONTROL.resx">
       <DependentUpon>ADD_BOOK_CONTROL.vb</DependentUpon>
@@ -239,11 +283,17 @@
     <EmbeddedResource Include="BOOK_MANAGEMENT_TABLE.resx">
       <DependentUpon>BOOK_MANAGEMENT_TABLE.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="book_status.resx">
+      <DependentUpon>book_status.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BORROWER_MANAGEMENT_TABLE.resx">
       <DependentUpon>BORROWER_MANAGEMENT_TABLE.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="delete_conf.resx">
+      <DependentUpon>delete_conf.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form.resx">
+      <DependentUpon>Form.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LOAN MANAGEMENT.resx">
       <DependentUpon>LOAN MANAGEMENT.vb</DependentUpon>
@@ -259,6 +309,12 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="return_book.resx">
+      <DependentUpon>return_book.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="update_auth.resx">
+      <DependentUpon>update_auth.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

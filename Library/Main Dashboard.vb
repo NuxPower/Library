@@ -1,4 +1,6 @@
-﻿Public Class Main_Dashboard
+﻿
+Public Class Main_Dashboard
+
     Private Sub Main_Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Hook click event to child controls of panelMA
         For Each ctrl As Control In panelMA.Controls
@@ -14,10 +16,19 @@
             AddHandler ctrl.Click, AddressOf panelML_Clicked
         Next
     End Sub
+
+
+    ' Main_Dashboard (panel click event)
     Private Sub panelMA_Clicked(sender As Object, e As EventArgs) Handles panelMA.Click
-        Dashboard.FragmentTitle.Text = "MANAGE AUTHORS"
-        Dashboard.dashboardLoad(New Author_Management("AUTHORS"))
+        Dim parentDash = TryCast(Me.ParentForm, Dashboard)
+        If parentDash IsNot Nothing Then
+            parentDash.FragmentTitle.Text = "AUTHOR MANAGEMENT"
+            parentDash.dashboardLoad(New Author_Management("AUTHORS")) ' <<== THIS, not the table
+        End If
     End Sub
+
+
+
 
     Private Sub panelMBk_Clicked(sender As Object, e As EventArgs) Handles panelMBk.Click
         Dashboard.FragmentTitle.Text = "MANAGE BOOKS"
@@ -31,4 +42,7 @@
         Dim loanForm As New LOAN_MANAGEMENT("LOAN")
         loanForm.Show()
     End Sub
+
+
+
 End Class

@@ -7,41 +7,38 @@
     End Sub
 
     Private Sub Author_Management_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        fragment2.Dock = DockStyle.Fill
+        ' Only dock if needed, DO NOT clear/add dynamic controls!
+        Panel1.Dock = DockStyle.Fill
 
-        Select Case managementType.ToUpper()
-            Case "AUTHORS"
-                dashboardLoad(New AUTHOR_MANAGEMENT_TABLE())
-            Case "BOOKS"
-                dashboardLoad(New BOOK_MANAGEMENT_TABLE()) ' If you have one
-            Case "BORROWERS"
-                dashboardLoad(New BORROWER_MANAGEMENT_TABLE()) ' If you have one
-            Case Else
-                MessageBox.Show("Unknown management type: " & managementType)
-        End Select
+        ' The panel and controls you designed in the Designer will show up.
+        ' No need to clear Panel1 or add anything else.
+        ' If you want to pre-load data, do it here (but do not clear/add controls).
     End Sub
 
-    Public Sub dashboardLoad(board As UserControl)
-        LoadUserControl(board)
+    ' Example: Handler for the "ADD AUTHOR" button (set this in the Designer!)
+
+    ' Example: Sort buttons
+
+
+    ' Optionally, if you want to show the table dynamically, you can add:
+    Public Sub ShowAuthorTable()
+        Panel1.Controls.Clear()
+        Dim tableUC As New AUTHOR_MANAGEMENT_TABLE()
+        tableUC.Dock = DockStyle.Fill
+        Panel1.Controls.Add(tableUC)
     End Sub
 
-    Private Sub LoadUserControl(uc As UserControl)
-        fragment2.Controls.Clear()
-        fragment2.BringToFront()
-
-        Dim scrollablePanel As New Panel With {
-            .Dock = DockStyle.Fill,
-            .AutoScroll = True
-        }
-
-        uc.Dock = DockStyle.Fill
-        scrollablePanel.Controls.Add(uc)
-        fragment2.Controls.Add(scrollablePanel)
-    End Sub
-
+    ' If you need navigation to other forms (e.g., Loans)
     Private Sub panelL_Clicked(sender As Object, e As EventArgs) Handles panelL.Click
         Dim loanForm As New LOAN_MANAGEMENT("LOAN")
         loanForm.Show()
     End Sub
+
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+        ShowAuthorTable()
+    End Sub
+
+    ' Other event handlers as needed...
+
 
 End Class

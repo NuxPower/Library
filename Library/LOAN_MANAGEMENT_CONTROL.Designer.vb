@@ -62,6 +62,7 @@ Partial Class LOAN_MANAGEMENT_CONTROL
         Button1.TabIndex = 10
         Button1.Text = "LOAN"
         Button1.UseVisualStyleBackColor = False
+        AddHandler Button1.Click, AddressOf Me.Button1_Click
         '
         'Panel1
         '
