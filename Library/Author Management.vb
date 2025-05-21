@@ -14,9 +14,10 @@
         For Each ctrl As Control In panelA.Controls
             AddHandler ctrl.Click, AddressOf panelA_Clicked
         Next
-
+        AddHandler Panel3.Click, AddressOf panel3_Click
         For Each ctrl As Control In Panel3.Controls
-            AddHandler ctrl.Click, AddressOf Panel3_Click
+            RemoveHandler ctrl.Click, AddressOf panel3_Click ' prevent double firing
+            AddHandler ctrl.Click, Sub(s, eArgs) panel3_Click(Panel3, eArgs)
         Next
 
         fragment2.Dock = DockStyle.Fill
