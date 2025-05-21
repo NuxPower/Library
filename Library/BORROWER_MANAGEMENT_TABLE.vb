@@ -58,24 +58,23 @@ Public Class BORROWER_MANAGEMENT_TABLE
 
             Dim index As Integer = 1
             While reader.Read()
-                ' Add to internal list
                 Dim borrower As New Borrower With {
-                .BorrowerId = reader("borrower_id"),
-                .Name = reader("name").ToString(),
-                .Email = reader("email").ToString(),
-                .MobileNo = reader("mobile_no").ToString()
-            }
+                    .BorrowerId = reader("borrower_id"),
+                    .Name = reader("name").ToString(),
+                    .Email = reader("email").ToString(),
+                    .MobileNo = reader("mobile_no").ToString()
+                }
                 borrowersList.Add(borrower)
 
-                ' Add to ListView
-                Dim item As New ListViewItem(index.ToString())
+                Dim item As New ListViewItem(borrower.BorrowerId.ToString()) ' Use real ID
+                item.Tag = borrower.BorrowerId
                 item.SubItems.Add(borrower.Name)
                 item.SubItems.Add(borrower.Email)
                 item.SubItems.Add(borrower.MobileNo)
                 item.SubItems.Add("") ' Placeholder for buttons
                 ListView1.Items.Add(item)
-                index += 1
             End While
+
         Catch ex As Exception
             MessageBox.Show("Error loading borrowers: " & ex.Message)
         Finally
@@ -89,14 +88,15 @@ Public Class BORROWER_MANAGEMENT_TABLE
         Dim index As Integer = 1
 
         For Each b In borrowers
-            Dim item As New ListViewItem(index.ToString())
+            Dim item As New ListViewItem(b.BorrowerId.ToString()) ' Use real ID
+            item.Tag = b.BorrowerId
             item.SubItems.Add(b.Name)
             item.SubItems.Add(b.Email)
             item.SubItems.Add(b.MobileNo)
             item.SubItems.Add("") ' Placeholder for buttons
             ListView1.Items.Add(item)
-            index += 1
         Next
+
     End Sub
 
 

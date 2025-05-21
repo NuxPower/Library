@@ -104,7 +104,7 @@ Public Class VIEW_AUTHOR_TABLE
         ListView1.Items.Clear()
         Dim index As Integer = 1
         For Each b In books
-            Dim item As New ListViewItem(index.ToString())
+            Dim item As New ListViewItem(b.BookId.ToString())
             item.SubItems.Add(b.Title)
             item.SubItems.Add(b.ISBN)
             item.SubItems.Add("") ' Action buttons placeholder
@@ -184,7 +184,4 @@ Public Class VIEW_AUTHOR_TABLE
         TextRenderer.DrawText(e.Graphics, e.Header.Text, e.Font, e.Bounds, e.ForeColor, TextFormatFlags.HorizontalCenter)
     End Sub
 
-    Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
-
-    End Sub
 End Class

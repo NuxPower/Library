@@ -79,7 +79,7 @@ Public Class BOOK_MANAGEMENT_TABLE
         Dim index As Integer = 1
 
         For Each b In books
-            Dim item As New ListViewItem(index.ToString())
+            Dim item As New ListViewItem(b.BookId.ToString()) ' Shows actual BookId from database
             item.SubItems.Add(b.Title)
             item.SubItems.Add(b.Author)
             item.SubItems.Add(b.ISBN)

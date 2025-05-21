@@ -96,21 +96,19 @@ Public Class AUTHOR_MANAGEMENT_TABLE
         DisplayAuthors(authorsList)
     End Sub
 
-    ' Populate the ListView with the given list of authors
     Private Sub DisplayAuthors(authors As List(Of Author))
         ListView1.Items.Clear()
-        Dim index As Integer = 1
 
         For Each a In authors
-            Dim item As New ListViewItem(index.ToString())
+            Dim item As New ListViewItem(a.AuthorId.ToString()) ' Show AuthorId directly in the NO column
             item.Tag = a.AuthorId ' Store author ID in Tag for easy retrieval
             item.SubItems.Add(a.Name)
             item.SubItems.Add(a.DateAdded.ToString("yyyy-MM-dd"))
             item.SubItems.Add("") ' Placeholder for buttons
             ListView1.Items.Add(item)
-            index += 1
         Next
     End Sub
+
 
     ' Draw column headers with center alignment
     Private Sub DrawHeader(sender As Object, e As DrawListViewColumnHeaderEventArgs)
