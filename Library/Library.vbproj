@@ -278,6 +278,12 @@
     <Compile Include="VIEW_BORROWER_MANAGEMENT_CONTROL.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="VIEW_LOAN_MANAGEMENT_TABLE.Designer.vb">
+      <DependentUpon>VIEW_LOAN_MANAGEMENT_TABLE.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW_LOAN_MANAGEMENT_TABLE.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ADDING_AUTHOR_CONTROL.resx">
@@ -351,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW_BORROWER_MANAGEMENT_CONTROL.resx">
       <DependentUpon>VIEW_BORROWER_MANAGEMENT_CONTROL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW_LOAN_MANAGEMENT_TABLE.resx">
+      <DependentUpon>VIEW_LOAN_MANAGEMENT_TABLE.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

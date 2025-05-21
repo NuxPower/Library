@@ -1,0 +1,3 @@
+﻿Public Class VIEW_LOAN_MANAGEMENT_TABLE
+
+End Class
