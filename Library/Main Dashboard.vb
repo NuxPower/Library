@@ -31,14 +31,17 @@ Public Class Main_Dashboard
         Dim parentDash = TryCast(Me.ParentForm, Dashboard)
         If parentDash IsNot Nothing Then
             parentDash.FragmentTitle.Text = "MANAGE BOOKS"
-            parentDash.dashboardLoad(New Author_Management("BOOKS"))
+            parentDash.dashboardLoad(New Author_Management("BORROWERS"))
         End If
     End Sub
 
 
     Private Sub panelMB_Clicked(sender As Object, e As EventArgs) Handles panelMB.Click
-        Dashboard.FragmentTitle.Text = "MANAGE BORROWERS"
-        Dashboard.dashboardLoad(New Author_Management("BORROWERS"))
+        Dim parentDash = TryCast(Me.ParentForm, Dashboard)
+        If parentDash IsNot Nothing Then
+            parentDash.FragmentTitle.Text = "MANAGE BORROWERS"
+            parentDash.dashboardLoad(New Author_Management("BOOKS"))
+        End If
     End Sub
     Private Sub panelML_Clicked(sender As Object, e As EventArgs) Handles panelML.Click
         Dim loanForm As New LOAN_MANAGEMENT("LOAN")
