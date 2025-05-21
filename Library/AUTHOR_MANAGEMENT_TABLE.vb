@@ -3,6 +3,7 @@
 Public Class AUTHOR_MANAGEMENT_TABLE
     Inherits UserControl
     Implements ISearchable, ISortable
+
     Private authorsList As List(Of Author)
 
     ' Local model class for author representation
@@ -37,7 +38,6 @@ Public Class AUTHOR_MANAGEMENT_TABLE
         End If
     End Sub
 
-
     Private Sub AUTHOR_MANAGEMENT_TABLE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ListView1.Dock = DockStyle.Fill
         ConfigureListView()
@@ -49,8 +49,6 @@ Public Class AUTHOR_MANAGEMENT_TABLE
     End Sub
 
     ' Configure the visual and behavioral properties of the ListView
-
-
     Private Sub ConfigureListView()
         With ListView1
             .View = View.Details
@@ -71,9 +69,7 @@ Public Class AUTHOR_MANAGEMENT_TABLE
     End Sub
 
     ' Load data from the Authors table
-
     Private Sub LoadAuthorList()
-
         authorsList = New List(Of Author)()
 
         Try
@@ -111,26 +107,12 @@ Public Class AUTHOR_MANAGEMENT_TABLE
             item.SubItems.Add(a.Name)
             item.SubItems.Add(a.DateAdded.ToString("yyyy-MM-dd"))
             item.SubItems.Add("") ' Placeholder for buttons
-            item.SubItems.Add("") ' Placeholder for action buttons
             ListView1.Items.Add(item)
             index += 1
         Next
     End Sub
 
     ' Draw column headers with center alignment
-    ' Implementation of ISearchable
-    Public Sub PerformSearch(query As String) Implements ISearchable.PerformSearch
-        If String.IsNullOrWhiteSpace(query) Then
-            ' If search box is empty, show all
-            DisplayAuthors(authorsList)
-        Else
-            ' Filter authors by name (case insensitive)
-            Dim filtered = authorsList.Where(Function(a) a.Name.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0).ToList()
-            DisplayAuthors(filtered)
-        End If
-    End Sub
-
-
     Private Sub DrawHeader(sender As Object, e As DrawListViewColumnHeaderEventArgs)
         e.DrawBackground()
         TextRenderer.DrawText(e.Graphics, e.Header.Text, e.Font, e.Bounds, e.ForeColor, TextFormatFlags.HorizontalCenter Or TextFormatFlags.VerticalCenter)
@@ -152,8 +134,6 @@ Public Class AUTHOR_MANAGEMENT_TABLE
                 ButtonRenderer.DrawButton(e.Graphics, editRect, "Update", e.Item.ListView.Font, False, VisualStyles.PushButtonState.Normal)
                 ButtonRenderer.DrawButton(e.Graphics, viewRect, "View", e.Item.ListView.Font, False, VisualStyles.PushButtonState.Normal)
 
-                ButtonRenderer.DrawButton(e.Graphics, deleteRect, "View", e.Item.ListView.Font, False, VisualStyles.PushButtonState.Normal)
-
             Case 1 ' NAME
                 TextRenderer.DrawText(e.Graphics, e.SubItem.Text, e.Item.ListView.Font, e.Bounds, e.Item.ListView.ForeColor, TextFormatFlags.HorizontalCenter Or TextFormatFlags.VerticalCenter)
 
@@ -163,7 +143,6 @@ Public Class AUTHOR_MANAGEMENT_TABLE
     End Sub
 
     ' Handles clicks on action buttons
-    ' EDIT and DELETE fully functional!
     Private Sub ListView1_MouseClick(sender As Object, e As MouseEventArgs)
         Dim hitInfo As ListViewHitTestInfo = ListView1.HitTest(e.Location)
         If hitInfo.Item Is Nothing OrElse hitInfo.SubItem Is Nothing Then Exit Sub
@@ -176,24 +155,41 @@ Public Class AUTHOR_MANAGEMENT_TABLE
             Dim viewBtn = New Rectangle(itemBounds.X + btnWidth + 10, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
 
             Dim authorId As Integer = CInt(hitInfo.Item.Tag)
-            Dim authorId As Integer = CInt(hitInfo.Item.Tag)
             Dim authorName As String = hitInfo.Item.SubItems(1).Text
-            ' If you use IDs, fetch from hitInfo.Item.SubItems(0).Text
 
             If updateBtn.Contains(e.Location) Then
-                editForm.AuthorId = authorId ' Optional: pass ID or name
-                ' Optionally: editForm.AuthorName = authorName
-                editForm.AuthorId = authorId ' Optional: pass ID or name
+                Dim editForm As New update_auth()
+                editForm.AuthorId = authorId
                 If editForm.ShowDialog() = DialogResult.OK Then
                     LoadAuthorList()
                 End If
             ElseIf viewBtn.Contains(e.Location) Then
-                Dim viewControl As New VIEW_AUTHOR_TABLE()
-                viewControl.SetAuthorId(authorId)
-                CType(Me.ParentForm, Author_Management).dashboardLoad(viewControl)
+                Dim selectedAuthorId As Integer = CInt(hitInfo.Item.Tag)
+                Dim selectedAuthorName As String = hitInfo.Item.SubItems(1).Text
+
+                Dim viewControl As New VIEW_AUTHOR_TABLE(selectedAuthorName)
+                viewControl.SetAuthorId(selectedAuthorId)
+
+                Dim authorManagement = FindParentAuthorManagement(Me)
+                If authorManagement IsNot Nothing Then
+                    authorManagement.dashboardLoad(viewControl)
+                Else
+                    MessageBox.Show("Cannot find Author_Management container.")
+                End If
             End If
+
         End If
     End Sub
+    ' Helper function to find parent of a specific type
+    Private Function FindParentAuthorManagement(control As Control) As Author_Management
+        While control IsNot Nothing
+            If TypeOf control Is Author_Management Then
+                Return CType(control, Author_Management)
+            End If
+            control = control.Parent
+        End While
+        Return Nothing
+    End Function
 
     ' Adjusts column sizes responsively
     Private Sub ListView1_Resize(sender As Object, e As EventArgs)
