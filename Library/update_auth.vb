@@ -1,6 +1,4 @@
-﻿Imports MySql.Data.MySqlClient
-
-Public Class update_auth
+﻿Public Class update_auth
     Public Property AuthorId As Integer
     Public Property AuthorName As String
     Public Property AuthorId As Integer
@@ -86,6 +84,7 @@ Public Class update_auth
         End Try
     End Sub
 
+    Private Sub update_auth_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.DialogResult = DialogResult.Cancel
