@@ -48,6 +48,7 @@ Partial Class ADDING_BORROWER_CONTROL
         '
         'Panel1
         '
+        Me.Panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.Panel1.BackColor = System.Drawing.Color.SkyBlue
         Me.Panel1.Controls.Add(Me.Panel4)
         Me.Panel1.Controls.Add(Me.Panel2)
@@ -59,10 +60,11 @@ Partial Class ADDING_BORROWER_CONTROL
         Me.Panel1.Controls.Add(Me.Button2)
         Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Location = New System.Drawing.Point(3, 3)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Padding = New System.Windows.Forms.Padding(10)
-        Me.Panel1.Size = New System.Drawing.Size(936, 603)
+        Me.Panel1.Size = New System.Drawing.Size(942, 609)
         Me.Panel1.TabIndex = 1
         '
         'Panel4
@@ -73,14 +75,14 @@ Partial Class ADDING_BORROWER_CONTROL
         Me.Panel4.Controls.Add(Me.TextBox4)
         Me.Panel4.Location = New System.Drawing.Point(206, 268)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(505, 21)
+        Me.Panel4.Size = New System.Drawing.Size(511, 21)
         Me.Panel4.TabIndex = 12
         '
         'Panel5
         '
+        Me.Panel5.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Panel5.BackColor = System.Drawing.Color.DeepSkyBlue
         Me.Panel5.Controls.Add(Me.Label6)
-        Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel5.Location = New System.Drawing.Point(0, 0)
         Me.Panel5.Name = "Panel5"
         Me.Panel5.Size = New System.Drawing.Size(138, 21)
@@ -88,6 +90,7 @@ Partial Class ADDING_BORROWER_CONTROL
         '
         'Label6
         '
+        Me.Label6.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(21, 4)
         Me.Label6.Name = "Label6"
@@ -97,7 +100,7 @@ Partial Class ADDING_BORROWER_CONTROL
         '
         'TextBox4
         '
-        Me.TextBox4.Dock = System.Windows.Forms.DockStyle.Right
+        Me.TextBox4.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.TextBox4.Location = New System.Drawing.Point(138, 0)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(367, 20)
@@ -105,20 +108,19 @@ Partial Class ADDING_BORROWER_CONTROL
         '
         'Panel2
         '
-        Me.Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel2.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Panel2.Controls.Add(Me.Panel3)
         Me.Panel2.Controls.Add(Me.TextBox3)
         Me.Panel2.Location = New System.Drawing.Point(206, 226)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(505, 21)
+        Me.Panel2.Size = New System.Drawing.Size(511, 21)
         Me.Panel2.TabIndex = 11
         '
         'Panel3
         '
+        Me.Panel3.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Panel3.BackColor = System.Drawing.Color.DeepSkyBlue
         Me.Panel3.Controls.Add(Me.Label5)
-        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel3.Location = New System.Drawing.Point(0, 0)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(138, 21)
@@ -126,6 +128,7 @@ Partial Class ADDING_BORROWER_CONTROL
         '
         'Label5
         '
+        Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(50, 4)
         Me.Label5.Name = "Label5"
@@ -135,7 +138,8 @@ Partial Class ADDING_BORROWER_CONTROL
         '
         'TextBox3
         '
-        Me.TextBox3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.TextBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TextBox3.Location = New System.Drawing.Point(138, 0)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(367, 20)
@@ -145,7 +149,7 @@ Partial Class ADDING_BORROWER_CONTROL
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(447, 170)
+        Me.Label4.Location = New System.Drawing.Point(612, 162)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(98, 25)
         Me.Label4.TabIndex = 10
@@ -155,7 +159,7 @@ Partial Class ADDING_BORROWER_CONTROL
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(250, 170)
+        Me.Label3.Location = New System.Drawing.Point(415, 162)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(98, 25)
         Me.Label3.TabIndex = 9
@@ -163,14 +167,14 @@ Partial Class ADDING_BORROWER_CONTROL
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(452, 147)
+        Me.TextBox2.Location = New System.Drawing.Point(617, 139)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(191, 20)
         Me.TextBox2.TabIndex = 8
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(255, 147)
+        Me.TextBox1.Location = New System.Drawing.Point(420, 139)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(191, 20)
         Me.TextBox1.TabIndex = 7
@@ -179,7 +183,7 @@ Partial Class ADDING_BORROWER_CONTROL
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(241, 94)
+        Me.Label2.Location = New System.Drawing.Point(406, 86)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(74, 25)
         Me.Label2.TabIndex = 6
@@ -187,28 +191,26 @@ Partial Class ADDING_BORROWER_CONTROL
         '
         'Button2
         '
-        Me.Button2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button2.BackColor = System.Drawing.Color.DarkTurquoise
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(425, 399)
+        Me.Button2.Location = New System.Drawing.Point(425, 405)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(140, 37)
+        Me.Button2.Size = New System.Drawing.Size(146, 37)
         Me.Button2.TabIndex = 5
         Me.Button2.Text = "CANCEL"
         Me.Button2.UseVisualStyleBackColor = False
         '
         'Button1
         '
-        Me.Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button1.BackColor = System.Drawing.Color.DarkTurquoise
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(571, 399)
+        Me.Button1.Location = New System.Drawing.Point(571, 405)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(140, 37)
+        Me.Button1.Size = New System.Drawing.Size(146, 37)
         Me.Button1.TabIndex = 4
         Me.Button1.Text = "SAVE"
         Me.Button1.UseVisualStyleBackColor = False
@@ -219,11 +221,11 @@ Partial Class ADDING_BORROWER_CONTROL
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(387, 10)
+        Me.Label1.Location = New System.Drawing.Point(535, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(147, 25)
+        Me.Label1.Size = New System.Drawing.Size(209, 25)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "ADD A BOOK"
+        Me.Label1.Text = "ADD A BORROWER"
         '
         'ADDING_BORROWER_CONTROL
         '
