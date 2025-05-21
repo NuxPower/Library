@@ -254,6 +254,57 @@ Public Class LOAN_MANAGEMENT_CONTROL
         ListView1.Columns(6).Width = col6Width                         ' ACTIONS
     End Sub
 
+    ' Handles the CANCEL button click
+    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+        ComboBox1.SelectedIndex = -1
+        ComboBox2.SelectedIndex = -1
+        DateTimePicker1.Value = Date.Today
+        DateTimePicker2.Value = Date.Today
+        DateTimePicker3.Value = Date.Today
+    End Sub
+
+    ' Handles the LOAN button click
+    Private Sub BtnLoan_Click(sender As Object, e As EventArgs) Handles BtnLoan.Click
+        If ComboBox1.SelectedIndex = -1 Or ComboBox2.SelectedIndex = -1 Then
+            MessageBox.Show("Please select both a book and a borrower.")
+            Return
+        End If
+
+        Dim selectedBook As KeyValuePair(Of Integer, String) = CType(ComboBox1.SelectedItem, KeyValuePair(Of Integer, String))
+        Dim selectedBorrower As KeyValuePair(Of Integer, String) = CType(ComboBox2.SelectedItem, KeyValuePair(Of Integer, String))
+
+        Dim loanDate As Date = DateTimePicker1.Value
+        Dim dueDate As Date = DateTimePicker2.Value
+        Dim returnDate As Date = DateTimePicker3.Value
+
+        Try
+            dbConn()
+
+            Dim query As String = "
+            INSERT INTO loans (book_id, borrower_id, loan_date, due_date, return_date)
+            VALUES (@book_id, @borrower_id, @loan_date, @due_date, @return_date)
+        "
+
+            Using cmd As New MySqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@book_id", selectedBook.Key)
+                cmd.Parameters.AddWithValue("@borrower_id", selectedBorrower.Key)
+                cmd.Parameters.AddWithValue("@loan_date", loanDate)
+                cmd.Parameters.AddWithValue("@due_date", dueDate)
+                cmd.Parameters.AddWithValue("@return_date", returnDate)
+
+                cmd.ExecuteNonQuery()
+            End Using
+
+            MessageBox.Show("Loan successfully recorded.")
+            LoadLoanList() ' Refresh the list after loan
+            BtnCancel_Click(Nothing, Nothing) ' Clear the form
+
+        Catch ex As Exception
+            MessageBox.Show("Error inserting loan: " & ex.Message)
+        Finally
+            dbDisconn()
+        End Try
+    End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
 

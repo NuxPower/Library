@@ -22,7 +22,7 @@ Partial Class LOAN_MANAGEMENT_CONTROL
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim Button1 As System.Windows.Forms.Button
+        Dim BtnLoan As System.Windows.Forms.Button
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LOAN_MANAGEMENT_CONTROL))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
@@ -30,7 +30,9 @@ Partial Class LOAN_MANAGEMENT_CONTROL
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Panel5 = New System.Windows.Forms.Panel()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.BtnCancel = New System.Windows.Forms.Button()
         Me.DateTimePicker3 = New System.Windows.Forms.DateTimePicker()
         Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
@@ -42,9 +44,7 @@ Partial Class LOAN_MANAGEMENT_CONTROL
         Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.ListView1 = New System.Windows.Forms.ListView()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Button1 = New System.Windows.Forms.Button()
+        BtnLoan = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel4.SuspendLayout()
@@ -52,17 +52,17 @@ Partial Class LOAN_MANAGEMENT_CONTROL
         Me.Panel5.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Button1
+        'BtnLoan
         '
-        Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Button1.BackColor = System.Drawing.Color.LimeGreen
-        Button1.Location = New System.Drawing.Point(713, 162)
-        Button1.Name = "Button1"
-        Button1.Size = New System.Drawing.Size(72, 25)
-        Button1.TabIndex = 10
-        Button1.Text = "LOAN"
-        Button1.UseVisualStyleBackColor = False
-        AddHandler Button1.Click, AddressOf Me.Button1_Click
+        BtnLoan.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        BtnLoan.BackColor = System.Drawing.Color.LimeGreen
+        BtnLoan.Location = New System.Drawing.Point(713, 162)
+        BtnLoan.Name = "BtnLoan"
+        BtnLoan.Size = New System.Drawing.Size(72, 25)
+        BtnLoan.TabIndex = 10
+        BtnLoan.Text = "LOAN"
+        BtnLoan.UseVisualStyleBackColor = False
+        AddHandler BtnLoan.Click, AddressOf Me.Button1_Click
         '
         'Panel1
         '
@@ -124,8 +124,8 @@ Partial Class LOAN_MANAGEMENT_CONTROL
         Me.Panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel5.Controls.Add(Me.ComboBox2)
         Me.Panel5.Controls.Add(Me.ComboBox1)
-        Me.Panel5.Controls.Add(Me.Button2)
-        Me.Panel5.Controls.Add(Button1)
+        Me.Panel5.Controls.Add(Me.BtnCancel)
+        Me.Panel5.Controls.Add(BtnLoan)
         Me.Panel5.Controls.Add(Me.DateTimePicker3)
         Me.Panel5.Controls.Add(Me.DateTimePicker2)
         Me.Panel5.Controls.Add(Me.DateTimePicker1)
@@ -139,16 +139,32 @@ Partial Class LOAN_MANAGEMENT_CONTROL
         Me.Panel5.Size = New System.Drawing.Size(817, 202)
         Me.Panel5.TabIndex = 4
         '
-        'Button2
+        'ComboBox2
         '
-        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button2.BackColor = System.Drawing.Color.Crimson
-        Me.Button2.Location = New System.Drawing.Point(635, 162)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(72, 25)
-        Me.Button2.TabIndex = 11
-        Me.Button2.Text = "CANCEL"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Location = New System.Drawing.Point(131, 45)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(219, 21)
+        Me.ComboBox2.TabIndex = 14
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(131, 12)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(219, 21)
+        Me.ComboBox1.TabIndex = 13
+        '
+        'BtnCancel
+        '
+        Me.BtnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnCancel.BackColor = System.Drawing.Color.Crimson
+        Me.BtnCancel.Location = New System.Drawing.Point(635, 162)
+        Me.BtnCancel.Name = "BtnCancel"
+        Me.BtnCancel.Size = New System.Drawing.Size(72, 25)
+        Me.BtnCancel.TabIndex = 11
+        Me.BtnCancel.Text = "CANCEL"
+        Me.BtnCancel.UseVisualStyleBackColor = False
         '
         'DateTimePicker3
         '
@@ -253,22 +269,6 @@ Partial Class LOAN_MANAGEMENT_CONTROL
         Me.ListView1.TabIndex = 1
         Me.ListView1.UseCompatibleStateImageBehavior = False
         '
-        'ComboBox1
-        '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(131, 12)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(219, 21)
-        Me.ComboBox1.TabIndex = 13
-        '
-        'ComboBox2
-        '
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(131, 45)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(219, 21)
-        Me.ComboBox2.TabIndex = 14
-        '
         'LOAN_MANAGEMENT_CONTROL
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -294,7 +294,7 @@ Partial Class LOAN_MANAGEMENT_CONTROL
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Panel5 As Panel
-    Friend WithEvents Button2 As Button
+    Friend WithEvents BtnCancel As Button
     Friend WithEvents DateTimePicker3 As DateTimePicker
     Friend WithEvents DateTimePicker2 As DateTimePicker
     Friend WithEvents DateTimePicker1 As DateTimePicker
