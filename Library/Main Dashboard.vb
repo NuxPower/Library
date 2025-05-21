@@ -44,9 +44,16 @@ Public Class Main_Dashboard
         End If
     End Sub
     Private Sub panelML_Clicked(sender As Object, e As EventArgs) Handles panelML.Click
-        Dim loanForm As New LOAN_MANAGEMENT("LOAN")
-        loanForm.Show()
+        Dim mainForm = TryCast(Me.FindForm(), Dashboard)  ' get Dashboard form reference
+        If mainForm IsNot Nothing Then
+            Dim loanForm As New LOAN_MANAGEMENT("LOAN", mainForm) ' pass Dashboard reference
+            loanForm.Show()
+            mainForm.Hide() ' optionally hide the dashboard form when loanForm shows
+        Else
+            MessageBox.Show("Dashboard form not found.")
+        End If
     End Sub
+
 
     Private Sub PictureBox3_Click(sender As Object, e As EventArgs) Handles PictureBox3.Click
 

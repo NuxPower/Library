@@ -1,10 +1,11 @@
 ﻿Public Class LOAN_MANAGEMENT
     Private managementType As String
+    Private dashboardRef As Dashboard ' Holds the reference to Dashboard
 
-    ' Constructor now receives the management type (e.g., "LOAN", "BOOKS", etc.)
-    Public Sub New(type As String)
+    Public Sub New(type As String, parentDashboard As Dashboard)
         InitializeComponent()
         managementType = type
+        dashboardRef = parentDashboard
     End Sub
 
     Private Sub LOAN_MANAGEMENT_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -43,6 +44,14 @@
         scrollablePanel.Controls.Add(uc)
         Panel1.Controls.Add(scrollablePanel)
     End Sub
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        If dashboardRef IsNot Nothing Then
+            dashboardRef.Show()
+        End If
+        Me.Close()
+    End Sub
+
+
 
     ' Optional: If you want to handle custom painting in the panel
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint

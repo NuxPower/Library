@@ -22,6 +22,7 @@ Partial Class return_book
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(return_book))
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -40,7 +41,7 @@ Partial Class return_book
         'PictureBox1
         '
         Me.PictureBox1.ErrorImage = Global.Library.My.Resources.Resources.calendar__1__1
-        Me.PictureBox1.Image = Global.Library.My.Resources.Resources.calendar__1__1
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
         Me.PictureBox1.ImageLocation = "C:\Users\huerv\Downloads\vecteezy_appointment-date-icon_.jpg"
         Me.PictureBox1.Location = New System.Drawing.Point(288, 82)
         Me.PictureBox1.Name = "PictureBox1"

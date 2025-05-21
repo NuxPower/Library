@@ -144,8 +144,14 @@
     End Sub
 
     Private Sub panelL_Clicked(sender As Object, e As EventArgs) Handles panelL.Click
-        Dim loanForm As New LOAN_MANAGEMENT("LOAN")
-        loanForm.Show()
+        Dim mainForm = TryCast(Me.FindForm(), Dashboard)  ' get Dashboard form reference
+        If mainForm IsNot Nothing Then
+            Dim loanForm As New LOAN_MANAGEMENT("LOAN", mainForm) ' pass Dashboard reference
+            loanForm.Show()
+            mainForm.Hide() ' optionally hide the dashboard form when loanForm shows
+        Else
+            MessageBox.Show("Dashboard form not found.")
+        End If
     End Sub
     Private Sub fragment2_Paint(sender As Object, e As PaintEventArgs) Handles fragment2.Paint
         ' Custom painting if needed
@@ -154,6 +160,24 @@
     Private Sub Panel16_Paint(sender As Object, e As PaintEventArgs) Handles Panel16.Paint
         ' Custom painting if needed
     End Sub
+    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
+        Dim currentControl = GetCurrentControl()
+        If currentControl IsNot Nothing Then
+            Dim searchable = TryCast(currentControl, ISearchable)
+            If searchable IsNot Nothing Then
+                searchable.PerformSearch(txtSearch.Text)
+            End If
+        End If
+    End Sub
+
+    Private Function GetCurrentControl() As Control
+        If fragment2.Controls.Count = 0 Then Return Nothing
+
+        Dim scrollablePanel As Panel = TryCast(fragment2.Controls(0), Panel)
+        If scrollablePanel Is Nothing OrElse scrollablePanel.Controls.Count = 0 Then Return Nothing
+
+        Return scrollablePanel.Controls(0)
+    End Function
 
 
 

@@ -36,7 +36,7 @@ Partial Class Author_Management
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -194,7 +194,7 @@ Partial Class Author_Management
         Me.Panel4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel4.BackColor = System.Drawing.Color.White
         Me.Panel4.Controls.Add(Me.PictureBox2)
-        Me.Panel4.Controls.Add(Me.TextBox1)
+        Me.Panel4.Controls.Add(Me.txtSearch)
         Me.Panel4.ForeColor = System.Drawing.Color.Black
         Me.Panel4.Location = New System.Drawing.Point(547, 17)
         Me.Panel4.Name = "Panel4"
@@ -213,13 +213,13 @@ Partial Class Author_Management
         Me.PictureBox2.TabIndex = 3
         Me.PictureBox2.TabStop = False
         '
-        'TextBox1
+        'txtSearch
         '
-        Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.TextBox1.Location = New System.Drawing.Point(0, 0)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(225, 20)
-        Me.TextBox1.TabIndex = 2
+        Me.txtSearch.Dock = System.Windows.Forms.DockStyle.Left
+        Me.txtSearch.Location = New System.Drawing.Point(0, 0)
+        Me.txtSearch.Name = "txtSearch"
+        Me.txtSearch.Size = New System.Drawing.Size(225, 20)
+        Me.txtSearch.TabIndex = 2
         '
         'Panel3
         '
@@ -268,6 +268,7 @@ Partial Class Author_Management
         '
         'Panel10
         '
+        Me.Panel10.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(111, Byte), Integer), CType(CType(200, Byte), Integer))
         Me.Panel10.Controls.Add(Me.panelL)
         Me.Panel10.Controls.Add(Me.panelB)
         Me.Panel10.Controls.Add(Me.panelBK)
@@ -401,6 +402,7 @@ Partial Class Author_Management
         '
         'Panel9
         '
+        Me.Panel9.BackColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(111, Byte), Integer), CType(CType(200, Byte), Integer))
         Me.Panel9.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel9.Location = New System.Drawing.Point(0, 0)
         Me.Panel9.Name = "Panel9"
@@ -472,7 +474,7 @@ Partial Class Author_Management
     Friend WithEvents Label2 As Label
     Friend WithEvents Panel4 As Panel
     Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtSearch As TextBox
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Label1 As Label
     Friend WithEvents PictureBox1 As PictureBox

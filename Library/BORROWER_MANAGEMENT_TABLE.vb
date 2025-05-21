@@ -104,12 +104,24 @@ Public Class BORROWER_MANAGEMENT_TABLE
 
             If viewBtn.Contains(e.Location) Then
                 ' Show the VIEW_BORROWER_MANAGEMENT_CONTROL in a dynamic form
-                Dim form As New LOAN_MANAGEMENT("VIEW_BORROWER")
-                form.ShowDialog()
+                Dim mainForm = TryCast(Me.FindForm(), Dashboard)  ' get Dashboard form reference
+                If mainForm IsNot Nothing Then
+                    Dim loanForm As New LOAN_MANAGEMENT("VIEW_BORROWER", mainForm) ' pass Dashboard reference
+                    loanForm.Show()
+                    mainForm.Hide() ' optionally hide the dashboard form when loanForm shows
+                Else
+                    MessageBox.Show("Dashboard form not found.")
+                End If
             ElseIf updateBtn.Contains(e.Location) Then
                 ' Show the UPDATING_BORROWER_CONTROL in a dynamic form
-                Dim form As New LOAN_MANAGEMENT("UPDATE_BORROWER")
-                form.ShowDialog()
+                Dim mainForm = TryCast(Me.FindForm(), Dashboard)  ' get Dashboard form reference
+                If mainForm IsNot Nothing Then
+                    Dim loanForm As New LOAN_MANAGEMENT("UPDATE_BORROWER", mainForm) ' pass Dashboard reference
+                    loanForm.Show()
+                    mainForm.Hide() ' optionally hide the dashboard form when loanForm shows
+                Else
+                    MessageBox.Show("Dashboard form not found.")
+                End If
             End If
         End If
     End Sub

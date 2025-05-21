@@ -1,17 +1,28 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class AUTHOR_MANAGEMENT_TABLE
+    Implements ISearchable
+    Private authorsList As List(Of Author)
+
+    Private Class Author
+        Public Property AuthorId As Integer
+        Public Property Name As String
+        Public Property DateAdded As DateTime
+    End Class
+
 
     Private Sub AUTHOR_MANAGEMENT_TABLE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ListView1.Dock = DockStyle.Fill
         ConfigureListView()
-        LoadAuthorList()
-        ListView1_Resize(ListView1, EventArgs.Empty) ' ✅ Force initial resize
+        LoadAuthorList() ' Loads full data into authorsList and ListView1
 
-        ' Ensure MouseClick is handled only once
+        ListView1_Resize(ListView1, EventArgs.Empty) ' Force initial resize
+
         RemoveHandler ListView1.MouseClick, AddressOf ListView1_MouseClick
         AddHandler ListView1.MouseClick, AddressOf ListView1_MouseClick
     End Sub
+
+
 
     Private Sub ConfigureListView()
         With ListView1
@@ -32,8 +43,9 @@ Public Class AUTHOR_MANAGEMENT_TABLE
         End With
     End Sub
 
+
     Private Sub LoadAuthorList()
-        ListView1.Items.Clear()
+        authorsList = New List(Of Author)()
 
         Try
             dbConn()
@@ -41,15 +53,20 @@ Public Class AUTHOR_MANAGEMENT_TABLE
             Dim cmd As New MySqlCommand(query, conn)
             reader = cmd.ExecuteReader()
 
-            Dim index As Integer = 1
             While reader.Read()
-                Dim item As New ListViewItem(index.ToString())
-                item.SubItems.Add(reader("name").ToString())
-                item.SubItems.Add(Convert.ToDateTime(reader("date_added")).ToString("yyyy-MM-dd"))
-                item.SubItems.Add("") ' Placeholder for action buttons
-                ListView1.Items.Add(item)
-                index += 1
+                Dim author As New Author With {
+                    .AuthorId = Convert.ToInt32(reader("author_id")),
+                    .Name = reader("name").ToString(),
+                    .DateAdded = Convert.ToDateTime(reader("date_added"))
+                }
+                authorsList.Add(author)
             End While
+
+            reader.Close()
+            dbDisconn()
+
+            ' Show full list initially
+            DisplayAuthors(authorsList)
 
         Catch ex As Exception
             MessageBox.Show("Error loading authors: " & ex.Message)
@@ -58,6 +75,32 @@ Public Class AUTHOR_MANAGEMENT_TABLE
             dbDisconn()
         End Try
     End Sub
+
+    Private Sub DisplayAuthors(authors As List(Of Author))
+        ListView1.Items.Clear()
+        Dim index As Integer = 1
+        For Each a In authors
+            Dim item As New ListViewItem(index.ToString())
+            item.SubItems.Add(a.Name)
+            item.SubItems.Add(a.DateAdded.ToString("yyyy-MM-dd"))
+            item.SubItems.Add("") ' Placeholder for action buttons
+            ListView1.Items.Add(item)
+            index += 1
+        Next
+    End Sub
+
+    ' Implementation of ISearchable
+    Public Sub PerformSearch(query As String) Implements ISearchable.PerformSearch
+        If String.IsNullOrWhiteSpace(query) Then
+            ' If search box is empty, show all
+            DisplayAuthors(authorsList)
+        Else
+            ' Filter authors by name (case insensitive)
+            Dim filtered = authorsList.Where(Function(a) a.Name.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0).ToList()
+            DisplayAuthors(filtered)
+        End If
+    End Sub
+
 
     Private Sub DrawHeader(sender As Object, e As DrawListViewColumnHeaderEventArgs)
         e.DrawBackground()

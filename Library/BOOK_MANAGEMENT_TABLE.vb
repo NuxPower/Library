@@ -109,8 +109,14 @@ Public Class BOOK_MANAGEMENT_TABLE
 
             If viewBtn.Contains(e.Location) Then
                 ' Open the LOAN_MANAGEMENT form, but now load the Book Management Control
-                Dim bookForm As New LOAN_MANAGEMENT("BOOKS")
-                bookForm.ShowDialog()
+                Dim mainForm = TryCast(Me.FindForm(), Dashboard)  ' get Dashboard form reference
+                If mainForm IsNot Nothing Then
+                    Dim loanForm As New LOAN_MANAGEMENT("BOOKS", mainForm) ' pass Dashboard reference
+                    loanForm.Show()
+                    mainForm.Hide() ' optionally hide the dashboard form when loanForm shows
+                Else
+                    MessageBox.Show("Dashboard form not found.")
+                End If
             ElseIf updateBtn.Contains(e.Location) Then
                 update_book.ShowDialog()
             End If
