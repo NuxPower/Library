@@ -33,10 +33,8 @@ Partial Class LOAN_MANAGEMENT_CONTROL
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.DateTimePicker3 = New System.Windows.Forms.DateTimePicker()
         Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -138,10 +136,8 @@ Partial Class LOAN_MANAGEMENT_CONTROL
         Me.Panel5.Controls.Add(Me.ComboBox1)
         Me.Panel5.Controls.Add(Button2)
         Me.Panel5.Controls.Add(Me.Button1)
-        Me.Panel5.Controls.Add(Me.DateTimePicker3)
         Me.Panel5.Controls.Add(Me.DateTimePicker2)
         Me.Panel5.Controls.Add(Me.DateTimePicker1)
-        Me.Panel5.Controls.Add(Me.Label5)
         Me.Panel5.Controls.Add(Me.Label4)
         Me.Panel5.Controls.Add(Me.Label3)
         Me.Panel5.Controls.Add(Me.Label2)
@@ -167,14 +163,6 @@ Partial Class LOAN_MANAGEMENT_CONTROL
         Me.ComboBox1.Size = New System.Drawing.Size(219, 21)
         Me.ComboBox1.TabIndex = 13
         '
-        'DateTimePicker3
-        '
-        Me.DateTimePicker3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DateTimePicker3.Location = New System.Drawing.Point(608, 82)
-        Me.DateTimePicker3.Name = "DateTimePicker3"
-        Me.DateTimePicker3.Size = New System.Drawing.Size(177, 20)
-        Me.DateTimePicker3.TabIndex = 9
-        '
         'DateTimePicker2
         '
         Me.DateTimePicker2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -190,17 +178,6 @@ Partial Class LOAN_MANAGEMENT_CONTROL
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.Size = New System.Drawing.Size(177, 20)
         Me.DateTimePicker1.TabIndex = 7
-        '
-        'Label5
-        '
-        Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(475, 83)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(127, 20)
-        Me.Label5.TabIndex = 4
-        Me.Label5.Text = "RETURN DATE:"
         '
         'Label4
         '
@@ -295,10 +272,8 @@ Partial Class LOAN_MANAGEMENT_CONTROL
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Panel5 As Panel
-    Friend WithEvents DateTimePicker3 As DateTimePicker
     Friend WithEvents DateTimePicker2 As DateTimePicker
     Friend WithEvents DateTimePicker1 As DateTimePicker
-    Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label

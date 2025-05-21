@@ -46,6 +46,7 @@ Partial Class Author_Management
         Me.panelD = New System.Windows.Forms.Panel()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel9 = New System.Windows.Forms.Panel()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel16.SuspendLayout()
         Me.Panel4.SuspendLayout()
@@ -84,6 +85,7 @@ Partial Class Author_Management
         'Panel16
         '
         Me.Panel16.BackColor = System.Drawing.Color.White
+        Me.Panel16.Controls.Add(Me.Button2)
         Me.Panel16.Controls.Add(Me.Panel4)
         Me.Panel16.Controls.Add(Me.Panel3)
         Me.Panel16.Dock = System.Windows.Forms.DockStyle.Top
@@ -318,6 +320,15 @@ Partial Class Author_Management
         Me.Panel9.Size = New System.Drawing.Size(211, 88)
         Me.Panel9.TabIndex = 0
         '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(493, 55)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(8, 8)
+        Me.Button2.TabIndex = 4
+        Me.Button2.Text = "Button2"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'Author_Management
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -373,4 +384,5 @@ Partial Class Author_Management
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Panel11 As Panel
     Friend WithEvents Label1 As Label
+    Friend WithEvents Button2 As Button
 End Class
