@@ -8,8 +8,12 @@ Public Class BOOK_MANAGEMENT_CONTROL
     Private Sub BOOK_MANAGEMENT_CONTROL_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ListView1.Dock = DockStyle.Fill
         ConfigureListView()
-        PopulateBookLabels() ' Populates labels for book info
-        LoadLoanList()       ' Populates ListView with loans for this book
+        If BookId > 0 Then
+            PopulateBookLabels() ' Populates labels for book info
+            LoadLoanList()       ' Populates ListView with loans for this book
+        Else
+            MessageBox.Show("Invalid Book ID")
+        End If
         ListView1_Resize(ListView1, EventArgs.Empty)
     End Sub
 
@@ -160,11 +164,9 @@ Public Class BOOK_MANAGEMENT_CONTROL
         Dim col0Width As Integer = 50    ' ID
         Dim col5Width As Integer = 120   ' STATUS
 
-        ' Remaining space for dynamic columns
         Dim remainingWidth As Integer = totalWidth - col0Width - col5Width
         If remainingWidth < 0 Then remainingWidth = 0
 
-        ' 4 dynamic columns: BORROWER, LOAN DATE, DUE DATE, RETURN DATE
         Dim dynamicColWidth As Integer = remainingWidth \ 4
 
         ListView1.Columns(0).Width = col0Width
@@ -175,30 +177,14 @@ Public Class BOOK_MANAGEMENT_CONTROL
         ListView1.Columns(5).Width = col5Width
     End Sub
 
+    ' (Optional events for UI interactions)
     Private Sub YourForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Panel1.BackColor = Color.White
-    End Sub
-
-
-    ' (You can leave these label events empty)
-    Private Sub authorlabel_Click(sender As Object, e As EventArgs) Handles authorlabel.Click
-    End Sub
-    Private Sub title_label_Click(sender As Object, e As EventArgs) Handles title_label.Click
-    End Sub
-    Private Sub book_id_Click(sender As Object, e As EventArgs) Handles book_id.Click
-    End Sub
-    Private Sub isbn_label_Click(sender As Object, e As EventArgs) Handles isbn_label.Click
-    End Sub
-    Private Sub Status_label_Click(sender As Object, e As EventArgs) Handles Status_label.Click
-    End Sub
-
-    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs)
     End Sub
 
     Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
     End Sub
 
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
-
     End Sub
 End Class

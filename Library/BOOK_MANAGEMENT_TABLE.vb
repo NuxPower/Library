@@ -35,7 +35,6 @@ Public Class BOOK_MANAGEMENT_TABLE
             AddHandler .DrawColumnHeader, AddressOf DrawHeader
             AddHandler .DrawSubItem, AddressOf DrawBookSubItem
             AddHandler .Resize, AddressOf ListView1_Resize
-            RemoveHandler .MouseClick, AddressOf ListView1_MouseClick
             AddHandler .MouseClick, AddressOf ListView1_MouseClick
         End With
     End Sub
@@ -121,7 +120,44 @@ Public Class BOOK_MANAGEMENT_TABLE
         End Select
     End Sub
 
-    ' Remove the duplicate definition of ShowInParentPanel
+    Private Sub ListView1_MouseClick(sender As Object, e As MouseEventArgs)
+        Dim hitInfo As ListViewHitTestInfo = ListView1.HitTest(e.Location)
+        If hitInfo.Item Is Nothing OrElse hitInfo.SubItem Is Nothing Then Exit Sub
+
+        If hitInfo.Item.SubItems.IndexOf(hitInfo.SubItem) = 4 Then ' ACTIONS column
+            Dim bookId As Integer = Integer.Parse(hitInfo.Item.SubItems(0).Text) ' Get the Book ID
+
+            ' Determine which button was clicked (View or Update)
+            Dim itemBounds = hitInfo.SubItem.Bounds
+            Dim btnWidth As Integer = (itemBounds.Width - 10) \ 2
+            Dim viewBtn = New Rectangle(itemBounds.X + 5, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
+            Dim updateBtn = New Rectangle(itemBounds.X + btnWidth + 10, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
+
+            If viewBtn.Contains(e.Location) Then
+                ' Show the BOOK_MANAGEMENT_CONTROL in a dynamic form
+                Dim mainForm = TryCast(Me.FindForm(), Dashboard)
+                If mainForm IsNot Nothing Then
+                    ' Create an instance of the book detail control
+                    Dim bookViewControl As New BOOK_MANAGEMENT_CONTROL()
+                    bookViewControl.BookId = bookId ' Set BookId for the view control
+                    ShowInParentPanel(bookViewControl)
+                Else
+                    MessageBox.Show("Dashboard form not found.")
+                End If
+            ElseIf updateBtn.Contains(e.Location) Then
+                ' Show the UPDATE_BOOK_MANAGEMENT_CONTROL in a dynamic form
+                Dim mainForm = TryCast(Me.FindForm(), Dashboard)
+                If mainForm IsNot Nothing Then
+                    ' Create an instance of the update book control
+                    Dim bookUpdateControl As New UPDATE_BOOK_CONTROL() ' Pass bookId to control
+                    ShowInParentPanel(bookUpdateControl)
+                Else
+                    MessageBox.Show("Dashboard form not found.")
+                End If
+            End If
+        End If
+    End Sub
+
     Private Sub ShowInParentPanel(ctrl As UserControl)
         Dim parentForm = Me.FindForm()
         If parentForm IsNot Nothing Then
@@ -140,29 +176,14 @@ Public Class BOOK_MANAGEMENT_TABLE
         End If
     End Sub
 
-    Private Sub ListView1_MouseClick(sender As Object, e As MouseEventArgs)
-        Dim hitInfo As ListViewHitTestInfo = ListView1.HitTest(e.Location)
-        If hitInfo.Item Is Nothing OrElse hitInfo.SubItem Is Nothing Then Exit Sub
-
-        If hitInfo.Item.SubItems.IndexOf(hitInfo.SubItem) >= 0 Then ' A column was clicked
-            Dim borrowerId As Integer = Integer.Parse(hitInfo.Item.SubItems(0).Text) ' Assuming the borrower ID is in the first column
-
-            ' Open the UPDATING_BORROWER_CONTROL and pass the selected borrower's ID
-            Dim updateBorrowerControl As New UPDATING_BORROWER_CONTROL(borrowerId)
-            ShowInParentPanel(updateBorrowerControl)
-        End If
-    End Sub
-
     Private Sub ListView1_Resize(sender As Object, e As EventArgs)
         Dim totalWidth As Integer = ListView1.ClientSize.Width
         Dim col0Width As Integer = 50    ' NO
         Dim col4Width As Integer = 160   ' ACTIONS for 2 buttons
 
-        ' Remaining space after fixed columns
         Dim remainingWidth As Integer = totalWidth - col0Width - col4Width
         If remainingWidth < 0 Then remainingWidth = 0
 
-        ' Divide remaining space among TITLE, AUTHOR, ISBN
         Dim dynamicColWidth As Integer = remainingWidth \ 3
 
         ListView1.Columns(0).Width = col0Width        ' NO
@@ -170,10 +191,6 @@ Public Class BOOK_MANAGEMENT_TABLE
         ListView1.Columns(2).Width = dynamicColWidth  ' AUTHOR
         ListView1.Columns(3).Width = dynamicColWidth  ' ISBN
         ListView1.Columns(4).Width = col4Width        ' ACTIONS
-    End Sub
-
-    Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
-        ' Optional: Add code if needed for selection
     End Sub
 
     Public Sub PerformSearch(query As String) Implements ISearchable.PerformSearch
@@ -187,4 +204,7 @@ Public Class BOOK_MANAGEMENT_TABLE
         End If
     End Sub
 
+    Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
+
+    End Sub
 End Class
