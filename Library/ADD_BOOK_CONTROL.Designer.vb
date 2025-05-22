@@ -23,17 +23,17 @@ Partial Class ADD_BOOK_CONTROL
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.author_combo_box = New System.Windows.Forms.ComboBox()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.isbn_box = New System.Windows.Forms.TextBox()
         Me.ButtonCancel = New System.Windows.Forms.Button()
         Me.ButtonSave = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.title_box = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
@@ -50,7 +50,7 @@ Partial Class ADD_BOOK_CONTROL
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.Panel1.BackColor = System.Drawing.Color.SkyBlue
-        Me.Panel1.Controls.Add(Me.ComboBox1)
+        Me.Panel1.Controls.Add(Me.author_combo_box)
         Me.Panel1.Controls.Add(Me.Panel4)
         Me.Panel1.Controls.Add(Me.ButtonCancel)
         Me.Panel1.Controls.Add(Me.ButtonSave)
@@ -63,20 +63,20 @@ Partial Class ADD_BOOK_CONTROL
         Me.Panel1.Size = New System.Drawing.Size(917, 556)
         Me.Panel1.TabIndex = 0
         '
-        'ComboBox1
+        'author_combo_box
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(271, 155)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(424, 21)
-        Me.ComboBox1.TabIndex = 14
+        Me.author_combo_box.FormattingEnabled = True
+        Me.author_combo_box.Location = New System.Drawing.Point(271, 155)
+        Me.author_combo_box.Name = "author_combo_box"
+        Me.author_combo_box.Size = New System.Drawing.Size(424, 21)
+        Me.author_combo_box.TabIndex = 14
         '
         'Panel4
         '
         Me.Panel4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel4.Controls.Add(Me.Panel5)
-        Me.Panel4.Controls.Add(Me.TextBox2)
+        Me.Panel4.Controls.Add(Me.isbn_box)
         Me.Panel4.Location = New System.Drawing.Point(190, 287)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(505, 21)
@@ -100,14 +100,14 @@ Partial Class ADD_BOOK_CONTROL
         Me.Label4.TabIndex = 3
         Me.Label4.Text = "ISBN"
         '
-        'TextBox2
+        'isbn_box
         '
-        Me.TextBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.isbn_box.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox2.Location = New System.Drawing.Point(81, 0)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(424, 20)
-        Me.TextBox2.TabIndex = 0
+        Me.isbn_box.Location = New System.Drawing.Point(81, 0)
+        Me.isbn_box.Name = "isbn_box"
+        Me.isbn_box.Size = New System.Drawing.Size(424, 20)
+        Me.isbn_box.TabIndex = 0
         '
         'ButtonCancel
         '
@@ -140,7 +140,7 @@ Partial Class ADD_BOOK_CONTROL
         Me.Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel2.Controls.Add(Me.Panel3)
-        Me.Panel2.Controls.Add(Me.TextBox1)
+        Me.Panel2.Controls.Add(Me.title_box)
         Me.Panel2.Location = New System.Drawing.Point(190, 250)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(505, 21)
@@ -164,14 +164,14 @@ Partial Class ADD_BOOK_CONTROL
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "TITLE"
         '
-        'TextBox1
+        'title_box
         '
-        Me.TextBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.title_box.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox1.Location = New System.Drawing.Point(81, 0)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(424, 20)
-        Me.TextBox1.TabIndex = 0
+        Me.title_box.Location = New System.Drawing.Point(81, 0)
+        Me.title_box.Name = "title_box"
+        Me.title_box.Size = New System.Drawing.Size(424, 20)
+        Me.title_box.TabIndex = 0
         '
         'Label2
         '
@@ -179,7 +179,7 @@ Partial Class ADD_BOOK_CONTROL
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(558, 132)
+        Me.Label2.Location = New System.Drawing.Point(422, 132)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(165, 20)
         Me.Label2.TabIndex = 2
@@ -191,7 +191,7 @@ Partial Class ADD_BOOK_CONTROL
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(576, 10)
+        Me.Label1.Location = New System.Drawing.Point(440, 10)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(147, 25)
         Me.Label1.TabIndex = 0
@@ -224,12 +224,12 @@ Partial Class ADD_BOOK_CONTROL
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Label3 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents title_box As TextBox
     Friend WithEvents ButtonCancel As Button
     Friend WithEvents ButtonSave As Button
     Friend WithEvents Panel4 As Panel
     Friend WithEvents Panel5 As Panel
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents isbn_box As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents author_combo_box As ComboBox
 End Class

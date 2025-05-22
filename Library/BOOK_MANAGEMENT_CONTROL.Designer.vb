@@ -23,19 +23,19 @@ Partial Class BOOK_MANAGEMENT_CONTROL
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.authorlabel = New System.Windows.Forms.Label()
-        Me.isbn_label = New System.Windows.Forms.Label()
-        Me.title_label = New System.Windows.Forms.Label()
-        Me.book_id = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Status_label = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ListView1 = New System.Windows.Forms.ListView()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.isbn_label = New System.Windows.Forms.Label()
+        Me.authorlabel = New System.Windows.Forms.Label()
+        Me.title_label = New System.Windows.Forms.Label()
+        Me.book_id = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
@@ -58,54 +58,6 @@ Partial Class BOOK_MANAGEMENT_CONTROL
         Me.Panel1.Size = New System.Drawing.Size(991, 179)
         Me.Panel1.TabIndex = 0
         '
-        'authorlabel
-        '
-        Me.authorlabel.AutoSize = True
-        Me.authorlabel.BackColor = System.Drawing.SystemColors.Control
-        Me.authorlabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.authorlabel.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.authorlabel.Location = New System.Drawing.Point(748, 126)
-        Me.authorlabel.Name = "authorlabel"
-        Me.authorlabel.Size = New System.Drawing.Size(133, 20)
-        Me.authorlabel.TabIndex = 9
-        Me.authorlabel.Text = "Data goes here"
-        '
-        'isbn_label
-        '
-        Me.isbn_label.AutoSize = True
-        Me.isbn_label.BackColor = System.Drawing.SystemColors.Control
-        Me.isbn_label.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.isbn_label.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.isbn_label.Location = New System.Drawing.Point(716, 87)
-        Me.isbn_label.Name = "isbn_label"
-        Me.isbn_label.Size = New System.Drawing.Size(133, 20)
-        Me.isbn_label.TabIndex = 8
-        Me.isbn_label.Text = "Data goes here"
-        '
-        'title_label
-        '
-        Me.title_label.AutoSize = True
-        Me.title_label.BackColor = System.Drawing.SystemColors.Control
-        Me.title_label.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.title_label.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.title_label.Location = New System.Drawing.Point(414, 126)
-        Me.title_label.Name = "title_label"
-        Me.title_label.Size = New System.Drawing.Size(133, 20)
-        Me.title_label.TabIndex = 7
-        Me.title_label.Text = "Data goes here"
-        '
-        'book_id
-        '
-        Me.book_id.AutoSize = True
-        Me.book_id.BackColor = System.Drawing.SystemColors.Control
-        Me.book_id.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.book_id.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.book_id.Location = New System.Drawing.Point(439, 87)
-        Me.book_id.Name = "book_id"
-        Me.book_id.Size = New System.Drawing.Size(133, 20)
-        Me.book_id.TabIndex = 6
-        Me.book_id.Text = "Data goes here"
-        '
         'Label6
         '
         Me.Label6.AutoSize = True
@@ -114,9 +66,9 @@ Partial Class BOOK_MANAGEMENT_CONTROL
         Me.Label6.ForeColor = System.Drawing.SystemColors.Desktop
         Me.Label6.Location = New System.Drawing.Point(654, 126)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(88, 20)
+        Me.Label6.Size = New System.Drawing.Size(83, 20)
         Me.Label6.TabIndex = 5
-        Me.Label6.Text = "AUTHOR:"
+        Me.Label6.Text = "AUTHOR"
         '
         'Label5
         '
@@ -126,9 +78,9 @@ Partial Class BOOK_MANAGEMENT_CONTROL
         Me.Label5.ForeColor = System.Drawing.SystemColors.Desktop
         Me.Label5.Location = New System.Drawing.Point(654, 87)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(56, 20)
+        Me.Label5.Size = New System.Drawing.Size(51, 20)
         Me.Label5.TabIndex = 4
-        Me.Label5.Text = "ISBN:"
+        Me.Label5.Text = "ISBN"
         '
         'Label4
         '
@@ -138,21 +90,9 @@ Partial Class BOOK_MANAGEMENT_CONTROL
         Me.Label4.ForeColor = System.Drawing.SystemColors.Desktop
         Me.Label4.Location = New System.Drawing.Point(346, 126)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(62, 20)
+        Me.Label4.Size = New System.Drawing.Size(57, 20)
         Me.Label4.TabIndex = 3
-        Me.Label4.Text = "TITLE:"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.SystemColors.Control
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.Label3.Location = New System.Drawing.Point(346, 87)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(87, 20)
-        Me.Label3.TabIndex = 2
-        Me.Label3.Text = "BOOK ID:"
+        Me.Label4.Text = "TITLE"
         '
         'Panel2
         '
@@ -209,6 +149,66 @@ Partial Class BOOK_MANAGEMENT_CONTROL
         Me.ListView1.TabIndex = 1
         Me.ListView1.UseCompatibleStateImageBehavior = False
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.SystemColors.Control
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.Label3.Location = New System.Drawing.Point(346, 87)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(82, 20)
+        Me.Label3.TabIndex = 2
+        Me.Label3.Text = "BOOK ID"
+        '
+        'isbn_label
+        '
+        Me.isbn_label.AutoSize = True
+        Me.isbn_label.BackColor = System.Drawing.SystemColors.Control
+        Me.isbn_label.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.isbn_label.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.isbn_label.Location = New System.Drawing.Point(716, 87)
+        Me.isbn_label.Name = "isbn_label"
+        Me.isbn_label.Size = New System.Drawing.Size(133, 20)
+        Me.isbn_label.TabIndex = 8
+        Me.isbn_label.Text = "Data goes here"
+        '
+        'authorlabel
+        '
+        Me.authorlabel.AutoSize = True
+        Me.authorlabel.BackColor = System.Drawing.SystemColors.Control
+        Me.authorlabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.authorlabel.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.authorlabel.Location = New System.Drawing.Point(748, 126)
+        Me.authorlabel.Name = "authorlabel"
+        Me.authorlabel.Size = New System.Drawing.Size(133, 20)
+        Me.authorlabel.TabIndex = 9
+        Me.authorlabel.Text = "Data goes here"
+        '
+        'title_label
+        '
+        Me.title_label.AutoSize = True
+        Me.title_label.BackColor = System.Drawing.SystemColors.Control
+        Me.title_label.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.title_label.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.title_label.Location = New System.Drawing.Point(414, 126)
+        Me.title_label.Name = "title_label"
+        Me.title_label.Size = New System.Drawing.Size(133, 20)
+        Me.title_label.TabIndex = 7
+        Me.title_label.Text = "Data goes here"
+        '
+        'book_id
+        '
+        Me.book_id.AutoSize = True
+        Me.book_id.BackColor = System.Drawing.SystemColors.Control
+        Me.book_id.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.book_id.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.book_id.Location = New System.Drawing.Point(439, 87)
+        Me.book_id.Name = "book_id"
+        Me.book_id.Size = New System.Drawing.Size(133, 20)
+        Me.book_id.TabIndex = 6
+        Me.book_id.Text = "Data goes here"
+        '
         'BOOK_MANAGEMENT_CONTROL
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -233,10 +233,10 @@ Partial Class BOOK_MANAGEMENT_CONTROL
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
+    Friend WithEvents Status_label As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents authorlabel As Label
     Friend WithEvents isbn_label As Label
     Friend WithEvents title_label As Label
     Friend WithEvents book_id As Label
-    Friend WithEvents Status_label As Label
 End Class
