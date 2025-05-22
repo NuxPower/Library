@@ -58,20 +58,65 @@ Public Class UPDATING_BORROWER_CONTROL
         End Try
     End Sub
 
+    ' Save the updated details back to the database
+    Private Sub save_but_Click(sender As Object, e As EventArgs) Handles save_but.Click
+        ' Validate input fields
+        Dim fnameText As String = fname.Text.Trim()
+        Dim lnameText As String = lname.Text.Trim()
+        Dim emailText As String = email_box.Text.Trim()
+        Dim numText As String = num_box.Text.Trim()
+
+        If String.IsNullOrWhiteSpace(fnameText) OrElse String.IsNullOrWhiteSpace(lnameText) OrElse String.IsNullOrWhiteSpace(emailText) OrElse String.IsNullOrWhiteSpace(numText) Then
+            MessageBox.Show("All fields must be filled in.")
+            Exit Sub
+        End If
+
+        Try
+            dbConn()
+
+            ' Query to update borrower details
+            Dim updateQuery As String = "UPDATE borrowers SET name = @name, email = @email, mobile_no = @mobile WHERE borrower_id = @borrowerId"
+            Using cmd As New MySqlCommand(updateQuery, conn)
+                cmd.Parameters.AddWithValue("@borrowerId", borrowerId)
+                cmd.Parameters.AddWithValue("@name", fnameText & " " & lnameText) ' Combine first and last name
+                cmd.Parameters.AddWithValue("@email", emailText)
+                cmd.Parameters.AddWithValue("@mobile", numText)
+
+                cmd.ExecuteNonQuery()
+            End Using
+
+            dbDisconn()
+
+            ' Confirmation message after updating
+            MessageBox.Show("Borrower details updated successfully!", "Success")
+
+            ' Optionally, close or navigate to another form
+            Dim parentForm = Me.FindForm()
+            If parentForm IsNot Nothing Then
+                parentForm.Close()
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error updating borrower details: " & ex.Message)
+        Finally
+            dbDisconn()
+        End Try
+    End Sub
+
     ' Optional method to disable controls if borrowerId is invalid
     Private Sub DisableControls()
         fname.Enabled = False
         lname.Enabled = False
         email_box.Enabled = False
         num_box.Enabled = False
-        ' Optionally, you could hide the controls instead of disabling them:
-        ' fname.Visible = False
-        ' lname.Visible = False
-        ' email_box.Visible = False
-        ' num_box.Visible = False
     End Sub
 
-    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
-        ' Optional custom painting code can go here
+    Private Sub cancel_but_Click(sender As Object, e As EventArgs) Handles cancel_but.Click
+        ' Close the form without saving
+        Dim parentForm = Me.FindForm()
+        If parentForm IsNot Nothing Then
+            parentForm.Close()
+        End If
     End Sub
+
 End Class
