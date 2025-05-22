@@ -104,6 +104,9 @@ Partial Class delete_conf
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnDelete)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "delete_conf"
         Me.Text = "delete_auth"
         Me.ResumeLayout(False)

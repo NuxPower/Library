@@ -76,6 +76,9 @@ Partial Class book_status
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "book_status"
         Me.Text = "book_status"
         Me.ResumeLayout(False)

@@ -94,6 +94,9 @@ Partial Class update_auth
         Me.Controls.Add(Me.txtAuthorName)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "update_auth"
         Me.Text = "update_auth"
         Me.ResumeLayout(False)

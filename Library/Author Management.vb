@@ -1,13 +1,16 @@
 ﻿Public Class Author_Management
     Private managementType As String
     Private parentDashboard As Dashboard
+    Private borrowerId As Integer = -1 ' Store the borrower ID (ensure it's set correctly elsewhere)
 
+    ' Constructor to initialize managementType
     Public Sub New(type As String)
         InitializeComponent()
         managementType = type
     End Sub
 
     Private Sub Author_Management_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Adding handlers for click events on panels
         For Each ctrl As Control In panelD.Controls
             AddHandler ctrl.Click, AddressOf panelD_Clicked
         Next
@@ -21,8 +24,6 @@
             RemoveHandler ctrl.Click, AddressOf panel3_Click ' prevent double firing
             AddHandler ctrl.Click, Sub(s, eArgs) panel3_Click(Panel3, eArgs)
         Next
-
-        fragment2.Dock = DockStyle.Fill
 
         ' Set label text according to management type
         Select Case managementType.ToUpper()
@@ -51,13 +52,12 @@
                 dashboardLoad(New BOOK_MANAGEMENT_TABLE())
             Case "BORROWERS"
                 dashboardLoad(New BORROWER_MANAGEMENT_TABLE())
-            Case "UPDATE_BORROWER"
-                dashboardLoad(New UPDATING_BORROWER_CONTROL())
             Case Else
                 MessageBox.Show("Unknown management type: " & managementType)
         End Select
     End Sub
 
+    ' Navigate back to the main dashboard
     Private Sub panelD_Clicked(sender As Object, e As EventArgs) Handles panelD.Click
         Dim parentDash = TryCast(Me.ParentForm, Dashboard)
         If parentDash IsNot Nothing Then
@@ -66,6 +66,7 @@
         End If
     End Sub
 
+    ' Handle panel A click (manage authors)
     Private Sub panelA_Clicked(sender As Object, e As EventArgs) Handles panelA.Click
         managementType = "AUTHORS"
         Dashboard.FragmentTitle.Text = "MANAGE AUTHORS"
@@ -74,6 +75,7 @@
         dashboardLoad(New AUTHOR_MANAGEMENT_TABLE)
     End Sub
 
+    ' Handle panel B click (manage borrowers)
     Private Sub panelB_Clicked(sender As Object, e As EventArgs) Handles panelB.Click
         managementType = "BORROWERS"
         Dashboard.FragmentTitle.Text = "MANAGE BORROWERS"
@@ -82,6 +84,7 @@
         dashboardLoad(New BORROWER_MANAGEMENT_TABLE)
     End Sub
 
+    ' Handle panel BK click (manage books)
     Private Sub panelBk_Clicked(sender As Object, e As EventArgs) Handles panelBK.Click
         managementType = "BOOKS"
         Dashboard.FragmentTitle.Text = "MANAGE BOOKS"
@@ -95,6 +98,7 @@
         Dim addControl As UserControl = Nothing
         Dim mgmtType As String = managementType.ToUpper()
 
+        ' Determine which control to add based on the management type
         Select Case mgmtType
             Case "AUTHORS"
                 addControl = New ADDING_AUTHOR_CONTROL()
@@ -107,21 +111,39 @@
                 Exit Sub
         End Select
 
+        ' Load the appropriate form for adding the entity
         Dim mainForm = TryCast(Me.FindForm(), Dashboard)
         If mainForm IsNot Nothing Then
-            Dim loanForm As New LOAN_MANAGEMENT(mgmtType, mainForm)
-            loanForm.Show()
-            loanForm.dashboardLoad(addControl)
-            mainForm.Hide()
+            ' Check if borrowerId is needed for UPDATE_BORROWER or VIEW_BORROWER
+            If managementType.ToUpper() = "UPDATE_BORROWER" OrElse managementType.ToUpper() = "VIEW_BORROWER" Then
+                ' Ensure borrowerId is valid before passing it
+                If borrowerId <> -1 Then
+                    ' Pass borrowerId to UPDATING_BORROWER_CONTROL constructor
+                    Dim updateBorrowerControl As New UPDATING_BORROWER_CONTROL(borrowerId) ' Pass borrowerId
+                    updateBorrowerControl.Show() ' Display the form
+                    mainForm.Hide() ' Optionally hide the dashboard form
+                Else
+                    MessageBox.Show("Invalid Borrower ID.")
+                End If
+            Else
+                ' For other management types, no borrowerId is required
+                Dim loanForm As New LOAN_MANAGEMENT(mgmtType, mainForm)
+                loanForm.Show()
+                loanForm.dashboardLoad(addControl)
+                mainForm.Hide()
+            End If
         Else
             MessageBox.Show("Dashboard form not found.")
         End If
     End Sub
 
+
+    ' This function loads the user control into the dashboard fragment
     Public Sub dashboardLoad(board As UserControl)
         LoadUserControl(board)
     End Sub
 
+    ' Helper function to load the user control dynamically into the fragment2 panel
     Private Sub LoadUserControl(uc As UserControl)
         fragment2.Controls.Clear()
         fragment2.BringToFront()
@@ -136,17 +158,25 @@
         fragment2.Controls.Add(scrollablePanel)
     End Sub
 
-    Private Sub panelL_Clicked(sender As Object, e As EventArgs) Handles panelL.Click
-        Dim mainForm = TryCast(Me.FindForm(), Dashboard)
-        If mainForm IsNot Nothing Then
-            Dim loanForm As New LOAN_MANAGEMENT("LOAN", mainForm)
-            loanForm.Show()
-            mainForm.Hide()
-        Else
-            MessageBox.Show("Dashboard form not found.")
+    ' Panel 5 click to sort by date
+    Private Sub panel5_Click(sender As Object, e As EventArgs)
+        Dim currentControl = GetCurrentControl()
+        Dim sortable = TryCast(currentControl, ISortable)
+        If sortable IsNot Nothing Then
+            sortable.SortByDate()
         End If
     End Sub
 
+    ' Panel 7 click to sort by name
+    Private Sub panel7_Click(sender As Object, e As EventArgs)
+        Dim currentControl = GetCurrentControl()
+        Dim sortable = TryCast(currentControl, ISortable)
+        If sortable IsNot Nothing Then
+            sortable.SortByName()
+        End If
+    End Sub
+
+    ' Search functionality based on text change
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
         Dim currentControl = GetCurrentControl()
         If currentControl IsNot Nothing Then
@@ -157,6 +187,7 @@
         End If
     End Sub
 
+    ' Function to get the current control being displayed
     Private Function GetCurrentControl() As Control
         If fragment2.Controls.Count = 0 Then Return Nothing
 
@@ -166,23 +197,8 @@
         Return scrollablePanel.Controls(0)
     End Function
 
-    Private Sub panel5_Click(sender As Object, e As EventArgs)
-        Dim currentControl = GetCurrentControl()
-        Dim sortable = TryCast(currentControl, ISortable)
-        If sortable IsNot Nothing Then
-            sortable.SortByDate()
-        End If
-    End Sub
-
-    Private Sub panel7_Click(sender As Object, e As EventArgs)
-        Dim currentControl = GetCurrentControl()
-        Dim sortable = TryCast(currentControl, ISortable)
-        If sortable IsNot Nothing Then
-            sortable.SortByName()
-        End If
-    End Sub
-
+    ' Paint event for fragment2 (can be customized as needed)
     Private Sub fragment2_Paint(sender As Object, e As PaintEventArgs) Handles fragment2.Paint
-
+        ' Optional custom drawing code here
     End Sub
 End Class

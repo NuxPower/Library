@@ -82,6 +82,9 @@ Partial Class return_book
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.DateTimePicker1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "return_book"
         Me.Text = "return"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()

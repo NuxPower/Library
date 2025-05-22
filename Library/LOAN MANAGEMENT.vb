@@ -1,12 +1,28 @@
 ﻿Public Class LOAN_MANAGEMENT
     Private managementType As String
     Private dashboardRef As Dashboard
+    Private borrowerId As Integer = -1 ' Store the borrower ID
 
     ' Overloaded constructor for direct control display
     Public Sub New(type As String, parentDashboard As Dashboard, Optional initialControl As UserControl = Nothing)
         InitializeComponent()
         managementType = type
         dashboardRef = parentDashboard
+
+        ' Set a context-appropriate window title and FragmentTitle label
+        SetTitles(type, initialControl)
+
+        If initialControl IsNot Nothing Then
+            dashboardLoad(initialControl)
+        End If
+    End Sub
+
+    ' New overloaded constructor to accept borrower ID
+    Public Sub New(type As String, parentDashboard As Dashboard, borrowerIdParam As Integer, Optional initialControl As UserControl = Nothing)
+        InitializeComponent()
+        managementType = type
+        dashboardRef = parentDashboard
+        borrowerId = borrowerIdParam ' Store the borrower ID
 
         ' Set a context-appropriate window title and FragmentTitle label
         SetTitles(type, initialControl)
@@ -27,9 +43,21 @@
                 Case "BOOKS"
                     dashboardLoad(New BOOK_MANAGEMENT_CONTROL())
                 Case "VIEW_BORROWER"
-                    dashboardLoad(New VIEW_BORROWER_MANAGEMENT_CONTROL())
+                    ' Pass borrowerId to the constructor
+                    If borrowerId <> -1 Then ' Check if borrowerId is valid
+                        Dim viewBorrowerControl As New VIEW_BORROWER_MANAGEMENT_CONTROL(borrowerId)
+                        dashboardLoad(viewBorrowerControl)
+                    Else
+                        MessageBox.Show("Invalid Borrower ID.")
+                    End If
                 Case "UPDATE_BORROWER"
-                    dashboardLoad(New UPDATING_BORROWER_CONTROL())
+                    ' Pass borrowerId to the constructor
+                    If borrowerId <> -1 Then ' Check if borrowerId is valid
+                        Dim updateBorrowerControl As New UPDATING_BORROWER_CONTROL(borrowerId)
+                        dashboardLoad(updateBorrowerControl)
+                    Else
+                        MessageBox.Show("Invalid Borrower ID.")
+                    End If
                 Case "AUTHORS"
                     dashboardLoad(New ADDING_AUTHOR_CONTROL())
                 Case "BOOKS"
@@ -39,6 +67,8 @@
                 Case Else
                     MessageBox.Show("Unknown management type: " & managementType)
             End Select
+
+
         End If
     End Sub
 
@@ -61,8 +91,8 @@
             FragmentTitle.Text = "Book Management"
             Me.Text = "Book Management"
         ElseIf TypeOf board Is VIEW_BORROWER_MANAGEMENT_CONTROL Then
-            FragmentTitle.Text = "View Borrower"
-            Me.Text = "View Borrower"
+            FragmentTitle.Text = "View Borrower Loans"
+            Me.Text = "View Borrower Loans"
         ElseIf TypeOf board Is UPDATING_BORROWER_CONTROL Then
             FragmentTitle.Text = "Update Borrower"
             Me.Text = "Update Borrower"
@@ -106,8 +136,8 @@
                 FragmentTitle.Text = "Update Borrower"
                 Me.Text = "Update Borrower"
             Case "VIEW_BORROWER"
-                FragmentTitle.Text = "View Borrower"
-                Me.Text = "View Borrower"
+                FragmentTitle.Text = "View Borrower Loans"
+                Me.Text = "View Borrower Loans"
             Case Else
                 FragmentTitle.Text = "Library Management"
                 Me.Text = "Library Management"
@@ -136,4 +166,5 @@
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
         ' Optional custom drawing code here
     End Sub
+
 End Class

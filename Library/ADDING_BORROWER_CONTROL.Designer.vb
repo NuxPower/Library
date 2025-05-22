@@ -26,18 +26,18 @@ Partial Class ADDING_BORROWER_CONTROL
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.num_box = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.email_box = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.lname = New System.Windows.Forms.TextBox()
+        Me.fname = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.cancel_but = New System.Windows.Forms.Button()
+        Me.save_but = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel4.SuspendLayout()
@@ -54,11 +54,11 @@ Partial Class ADDING_BORROWER_CONTROL
         Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.Label3)
-        Me.Panel1.Controls.Add(Me.TextBox2)
-        Me.Panel1.Controls.Add(Me.TextBox1)
+        Me.Panel1.Controls.Add(Me.lname)
+        Me.Panel1.Controls.Add(Me.fname)
         Me.Panel1.Controls.Add(Me.Label2)
-        Me.Panel1.Controls.Add(Me.Button2)
-        Me.Panel1.Controls.Add(Me.Button1)
+        Me.Panel1.Controls.Add(Me.cancel_but)
+        Me.Panel1.Controls.Add(Me.save_but)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
@@ -72,7 +72,7 @@ Partial Class ADDING_BORROWER_CONTROL
         Me.Panel4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel4.Controls.Add(Me.Panel5)
-        Me.Panel4.Controls.Add(Me.TextBox4)
+        Me.Panel4.Controls.Add(Me.num_box)
         Me.Panel4.Location = New System.Drawing.Point(206, 268)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(511, 21)
@@ -98,19 +98,19 @@ Partial Class ADDING_BORROWER_CONTROL
         Me.Label6.TabIndex = 3
         Me.Label6.Text = "MOBILE NUMBER"
         '
-        'TextBox4
+        'num_box
         '
-        Me.TextBox4.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.TextBox4.Location = New System.Drawing.Point(138, 0)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(367, 20)
-        Me.TextBox4.TabIndex = 0
+        Me.num_box.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.num_box.Location = New System.Drawing.Point(138, 0)
+        Me.num_box.Name = "num_box"
+        Me.num_box.Size = New System.Drawing.Size(367, 20)
+        Me.num_box.TabIndex = 0
         '
         'Panel2
         '
         Me.Panel2.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Panel2.Controls.Add(Me.Panel3)
-        Me.Panel2.Controls.Add(Me.TextBox3)
+        Me.Panel2.Controls.Add(Me.email_box)
         Me.Panel2.Location = New System.Drawing.Point(206, 226)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(511, 21)
@@ -136,14 +136,14 @@ Partial Class ADDING_BORROWER_CONTROL
         Me.Label5.TabIndex = 3
         Me.Label5.Text = "EMAIL"
         '
-        'TextBox3
+        'email_box
         '
-        Me.TextBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.email_box.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox3.Location = New System.Drawing.Point(138, 0)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(367, 20)
-        Me.TextBox3.TabIndex = 0
+        Me.email_box.Location = New System.Drawing.Point(138, 0)
+        Me.email_box.Name = "email_box"
+        Me.email_box.Size = New System.Drawing.Size(367, 20)
+        Me.email_box.TabIndex = 0
         '
         'Label4
         '
@@ -165,19 +165,19 @@ Partial Class ADDING_BORROWER_CONTROL
         Me.Label3.TabIndex = 9
         Me.Label3.Text = "Firstname"
         '
-        'TextBox2
+        'lname
         '
-        Me.TextBox2.Location = New System.Drawing.Point(617, 139)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(191, 20)
-        Me.TextBox2.TabIndex = 8
+        Me.lname.Location = New System.Drawing.Point(617, 139)
+        Me.lname.Name = "lname"
+        Me.lname.Size = New System.Drawing.Size(191, 20)
+        Me.lname.TabIndex = 8
         '
-        'TextBox1
+        'fname
         '
-        Me.TextBox1.Location = New System.Drawing.Point(420, 139)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(191, 20)
-        Me.TextBox1.TabIndex = 7
+        Me.fname.Location = New System.Drawing.Point(420, 139)
+        Me.fname.Name = "fname"
+        Me.fname.Size = New System.Drawing.Size(191, 20)
+        Me.fname.TabIndex = 7
         '
         'Label2
         '
@@ -189,31 +189,31 @@ Partial Class ADDING_BORROWER_CONTROL
         Me.Label2.TabIndex = 6
         Me.Label2.Text = "NAME"
         '
-        'Button2
+        'cancel_but
         '
-        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button2.BackColor = System.Drawing.Color.DarkTurquoise
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(425, 405)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(146, 37)
-        Me.Button2.TabIndex = 5
-        Me.Button2.Text = "CANCEL"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.cancel_but.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cancel_but.BackColor = System.Drawing.Color.DarkTurquoise
+        Me.cancel_but.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cancel_but.ForeColor = System.Drawing.Color.White
+        Me.cancel_but.Location = New System.Drawing.Point(425, 405)
+        Me.cancel_but.Name = "cancel_but"
+        Me.cancel_but.Size = New System.Drawing.Size(146, 37)
+        Me.cancel_but.TabIndex = 5
+        Me.cancel_but.Text = "CANCEL"
+        Me.cancel_but.UseVisualStyleBackColor = False
         '
-        'Button1
+        'save_but
         '
-        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.BackColor = System.Drawing.Color.DarkTurquoise
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(571, 405)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(146, 37)
-        Me.Button1.TabIndex = 4
-        Me.Button1.Text = "SAVE"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.save_but.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.save_but.BackColor = System.Drawing.Color.DarkTurquoise
+        Me.save_but.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.save_but.ForeColor = System.Drawing.Color.White
+        Me.save_but.Location = New System.Drawing.Point(571, 405)
+        Me.save_but.Name = "save_but"
+        Me.save_but.Size = New System.Drawing.Size(146, 37)
+        Me.save_but.TabIndex = 4
+        Me.save_but.Text = "SAVE"
+        Me.save_but.UseVisualStyleBackColor = False
         '
         'Label1
         '
@@ -249,20 +249,20 @@ Partial Class ADDING_BORROWER_CONTROL
     End Sub
 
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents cancel_but As Button
+    Friend WithEvents save_but As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents lname As TextBox
+    Friend WithEvents fname As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Panel4 As Panel
     Friend WithEvents Panel5 As Panel
     Friend WithEvents Label6 As Label
-    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents num_box As TextBox
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Label5 As Label
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents email_box As TextBox
 End Class

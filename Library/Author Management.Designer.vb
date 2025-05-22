@@ -25,6 +25,14 @@ Partial Class Author_Management
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Author_Management))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.fragment2 = New System.Windows.Forms.Panel()
+        Me.Panel16 = New System.Windows.Forms.Panel()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.txtSearch = New System.Windows.Forms.TextBox()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Panel11 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel10 = New System.Windows.Forms.Panel()
         Me.panelL = New System.Windows.Forms.Panel()
@@ -38,15 +46,13 @@ Partial Class Author_Management
         Me.panelD = New System.Windows.Forms.Panel()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel9 = New System.Windows.Forms.Panel()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Panel11 = New System.Windows.Forms.Panel()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.txtSearch = New System.Windows.Forms.TextBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.Panel16 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
+        Me.Panel16.SuspendLayout()
+        Me.Panel4.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
+        Me.Panel11.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.Panel10.SuspendLayout()
         Me.panelL.SuspendLayout()
@@ -54,12 +60,6 @@ Partial Class Author_Management
         Me.panelBK.SuspendLayout()
         Me.panelA.SuspendLayout()
         Me.panelD.SuspendLayout()
-        Me.Panel3.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel11.SuspendLayout()
-        Me.Panel4.SuspendLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel16.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -80,6 +80,89 @@ Partial Class Author_Management
         Me.fragment2.Name = "fragment2"
         Me.fragment2.Size = New System.Drawing.Size(815, 420)
         Me.fragment2.TabIndex = 6
+        '
+        'Panel16
+        '
+        Me.Panel16.BackColor = System.Drawing.Color.White
+        Me.Panel16.Controls.Add(Me.Panel4)
+        Me.Panel16.Controls.Add(Me.Panel3)
+        Me.Panel16.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel16.Location = New System.Drawing.Point(211, 0)
+        Me.Panel16.Name = "Panel16"
+        Me.Panel16.Size = New System.Drawing.Size(815, 88)
+        Me.Panel16.TabIndex = 5
+        '
+        'Panel4
+        '
+        Me.Panel4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel4.BackColor = System.Drawing.Color.White
+        Me.Panel4.Controls.Add(Me.PictureBox2)
+        Me.Panel4.Controls.Add(Me.txtSearch)
+        Me.Panel4.ForeColor = System.Drawing.Color.Black
+        Me.Panel4.Location = New System.Drawing.Point(547, 17)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(242, 21)
+        Me.Panel4.TabIndex = 2
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.BackColor = System.Drawing.Color.LightBlue
+        Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
+        Me.PictureBox2.Location = New System.Drawing.Point(225, 0)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(17, 21)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox2.TabIndex = 3
+        Me.PictureBox2.TabStop = False
+        '
+        'txtSearch
+        '
+        Me.txtSearch.Dock = System.Windows.Forms.DockStyle.Left
+        Me.txtSearch.Location = New System.Drawing.Point(0, 0)
+        Me.txtSearch.Name = "txtSearch"
+        Me.txtSearch.Size = New System.Drawing.Size(225, 20)
+        Me.txtSearch.TabIndex = 2
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.LightBlue
+        Me.Panel3.Controls.Add(Me.Panel11)
+        Me.Panel3.Controls.Add(Me.PictureBox1)
+        Me.Panel3.ForeColor = System.Drawing.Color.Black
+        Me.Panel3.Location = New System.Drawing.Point(21, 17)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(122, 29)
+        Me.Panel3.TabIndex = 0
+        '
+        'Panel11
+        '
+        Me.Panel11.Controls.Add(Me.Label1)
+        Me.Panel11.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel11.Location = New System.Drawing.Point(0, 0)
+        Me.Panel11.Name = "Panel11"
+        Me.Panel11.Size = New System.Drawing.Size(104, 29)
+        Me.Panel11.TabIndex = 3
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(3, 8)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(79, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "ADD AUTHOR"
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(104, 0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(18, 29)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
         '
         'Panel2
         '
@@ -235,89 +318,6 @@ Partial Class Author_Management
         Me.Panel9.Size = New System.Drawing.Size(211, 88)
         Me.Panel9.TabIndex = 0
         '
-        'Panel3
-        '
-        Me.Panel3.BackColor = System.Drawing.Color.LightBlue
-        Me.Panel3.Controls.Add(Me.Panel11)
-        Me.Panel3.Controls.Add(Me.PictureBox1)
-        Me.Panel3.ForeColor = System.Drawing.Color.Black
-        Me.Panel3.Location = New System.Drawing.Point(21, 17)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(122, 29)
-        Me.Panel3.TabIndex = 0
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(104, 0)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(18, 29)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
-        '
-        'Panel11
-        '
-        Me.Panel11.Controls.Add(Me.Label1)
-        Me.Panel11.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel11.Location = New System.Drawing.Point(0, 0)
-        Me.Panel11.Name = "Panel11"
-        Me.Panel11.Size = New System.Drawing.Size(104, 29)
-        Me.Panel11.TabIndex = 3
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(3, 8)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(79, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "ADD AUTHOR"
-        '
-        'Panel4
-        '
-        Me.Panel4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel4.BackColor = System.Drawing.Color.White
-        Me.Panel4.Controls.Add(Me.PictureBox2)
-        Me.Panel4.Controls.Add(Me.txtSearch)
-        Me.Panel4.ForeColor = System.Drawing.Color.Black
-        Me.Panel4.Location = New System.Drawing.Point(547, 17)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(242, 21)
-        Me.Panel4.TabIndex = 2
-        '
-        'txtSearch
-        '
-        Me.txtSearch.Dock = System.Windows.Forms.DockStyle.Left
-        Me.txtSearch.Location = New System.Drawing.Point(0, 0)
-        Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(225, 20)
-        Me.txtSearch.TabIndex = 2
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.BackColor = System.Drawing.Color.LightBlue
-        Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
-        Me.PictureBox2.Location = New System.Drawing.Point(225, 0)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(17, 21)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox2.TabIndex = 3
-        Me.PictureBox2.TabStop = False
-        '
-        'Panel16
-        '
-        Me.Panel16.BackColor = System.Drawing.Color.White
-        Me.Panel16.Controls.Add(Me.Panel4)
-        Me.Panel16.Controls.Add(Me.Panel3)
-        Me.Panel16.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel16.Location = New System.Drawing.Point(211, 0)
-        Me.Panel16.Name = "Panel16"
-        Me.Panel16.Size = New System.Drawing.Size(815, 88)
-        Me.Panel16.TabIndex = 5
-        '
         'Author_Management
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -326,6 +326,14 @@ Partial Class Author_Management
         Me.Name = "Author_Management"
         Me.Size = New System.Drawing.Size(1026, 508)
         Me.Panel1.ResumeLayout(False)
+        Me.Panel16.ResumeLayout(False)
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel11.ResumeLayout(False)
+        Me.Panel11.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel10.ResumeLayout(False)
         Me.panelL.ResumeLayout(False)
@@ -338,14 +346,6 @@ Partial Class Author_Management
         Me.panelA.PerformLayout()
         Me.panelD.ResumeLayout(False)
         Me.panelD.PerformLayout()
-        Me.Panel3.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel11.ResumeLayout(False)
-        Me.Panel11.PerformLayout()
-        Me.Panel4.ResumeLayout(False)
-        Me.Panel4.PerformLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel16.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

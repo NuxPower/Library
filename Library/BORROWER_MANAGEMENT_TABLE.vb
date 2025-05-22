@@ -96,9 +96,7 @@ Public Class BORROWER_MANAGEMENT_TABLE
             item.SubItems.Add("") ' Placeholder for buttons
             ListView1.Items.Add(item)
         Next
-
     End Sub
-
 
     Private Sub DrawHeader(sender As Object, e As DrawListViewColumnHeaderEventArgs)
         e.DrawBackground()
@@ -136,37 +134,39 @@ Public Class BORROWER_MANAGEMENT_TABLE
         Dim hitInfo As ListViewHitTestInfo = ListView1.HitTest(e.Location)
         If hitInfo.Item Is Nothing OrElse hitInfo.SubItem Is Nothing Then Exit Sub
 
-        If hitInfo.Item.SubItems.IndexOf(hitInfo.SubItem) = 4 Then ' ACTIONS column
+        ' Check if the click was on the ACTIONS column (column index 4)
+        If hitInfo.Item.SubItems.IndexOf(hitInfo.SubItem) = 4 Then
+            Dim borrowerId As Integer = Integer.Parse(hitInfo.Item.SubItems(0).Text) ' Get the borrower ID
+
+            ' Determine which button was clicked (View or Update)
             Dim itemBounds = hitInfo.SubItem.Bounds
             Dim btnWidth As Integer = (itemBounds.Width - 10) \ 2
-
             Dim viewBtn = New Rectangle(itemBounds.X + 5, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
             Dim updateBtn = New Rectangle(itemBounds.X + btnWidth + 10, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
 
             If viewBtn.Contains(e.Location) Then
                 ' Show the VIEW_BORROWER_MANAGEMENT_CONTROL in a dynamic form
-                Dim mainForm = TryCast(Me.FindForm(), Dashboard)  ' get Dashboard form reference
+                Dim mainForm = TryCast(Me.FindForm(), Dashboard)
                 If mainForm IsNot Nothing Then
-                    Dim loanForm As New LOAN_MANAGEMENT("VIEW_BORROWER", mainForm) ' pass Dashboard reference
+                    Dim loanForm As New LOAN_MANAGEMENT("VIEW_BORROWER", mainForm, borrowerId) ' pass borrowerId
                     loanForm.Show()
-                    mainForm.Hide() ' optionally hide the dashboard form when loanForm shows
+                    mainForm.Hide()
                 Else
                     MessageBox.Show("Dashboard form not found.")
                 End If
             ElseIf updateBtn.Contains(e.Location) Then
                 ' Show the UPDATING_BORROWER_CONTROL in a dynamic form
-                Dim mainForm = TryCast(Me.FindForm(), Dashboard)  ' get Dashboard form reference
+                Dim mainForm = TryCast(Me.FindForm(), Dashboard)
                 If mainForm IsNot Nothing Then
-                    Dim loanForm As New LOAN_MANAGEMENT("UPDATE_BORROWER", mainForm) ' pass Dashboard reference
+                    Dim loanForm As New LOAN_MANAGEMENT("UPDATE_BORROWER", mainForm, borrowerId) ' pass borrowerId
                     loanForm.Show()
-                    mainForm.Hide() ' optionally hide the dashboard form when loanForm shows
+                    mainForm.Hide()
                 Else
                     MessageBox.Show("Dashboard form not found.")
                 End If
             End If
         End If
     End Sub
-
 
     Private Sub ListView1_Resize(sender As Object, e As EventArgs)
         Dim totalWidth As Integer = ListView1.ClientSize.Width
@@ -185,10 +185,6 @@ Public Class BORROWER_MANAGEMENT_TABLE
         ListView1.Columns(4).Width = col4Width        ' ACTIONS
     End Sub
 
-    Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
-
-    End Sub
-
     Public Sub PerformSearch(query As String) Implements ISearchable.PerformSearch
         If String.IsNullOrWhiteSpace(query) Then
             DisplayBorrowers(borrowersList)
@@ -200,5 +196,4 @@ Public Class BORROWER_MANAGEMENT_TABLE
             DisplayBorrowers(filtered)
         End If
     End Sub
-
 End Class

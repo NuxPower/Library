@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class VIEW_BORROWER_MANAGEMENT_CONTROL
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,18 +20,18 @@ Partial Class VIEW_BORROWER_MANAGEMENT_CONTROL
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.labelNum = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.labelEmail = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.labelName = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.ListView1 = New System.Windows.Forms.ListView()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -49,9 +49,9 @@ Partial Class VIEW_BORROWER_MANAGEMENT_CONTROL
         'Panel3
         '
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel3.Controls.Add(Me.Label5)
+        Me.Panel3.Controls.Add(Me.labelNum)
         Me.Panel3.Controls.Add(Me.Label4)
-        Me.Panel3.Controls.Add(Me.Label2)
+        Me.Panel3.Controls.Add(Me.labelEmail)
         Me.Panel3.Controls.Add(Me.Label3)
         Me.Panel3.Controls.Add(Me.labelName)
         Me.Panel3.Controls.Add(Me.Label1)
@@ -60,17 +60,41 @@ Partial Class VIEW_BORROWER_MANAGEMENT_CONTROL
         Me.Panel3.Size = New System.Drawing.Size(970, 66)
         Me.Panel3.TabIndex = 0
         '
-        'Label2
+        'labelNum
         '
-        Me.Label2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.labelNum.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(350, 25)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(164, 20)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "johnsmith@gmail.com"
+        Me.labelNum.AutoSize = True
+        Me.labelNum.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelNum.Location = New System.Drawing.Point(718, 25)
+        Me.labelNum.Name = "labelNum"
+        Me.labelNum.Size = New System.Drawing.Size(138, 20)
+        Me.labelNum.TabIndex = 5
+        Me.labelNum.Text = "+63 912 345 6789"
+        '
+        'Label4
+        '
+        Me.Label4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(569, 25)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(143, 20)
+        Me.Label4.TabIndex = 4
+        Me.Label4.Text = "PHONE NUMBER:"
+        '
+        'labelEmail
+        '
+        Me.labelEmail.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.labelEmail.AutoSize = True
+        Me.labelEmail.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelEmail.Location = New System.Drawing.Point(350, 25)
+        Me.labelEmail.Name = "labelEmail"
+        Me.labelEmail.Size = New System.Drawing.Size(164, 20)
+        Me.labelEmail.TabIndex = 3
+        Me.labelEmail.Text = "johnsmith@gmail.com"
         '
         'Label3
         '
@@ -127,30 +151,6 @@ Partial Class VIEW_BORROWER_MANAGEMENT_CONTROL
         Me.ListView1.TabIndex = 0
         Me.ListView1.UseCompatibleStateImageBehavior = False
         '
-        'Label4
-        '
-        Me.Label4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(569, 25)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(143, 20)
-        Me.Label4.TabIndex = 4
-        Me.Label4.Text = "PHONE NUMBER:"
-        '
-        'Label5
-        '
-        Me.Label5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(718, 25)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(138, 20)
-        Me.Label5.TabIndex = 5
-        Me.Label5.Text = "+63 912 345 6789"
-        '
         'VIEW_BORROWER_MANAGEMENT_CONTROL
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -172,9 +172,9 @@ Partial Class VIEW_BORROWER_MANAGEMENT_CONTROL
     Friend WithEvents Label1 As Label
     Friend WithEvents Panel2 As Panel
     Friend WithEvents ListView1 As ListView
-    Friend WithEvents Label2 As Label
+    Friend WithEvents labelEmail As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents labelName As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
+    Friend WithEvents labelNum As Label
 End Class

@@ -121,67 +121,10 @@ Public Class BOOK_MANAGEMENT_TABLE
         End Select
     End Sub
 
-    Private Sub ListView1_MouseClick(sender As Object, e As MouseEventArgs)
-        Dim hitInfo As ListViewHitTestInfo = ListView1.HitTest(e.Location)
-        If hitInfo.Item Is Nothing OrElse hitInfo.SubItem Is Nothing Then Exit Sub
-
-        If hitInfo.Item.SubItems.IndexOf(hitInfo.SubItem) = 4 Then ' ACTIONS column
-            Dim itemBounds = hitInfo.SubItem.Bounds
-            Dim btnWidth As Integer = (itemBounds.Width - 10) \ 2
-
-            Dim viewBtn = New Rectangle(itemBounds.X + 5, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
-            Dim updateBtn = New Rectangle(itemBounds.X + btnWidth + 10, itemBounds.Y + 3, btnWidth, itemBounds.Height - 6)
-
-            If viewBtn.Contains(e.Location) Then
-                ' Show BOOK_MANAGEMENT_CONTROL (UserControl) in fragment2 or desired panel
-                Dim selectedBookId As Integer = Integer.Parse(hitInfo.Item.SubItems(0).Text)
-                Dim bookView As New BOOK_MANAGEMENT_CONTROL()
-                bookView.BookId = selectedBookId
-                ShowInParentPanel(bookView)
-            ElseIf updateBtn.Contains(e.Location) Then
-                ' --- UPDATE: Pass selected book details to update_book dialog ---
-                Dim selectedBookId As Integer = Integer.Parse(hitInfo.Item.SubItems(0).Text)
-                Dim selectedBook = bookList.FirstOrDefault(Function(b) b.BookId = selectedBookId)
-                If selectedBook Is Nothing Then
-                    MessageBox.Show("Selected book not found.")
-                    Exit Sub
-                End If
-
-                ' Get author_id from DB for selected book
-                Dim authorId As Integer = 0
-                Try
-                    dbConn()
-                    Dim cmd As New MySqlCommand("SELECT author_id FROM books WHERE book_id = @bid", conn)
-                    cmd.Parameters.AddWithValue("@bid", selectedBookId)
-                    Dim result = cmd.ExecuteScalar()
-                    If result IsNot Nothing Then
-                        authorId = Convert.ToInt32(result)
-                    End If
-                Catch ex As Exception
-                    MessageBox.Show("Error fetching author: " & ex.Message)
-                Finally
-                    dbDisconn()
-                End Try
-
-                ' Pass details to update_book
-                Dim upd As New update_book()
-                upd.BookId = selectedBook.BookId
-                upd.BookTitle = selectedBook.Title
-                upd.BookISBN = selectedBook.ISBN
-                upd.AuthorId = authorId
-                upd.ShowDialog()
-                ' Refresh list after update
-                LoadBookList()
-            End If
-        End If
-    End Sub
-
-    ' Helper function to add a control to your parent container, e.g., fragment2
+    ' Remove the duplicate definition of ShowInParentPanel
     Private Sub ShowInParentPanel(ctrl As UserControl)
-        ' This assumes your UserControl sits inside a parent with a known panel (like fragment2)
         Dim parentForm = Me.FindForm()
         If parentForm IsNot Nothing Then
-            ' Try to find a Panel called fragment2 in the parent form
             Dim fragmentPanel = parentForm.Controls.Find("fragment2", True).FirstOrDefault()
             If fragmentPanel IsNot Nothing AndAlso TypeOf fragmentPanel Is Panel Then
                 Dim frag As Panel = DirectCast(fragmentPanel, Panel)
@@ -194,6 +137,19 @@ Public Class BOOK_MANAGEMENT_TABLE
             End If
         Else
             MessageBox.Show("Parent form not found.")
+        End If
+    End Sub
+
+    Private Sub ListView1_MouseClick(sender As Object, e As MouseEventArgs)
+        Dim hitInfo As ListViewHitTestInfo = ListView1.HitTest(e.Location)
+        If hitInfo.Item Is Nothing OrElse hitInfo.SubItem Is Nothing Then Exit Sub
+
+        If hitInfo.Item.SubItems.IndexOf(hitInfo.SubItem) >= 0 Then ' A column was clicked
+            Dim borrowerId As Integer = Integer.Parse(hitInfo.Item.SubItems(0).Text) ' Assuming the borrower ID is in the first column
+
+            ' Open the UPDATING_BORROWER_CONTROL and pass the selected borrower's ID
+            Dim updateBorrowerControl As New UPDATING_BORROWER_CONTROL(borrowerId)
+            ShowInParentPanel(updateBorrowerControl)
         End If
     End Sub
 
